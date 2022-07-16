@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 90
 --- !u!1 &205211896
 GameObject:
@@ -309,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223431619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 11.4}
+  m_LocalPosition: {x: -0.8, y: 0, z: 11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 30
 --- !u!1 &480233865
 GameObject:
@@ -374,7 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 30
 --- !u!1 &526647451
 GameObject:
@@ -420,7 +417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 60
 --- !u!1 &732674377
 GameObject:
@@ -520,7 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 90
 --- !u!1 &1156635172
 GameObject:
@@ -614,7 +609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 30
 --- !u!1 &1433888350
 GameObject:
@@ -714,7 +708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 60
 --- !u!1 &1618863719
 GameObject:
@@ -912,7 +905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 90
 --- !u!1 &1808804893
 GameObject:
@@ -958,7 +950,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4da9b91013701a4a83f100270a2ce7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   spawnProbability: 60
 --- !u!1 &2004409810
 GameObject:
