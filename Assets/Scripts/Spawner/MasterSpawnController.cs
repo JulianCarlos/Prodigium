@@ -27,20 +27,32 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     protected override void Awake()
     {
         base.Awake();
-        SpawnerSpawningState = new SpawnerSpawningState();
-        SpawnerCountingState = new SpawnerCountingState();
-        SpawnerWaitingState = new SpawnerWaitingState();
+        SetupStates();
 
         StateMachine = new StateMachine<MasterSpawnController>(this);
-        StateMachine.ChangeState(SpawnerSpawningState);
 
         spawnControllers = FindObjectsOfType<SpawnController>().ToList();
         spawnControllers = spawnControllers.OrderBy(x => x.SpawnProbability).ToList();
     }
-
     private void Start()
     {
-        SpawnMonsters();
+        StateMachine.InitializeFirstState(SpawnerSpawningState);
+        //SpawnMonsters();
+    }
+    private void Update()
+    {
+        StateMachine?.Update();
+    }
+    private void FixedUpdate()
+    {
+        StateMachine?.FixedUpdate();
+    }
+
+    private void SetupStates()
+    {
+        SpawnerSpawningState = new();
+        SpawnerCountingState = new();
+        SpawnerWaitingState = new();
     }
 
     public void SpawnMonsters()

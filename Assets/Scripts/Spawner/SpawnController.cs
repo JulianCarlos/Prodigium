@@ -7,10 +7,11 @@ public class SpawnController : MonoBehaviour
     //Readonly property
     public Monster MonsterPrefab => monsterPrefab;
     public float SpawnProbability => spawnProbability;
-
-    //Property
     public List<Spawner> Spawners => spawners;
     public List<Monster> SpawnedMonsters => spawnedMonsters;
+
+    //Property
+    public Color SpawnColor;
 
     //Private References
     [SerializeField] private MasterSpawnController owner;
@@ -25,6 +26,8 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] private uint maxSpawnableMonsters;
     [SerializeField] private uint minSpawnAbleMonsters;
+
+    //Visuals
 
     private void Awake()
     {
