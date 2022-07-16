@@ -122,8 +122,9 @@ MonoBehaviour:
   drag: 0.999
   inAirMovementDivision: 8
   velocity: {x: 0, y: 0, z: 0}
+  currentForwardSpeed: 0
+  currentSideWardSpeed: 0
   instantGroundResponse: 0
-  currentSpeed: 0
   checkSphereLength: 0.58
   checkSphereRadius: 0.5
   ignoreLayer:

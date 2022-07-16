@@ -15,6 +15,8 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     //Readonly Properties
     public List<Monster> SpawnedMonsters => spawnedMonsters;
     public List<SpawnController> SpawnControllers => spawnControllers;
+    public int MonsterSpawnCount => monsterSpawnCount;
+    public float IntervalBetweenSpawning => intervalBetweenSpawning;
 
     //Private Variables
     [SerializeField] private List<Monster> spawnedMonsters = new();
@@ -37,7 +39,6 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     private void Start()
     {
         StateMachine.InitializeFirstState(SpawnerSpawningState);
-        //SpawnMonsters();
     }
     private void Update()
     {
@@ -59,19 +60,18 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     {
         StartCoroutine(nameof(Spawning));
     }
-
     private IEnumerator Spawning()
     {
         for (int i = 0; i < monsterSpawnCount;)
         {
             float randomPercentage = Random.Range(0f, 100f);
-
+    
             foreach (var spawnController in spawnControllers)
             {
                 if (randomPercentage > (100 - spawnController.SpawnProbability))
                 {
                     yield return new WaitForSeconds(intervalBetweenSpawning);
-
+    
                     spawnController.SpawnMonsters();
                     i++;
                 }
@@ -80,3 +80,4 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
         StateMachine.ChangeState(SpawnerCountingState);
     }
 }
+  

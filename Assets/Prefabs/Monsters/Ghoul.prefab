@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ffff60ebc52514489391963a1d3f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyParts: []
+  monsterType: 0
   health: 0
   maxHealth: 0
   healthRegenerationSpeed: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   rightArm: {fileID: 0}
   leftLeg: {fileID: 0}
   rightLeg: {fileID: 0}
+  bodyParts: []
   monsterLevel: 0
   killReward: 0
   weakness: 
@@ -131,13 +132,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateType: 3
   behaviourType: 0
+  jumpStrength: 0
+  jumpForce: {x: 0, y: 0, z: 0}
   fleeRange: 0
   chaseRange: 0
   attackRange: 0
   scoutRange: 0
   wanderRange: 0
-  jumpStrength: 0
-  jumpForce: {x: 0, y: 0, z: 0}
+  minAttackRange: 0
+  maxAttackRange: 0
+  stoppingDistance: 0
 --- !u!195 &8677737256473792618
 NavMeshAgent:
   m_ObjectHideFlags: 0

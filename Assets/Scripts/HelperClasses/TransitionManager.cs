@@ -6,13 +6,21 @@ using DG.Tweening;
 
 public class TransitionManager : Singleton<TransitionManager>
 {
-    public void FadeIn(Image targetImage, float fadeTime)
+    [SerializeField] private Image blackSreen;
+
+    protected override void Awake()
     {
-        targetImage.DOFade(0, fadeTime);
+        base.Awake();
+        DontDestroyOnLoad(this);
     }
 
-    public void FadeOut(Image targetImage, float fadeTime)
+    public void FadeIn(float fadeTime)
     {
-        targetImage.DOFade(1, fadeTime);
+        blackSreen.DOFade(0, fadeTime);
+    }
+
+    public void FadeOut(float fadeTime)
+    {
+        blackSreen.DOFade(1, fadeTime);
     }
 }

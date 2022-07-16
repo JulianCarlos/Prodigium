@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class SpawnerSpawningState : State<MasterSpawnController>
 {
-    public override void EnterState(MasterSpawnController owner)
+    public override void EnterState(MasterSpawnController masterSpawner)
     {
         Debug.Log("Entered Spawning State");
-        owner.SpawnMonsters();
+        masterSpawner.SpawnMonsters();
     }
 
-    public override void ExitState(MasterSpawnController owner)
+    public override void ExitState(MasterSpawnController masterSpawner)
     {
         Debug.Log("Exited Spawning State");
     }
 
-    public override void FixedUpdateState(MasterSpawnController owner)
+    public override void FixedUpdateState(MasterSpawnController masterSpawner)
     {
 
     }
 
-    public override void UpdateState(MasterSpawnController owner)
+    public override void UpdateState(MasterSpawnController masterSpawner)
     {
 
     }
