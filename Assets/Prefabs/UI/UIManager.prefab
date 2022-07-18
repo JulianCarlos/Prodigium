@@ -191,6 +191,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d546feb7ab0232a4fb3cbfb1c1265196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
-  blackSreen: {fileID: 0}
-  whiteSreen: {fileID: 0}
+  masterVolumeText: {fileID: 0}
+  soundVolumeText: {fileID: 0}
+  musikVolumeText: {fileID: 0}
+  effectVolumeText: {fileID: 0}
+  environmentVolumeText: {fileID: 0}
+  masterVolumeSlider: {fileID: 0}
+  soundVolumeSlider: {fileID: 0}
+  musikVolumeSlider: {fileID: 0}
+  effektVolumeSlider: {fileID: 0}
+  environmentVolumeSlider: {fileID: 0}
+  defaultVolume: 0.5
+  sensitivityYSliderValue: {fileID: 0}
+  sensitivityXSliderValue: {fileID: 0}
+  sensitivityYSlider: {fileID: 0}
+  sensitivityXSlider: {fileID: 0}
+  defaultSens: 50
+  brightnessTextValue: {fileID: 0}
+  brightnessSlider: {fileID: 0}
+  defaultBrightness: 1
+  qualityDropdown: {fileID: 0}
+  defaultQualityLevel: 1
+  confirmationDialog: {fileID: 0}
+  newGameLevel: 
+  levelToLoad: 
+  noSavedGameDialog: {fileID: 0}
+  resolutionDropDown: {fileID: 0}
