@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7109686756630ed4e804793296e44483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnColor: {r: 0, g: 0.53150964, b: 1, a: 1}
+  SpawnColor: {r: 0, g: 0.28607965, b: 1, a: 1}
   owner: {fileID: 0}
   monsterPrefab: {fileID: 5644520158234114895, guid: 1bfca9585c93bc74196cca0f0e0ad627, type: 3}
   spawners: []
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnedMonsters: []
   spawnControllers: []
-  monsterSpawnCount: 10
+  monsterSpawnCount: 1
   intervalBetweenSpawning: 1
 --- !u!1 &1431510635
 GameObject:

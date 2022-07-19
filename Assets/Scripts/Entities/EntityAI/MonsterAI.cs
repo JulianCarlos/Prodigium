@@ -67,5 +67,4 @@ public abstract class MonsterAI : Entity
     }
 
     protected abstract void SetupStates();
-
 }

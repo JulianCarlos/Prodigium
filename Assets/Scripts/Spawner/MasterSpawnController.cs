@@ -79,5 +79,6 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
         }
         StateMachine.ChangeState(SpawnerCountingState);
     }
+
 }
   

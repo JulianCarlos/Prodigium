@@ -7,8 +7,6 @@ public class PlayerCrouchState : State<PlayerInputs>
     private float forwardCrouchSpeed = 2.5f;
     private float sideWalkCrouchSpeed = 2f;
 
-    private string animationStateBool;
-
     public override void EnterState(PlayerInputs owner)
     {
         owner.ChangeMovementSpeed(forwardCrouchSpeed, sideWalkCrouchSpeed);
