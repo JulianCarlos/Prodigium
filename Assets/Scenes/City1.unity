@@ -723,6 +723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1987721638564408316, guid: 0e7a8d52f9c9dec43b52161cf9b7d6e3, type: 3}
+      propertyPath: instantGroundResponse
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1987721638564408317, guid: 0e7a8d52f9c9dec43b52161cf9b7d6e3, type: 3}
       propertyPath: m_RootOrder
       value: 7

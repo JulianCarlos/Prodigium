@@ -95,6 +95,9 @@ public class PlayerInputs : MonoBehaviour
 
         StateMachine = new StateMachine<PlayerInputs>(this);
         StateMachine.InitializeFirstState(WalkState);
+
+        sensitivityY = PlayerPrefs.GetFloat("sensY");
+        sensitivityX = PlayerPrefs.GetFloat("sensX");
     }
 
     void Update()
