@@ -5,7 +5,7 @@ using System;
 
 public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    [NonSerialized] public T Instance;
+    public static T Instance;
 
     protected virtual void Awake()
     {
