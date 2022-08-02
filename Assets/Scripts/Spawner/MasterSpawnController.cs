@@ -62,7 +62,7 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     }
     private IEnumerator Spawning()
     {
-        for (int i = 0; i < monsterSpawnCount -1;)
+        for (int i = 0; i < monsterSpawnCount -1 ;)
         {
             float randomPercentage = Random.Range(0f, 100f);
     

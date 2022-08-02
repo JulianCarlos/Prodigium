@@ -48,7 +48,7 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeFallDamage(float damage)
     {
         Health -= damage;
-        Actions.OnTakeFallDamge(this);
+        //Actions.OnPlayerTakeFallDamage(this, damage);
     }
     public void TakeDamage(DamageTypes[] types, float damage)
     {

@@ -39,6 +39,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private float currentSideWardSpeed;
 
     [SerializeField] private bool instantGroundResponse = false;
+    private bool isFalling;
 
     //GroundCheck Settings
     [Space(15), Header("GroundCheck - Settings")]
@@ -88,7 +89,6 @@ public class PlayerInputs : MonoBehaviour
         playerInputAction.Player.Crouch.started += ToggleCrouch;
         playerInputAction.Player.Crawl.started += ToggleCrawl;
     }
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -108,8 +108,6 @@ public class PlayerInputs : MonoBehaviour
     //Input Actions
     private void MovePlayer(Vector2 moveVector)
     {
-        //Vector3 movementVector = transform.forward * moveVector.y * forwardWalkSpeed + transform.right * moveVector.x * sideWalkSpeed;
-
         if (IsGrounded && !playerInputAction.Player.Jump.WasPressedThisFrame())
         {
             //Bool if player should instantly react when standing on ground
@@ -120,7 +118,7 @@ public class PlayerInputs : MonoBehaviour
 
                 currentVelocity = transform.forward * currentForwardSpeed + transform.right * currentSideWardSpeed;
 
-                velocity = currentVelocity;
+                velocity = new Vector3(currentVelocity.x, velocity.y, currentVelocity.z);
             }
             else
             {
@@ -130,19 +128,8 @@ public class PlayerInputs : MonoBehaviour
 
                 currentVelocity = transform.forward * currentForwardSpeed + transform.right * currentSideWardSpeed;
 
-                //velocity = Vector3.MoveTowards(velocity, calculatedInput, speedAccelerationMultiplier * Time.deltaTime);
-                velocity = currentVelocity;
+                velocity = new Vector3(currentVelocity.x, velocity.y, currentVelocity.z);
             }
-            //Check if the fall was too high
-            if (CheckPlayerFallDamage(velocity))
-            {
-                //Applying damage, depending on how big the fall was
-                player.TakeFallDamage(CalculatePlayerFallDamage(velocity));
-            }
-
-            //Applying running speed to forward vector, if player is running
-            if (velocity.y < 0)
-                ResetGravity();
         }
         else
         {
@@ -161,8 +148,8 @@ public class PlayerInputs : MonoBehaviour
     {
         if (context.performed && IsGrounded)
         {
-            Actions.OnPlayerJump(this);
             velocity.y = Mathf.Sqrt(jumpStrength * -2 * Forces.Gravity.y);
+            StartCoroutine(FallDamageCheck());
         }
     }
     public void MouseLook(InputAction.CallbackContext context)
@@ -221,10 +208,6 @@ public class PlayerInputs : MonoBehaviour
     {
         velocity += Forces.Gravity * Time.deltaTime;
     }
-    private void ResetGravity()
-    {
-        velocity.y = 0;
-    }
 
     //Changes
     public void ChangeMovementSpeed(float forwardSpeed, float sideWalkSpeed)
@@ -238,21 +221,19 @@ public class PlayerInputs : MonoBehaviour
     {
         IsGrounded = Physics.CheckSphere(transform.position - (transform.up * checkSphereLength), checkSphereRadius, 3);
     }
-    private bool CheckPlayerFallDamage(Vector3 velocity)
+
+    //Fall Damage
+    private IEnumerator FallDamageCheck()
     {
-        if (velocity.y < takeDamageTreshold)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        yield return null;
+        yield return new WaitWhile(() => !IsGrounded);
+        player.TakeFallDamage(CalculateFallDamage(velocity));
+        yield return null;
+        velocity.y = 0;
     }
-    private float CalculatePlayerFallDamage(Vector3 velocity)
+    private float CalculateFallDamage(Vector3 velocity)
     {
-        float distance = transform.position.y - velocity.y;
-        float damage = distance * 4;
+        var damage = (velocity.y * -1) * 3;
         return damage;
     }
 
