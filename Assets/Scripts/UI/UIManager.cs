@@ -193,7 +193,7 @@ public class UIManager : Singleton<UIManager>
     public void OnNewGameDialogYes()
     {
         //SceneManager.LoadScene(newGameLevel);
-        TransitionManager.Instance.TransitionToScene(3, TransitionMethod.LoadingScreen);
+        TransitionManager.Instance.TransitionToScene(4, TransitionMethod.LoadingScreen);
     }
     public void OnLoadGameDialogYes()
     {

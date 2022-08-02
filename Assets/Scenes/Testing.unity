@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: bd81f7e1147ab6b4e9de9bce1c60981f, type: 2}
 --- !u!1 &181894927
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnedMonsters: []
   spawnControllers: []
-  monsterSpawnCount: 1
+  monsterSpawnCount: 15
   intervalBetweenSpawning: 1
 --- !u!1 &1431510635
 GameObject:

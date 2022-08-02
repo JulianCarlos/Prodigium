@@ -15,6 +15,7 @@ public static class Actions
 
     //Monster Actions
     public static Action<Monster> OnMonsterDeath;
+    public static Action<Monster> OnMonsterTakeDamage;
 
     //Spawner Actions
     public static Action<SpawnController> OnMonsterSpawned;

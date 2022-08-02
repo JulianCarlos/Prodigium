@@ -95,7 +95,7 @@ public abstract class Monster : Entity, IDamageable
     //IDamageable Methods
     public virtual void TakeDamage(DamageTypes[] types, float damage)
     {
-
+        Actions.OnMonsterTakeDamage(this);
     }
     public virtual void ApplyDamage()
     {
@@ -103,7 +103,7 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void Die()
     {
-        Actions.OnMonsterKilled(this);
+        Actions.OnMonsterDeath(this);
     }
 
     //OnVariableChanged Methods

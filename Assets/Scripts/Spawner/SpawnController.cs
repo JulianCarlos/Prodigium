@@ -46,8 +46,6 @@ public class SpawnController : MonoBehaviour
             {
                 Monster monster = Instantiate(monsterPrefab, spawner.transform.position, Quaternion.identity);
                 owner.SpawnedMonsters.Add(monster);
-
-                //Action
                 Actions.OnMonsterSpawned(this);
 
                 return;
@@ -55,5 +53,6 @@ public class SpawnController : MonoBehaviour
         }
         Monster monster1 = Instantiate(monsterPrefab, spawners[spawners.Count -1].transform.position, Quaternion.identity);
         owner.SpawnedMonsters.Add(monster1);
+        Actions.OnMonsterSpawned(this);
     }
 }
