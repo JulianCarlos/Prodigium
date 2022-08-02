@@ -21,6 +21,10 @@ public static class Actions
     public static Action<SpawnController> OnMonsterSpawned;
 
     //Fade Actions
-    public static Action<TransitionManager> OnFadeInBegin;
-    public static Action<TransitionManager> OnFadeOutBegin;
+    public static Action<TransitionManager, float> OnFadeInBegin;
+    public static Action<TransitionManager, float> OnFadeOutBegin;
+    
+    //MoneySystem Actions
+    public static Action<float> OnMoneyAdded;
+    public static Action<float> OnMoneyRemoved;
 }

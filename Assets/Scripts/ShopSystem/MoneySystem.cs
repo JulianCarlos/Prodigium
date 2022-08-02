@@ -11,8 +11,8 @@ public static class MoneySystem
     public static void AddMoney(float amount)
     {
         Currency += amount;
-
-        Debug.Log(Currency);
+        
+        Actions.OnMoneyAdded(amount);
     }
 
     public static void RemoveMoney(float amount)
@@ -25,6 +25,6 @@ public static class MoneySystem
         else 
             Currency -= amount;
 
-        Debug.Log(Currency);
+        Actions.OnMoneyRemoved(amount);
     }
 }
