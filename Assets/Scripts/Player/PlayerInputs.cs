@@ -99,7 +99,6 @@ public class PlayerInputs : MonoBehaviour
         sensitivityY = PlayerPrefs.GetFloat("sensY");
         sensitivityX = PlayerPrefs.GetFloat("sensX");
     }
-
     void Update()
     {
         GroundCheck();
@@ -162,6 +161,7 @@ public class PlayerInputs : MonoBehaviour
     {
         if (context.performed && IsGrounded)
         {
+            Actions.OnPlayerJump(this);
             velocity.y = Mathf.Sqrt(jumpStrength * -2 * Forces.Gravity.y);
         }
     }

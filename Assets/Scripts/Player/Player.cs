@@ -48,10 +48,11 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeFallDamage(float damage)
     {
         Health -= damage;
+        Actions.OnTakeFallDamge(this);
     }
     public void TakeDamage(DamageTypes[] types, float damage)
     {
-
+        Actions.OnTakeDamage(this);
     }
     public void ApplyDamage()
     {
@@ -60,5 +61,6 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         Debug.Log("You died");
+        Actions.OnPlayerDeath(this);
     }
 }

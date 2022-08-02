@@ -25,19 +25,20 @@ public class LoadingScreen : MonoBehaviour
         while (!loadAsync.isDone)
         {
             float progress = Mathf.Clamp01(loadAsync.progress / 9f);
-            Debug.Log(progress);
-            progressSliderValue.text = progress * 100f + "%";
-            progressSlider.value = progress;
-            Debug.Log("still loading");
             yield return null;
 
-            if (loadAsync.progress >= 0.9f)
+            if(loadAsync.progress < 0.9f)
             {
-                TransitionManager.Instance.FadeOut();
-                yield return new WaitForSeconds(3);
-                loadAsync.allowSceneActivation = true;
-                Debug.Log(loadAsync.progress);
+                progressSlider.value = progress;
+                progressSliderValue.text = progress * 100f + "%";
+                continue;
             }
+
+            progressSlider.value = 1;
+            progressSliderValue.text = 100f + "%";
+            TransitionManager.Instance.FadeOut();
+            yield return new WaitForSeconds(3);
+            loadAsync.allowSceneActivation = true;
         }
         yield return null;
     }

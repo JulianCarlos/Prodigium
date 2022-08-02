@@ -46,6 +46,10 @@ public class SpawnController : MonoBehaviour
             {
                 Monster monster = Instantiate(monsterPrefab, spawner.transform.position, Quaternion.identity);
                 owner.SpawnedMonsters.Add(monster);
+
+                //Action
+                Actions.OnMonsterSpawned(this);
+
                 return;
             }
         }

@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 
 public abstract class Monster : Entity, IDamageable
 {
-    //Properties
+    //Properties Fields
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; OnMaxHealthChanged(); } }
     public float Health { get { return maxHealth; } set { maxHealth = value; OnHealthChanged(); } }
     public float HealthRegenerationSpeed { get { return healthRegenerationSpeed; } set { healthRegenerationSpeed = value; OnHealthRegenerationSpeedChanged(); } }
@@ -14,6 +14,10 @@ public abstract class Monster : Entity, IDamageable
     public float Armor { get { return armor; } set { armor = value; OnArmorChanged(); } }
     public float MovementSpeed { get { return movementSpeed; } set { movementSpeed = value; OnMovementSpeedChanged(); } }
 
+    //ReadyOnly Fields
+    public float KillReward => killReward;
+
+    //Enum
     [SerializeField] protected MonsterType monsterType;
 
     //Stats
@@ -25,7 +29,7 @@ public abstract class Monster : Entity, IDamageable
     [SerializeField] protected float attackStrenght;
     [SerializeField] protected float armor;
     [SerializeField] protected float movementSpeed;
-
+    
     //BodyParts
     [Space(15), Header("Body Parts: ")]
     [SerializeField] private BodyPart head;
@@ -99,7 +103,7 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void Die()
     {
-
+        Actions.OnMonsterKilled(this);
     }
 
     //OnVariableChanged Methods

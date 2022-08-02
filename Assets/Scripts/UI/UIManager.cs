@@ -75,7 +75,6 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        TransitionManager.Instance.FadeIn();
         GetAllResolutions();
     }
 
@@ -194,7 +193,7 @@ public class UIManager : Singleton<UIManager>
     public void OnNewGameDialogYes()
     {
         //SceneManager.LoadScene(newGameLevel);
-        TransitionManager.Instance.TransitionToScene(3);
+        TransitionManager.Instance.TransitionToScene(3, TransitionMethod.LoadingScreen);
     }
     public void OnLoadGameDialogYes()
     {
