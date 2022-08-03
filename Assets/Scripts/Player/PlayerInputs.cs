@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// HUGE IMPROVEMENT NEEDED; FUCKING HELL;;;;
+/// </summary>
 public class PlayerInputs : MonoBehaviour
 {
     //Component References
