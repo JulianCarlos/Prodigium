@@ -11,14 +11,10 @@ public static class MoneySystem
     public static void AddMoney(float amount)
     {
         Currency += amount;
-<<<<<<< Updated upstream
         
         Actions.OnMoneyAdded(amount);
-=======
-
 
         Debug.Log(Currency);
->>>>>>> Stashed changes
     }
 
     public static void RemoveMoney(float amount)
@@ -31,11 +27,8 @@ public static class MoneySystem
         else 
             Currency -= amount;
 
-<<<<<<< Updated upstream
         Actions.OnMoneyRemoved(amount);
-=======
 
         Debug.Log(Currency);
->>>>>>> Stashed changes
     }
 }

@@ -38,41 +38,25 @@ public class TransitionManager : Singleton<TransitionManager>
     //Fade Methods
     public void FadeIn()
     {
-<<<<<<< Updated upstream
         Actions.OnFadeInBegin(this, fadeInTime);
-=======
-        Actions.OnFadeInBegin(this);
->>>>>>> Stashed changes
         blackSreen.raycastTarget = false;
         blackSreen.DOFade(0, fadeInTime).From(1);
     }
     public void FadeIn(float time)
     {
-<<<<<<< Updated upstream
         Actions.OnFadeInBegin(this, time);
-=======
-        Actions.OnFadeInBegin(this);
->>>>>>> Stashed changes
         blackSreen.raycastTarget = false;
         blackSreen.DOFade(0, time).From(1);
     }
     public void FadeOut()
     {
-<<<<<<< Updated upstream
         Actions.OnFadeOutBegin(this, fadeOutTime);
-=======
-        Actions.OnFadeOutBegin(this);
->>>>>>> Stashed changes
         blackSreen.raycastTarget = true;
         blackSreen.DOFade(1, fadeOutTime).From(0);
     }
     public void FadeOut(float time)
     {
-<<<<<<< Updated upstream
         Actions.OnFadeOutBegin(this, time);
-=======
-        Actions.OnFadeOutBegin(this);
->>>>>>> Stashed changes
         blackSreen.raycastTarget = true;
         blackSreen.DOFade(1, time).From(0);
     }

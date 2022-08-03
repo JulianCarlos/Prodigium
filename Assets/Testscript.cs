@@ -36,12 +36,12 @@ public class Testscript : MonoBehaviour
         Debug.Log("Removed Money");
     }
 
-    public void FadeIn(TransitionManager manager)
+    public void FadeIn(TransitionManager manager, float fadeTime)
     {
         Debug.Log("Fade in");
     }
 
-    public void FadeOut(TransitionManager manager)
+    public void FadeOut(TransitionManager manager, float fadeTime)
     {
         Debug.Log("Fade out");
     }
