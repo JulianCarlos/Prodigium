@@ -9,6 +9,7 @@ public class ShopSystem : MonoBehaviour
     [Header("UI Titles")]
     [SerializeField] private TextMeshProUGUI previewItemTitleText;
     [SerializeField] private TextMeshProUGUI previewItemPriceText;
+    [SerializeField] private TextMeshProUGUI unlockedCountText;
 
     [Header("Preview Buttons")]
     [SerializeField] private Button leftArrowButton;
@@ -49,12 +50,15 @@ public class ShopSystem : MonoBehaviour
 
             previewItemTitleText.text = currentSelectedObject.ItemName;
             previewItemPriceText.text = "Buy: " + currentSelectedObject.Price.ToString() + "$";
+            unlockedCountText.text = $"{currentCategoryItems.IndexOf(currentSelectedObject) + 1} / {currentCategoryItems.Count}";
         }
         else
         {
             previewItemTitleText.text = string.Empty;
             previewItemPriceText.text = string.Empty;
+            unlockedCountText.text = string.Empty;
         }
+
         buyButton.gameObject.SetActive(currentCategoryItems.Count != 0 && !currentSelectedObject.IsBought);
         useButton.gameObject.SetActive(currentCategoryItems.Count != 0 && currentSelectedObject.IsBought);
 
@@ -83,6 +87,8 @@ public class ShopSystem : MonoBehaviour
         currentCategoryItems = category.ShopCategoryObjects;
         currentItemIndex = 0;
 
+        unlockedCountText.text = $"0 / {currentCategoryItems.Count}";
+        
         ChangeItem(0);
     }
 }
