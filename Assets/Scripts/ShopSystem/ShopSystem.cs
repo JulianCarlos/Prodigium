@@ -39,20 +39,14 @@ public class ShopSystem : MonoBehaviour
         currentCategoryItems = shopCategories[0].ShopCategoryObjects;
         currentSelectedObject = currentCategoryItems[currentItemIndex];
 
-        SetPreviewValues(0);
+        ChangeItem(0);
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void SetPreviewValues(int input)
     {
-        transform.DOKill();
         if(currentSelectedObject != null)
         {
-            var obj = Instantiate(currentSelectedObject.PreviewItem, previewItemContainer);
-            //obj.transform.localPosition = Vector3.zero;
-            obj.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
-            obj.transform.DOLocalMove( Vector3.zero, 0.3f);
-
             previewItemTitleText.text = currentSelectedObject.ItemName;
             previewItemPriceText.text = "Buy: " + currentSelectedObject.Price.ToString() + "$";
             unlockedCountText.text = $"{currentCategoryItems.IndexOf(currentSelectedObject) + 1} / {currentCategoryItems.Count}";
@@ -71,6 +65,14 @@ public class ShopSystem : MonoBehaviour
         rightArrowButton.interactable = currentItemIndex != currentCategoryItems.Count - 1 && currentCategoryItems.Count != 0;
     }
 
+    private void PreviewObjectInstantiation(int input)
+    {
+        transform.DOKill();
+        var obj = Instantiate(currentSelectedObject.PreviewItem, previewItemContainer);
+        obj.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
+        obj.transform.DOLocalMove(Vector3.zero, 0.3f);
+    }
+
     public void ChangeItem(int input)
     {
         currentSelectedObject = null;
@@ -81,6 +83,7 @@ public class ShopSystem : MonoBehaviour
         if(currentCategoryItems.Count > 0)
             currentSelectedObject = currentCategoryItems[currentItemIndex];
 
+        PreviewObjectInstantiation(input);
         SetPreviewValues(input);
     }
 
@@ -95,5 +98,16 @@ public class ShopSystem : MonoBehaviour
         unlockedCountText.text = $"0 / {currentCategoryItems.Count}";
         
         ChangeItem(0);
+    }
+
+    public void BuyObject()
+    {
+        float price = currentSelectedObject.Price;
+        if (MoneySystem.MoneyCheck(price))
+        {
+            MoneySystem.RemoveMoney(price);
+            currentSelectedObject.IsBought = true;
+            SetPreviewValues(0);
+        }
     }
 }

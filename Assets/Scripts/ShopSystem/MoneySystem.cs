@@ -4,13 +4,13 @@ using UnityEngine;
 
 public static class MoneySystem
 {
-    public static float Currency = 0;
+    public static float Currency = 10000;
 
     public static float CurrencyMultiplier = 1;
 
     public static void AddMoney(float amount)
     {
-        Currency += amount;
+        Currency += amount * CurrencyMultiplier;
         
         Actions.OnMoneyAdded(amount);
 
@@ -27,8 +27,11 @@ public static class MoneySystem
         else 
             Currency -= amount;
 
-        Actions.OnMoneyRemoved(amount);
-
         Debug.Log(Currency);
+    }
+
+    public static bool MoneyCheck(float amount)
+    {
+        return Currency - amount > 0;
     }
 }
