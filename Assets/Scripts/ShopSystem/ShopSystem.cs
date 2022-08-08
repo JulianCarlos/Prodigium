@@ -64,8 +64,8 @@ public class ShopSystem : MonoBehaviour
 
     public void ChangeItem(int input)
     {
-        previewItemContainer.DestroyChildren();
         currentSelectedObject = null;
+        previewItemContainer.DestroyChildren();
 
         currentItemIndex += input;
 
