@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ShopSystem : MonoBehaviour
 {
@@ -37,16 +39,19 @@ public class ShopSystem : MonoBehaviour
         currentCategoryItems = shopCategories[0].ShopCategoryObjects;
         currentSelectedObject = currentCategoryItems[currentItemIndex];
 
-        SetPreviewValues();
+        SetPreviewValues(0);
         Cursor.lockState = CursorLockMode.None;
     }
 
-    private void SetPreviewValues()
+    private void SetPreviewValues(int input)
     {
+        transform.DOKill();
         if(currentSelectedObject != null)
         {
             var obj = Instantiate(currentSelectedObject.PreviewItem, previewItemContainer);
-            obj.transform.localPosition = Vector3.zero;
+            //obj.transform.localPosition = Vector3.zero;
+            obj.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
+            obj.transform.DOLocalMove( Vector3.zero, 0.3f);
 
             previewItemTitleText.text = currentSelectedObject.ItemName;
             previewItemPriceText.text = "Buy: " + currentSelectedObject.Price.ToString() + "$";
@@ -76,7 +81,7 @@ public class ShopSystem : MonoBehaviour
         if(currentCategoryItems.Count > 0)
             currentSelectedObject = currentCategoryItems[currentItemIndex];
 
-        SetPreviewValues();
+        SetPreviewValues(input);
     }
 
     public void ChangeCategory(ShopCategory category)
