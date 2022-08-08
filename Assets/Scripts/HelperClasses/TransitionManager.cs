@@ -38,25 +38,25 @@ public class TransitionManager : Singleton<TransitionManager>
     //Fade Methods
     public void FadeIn()
     {
-        Actions.OnFadeInBegin(this, fadeInTime);
+        //Actions.OnFadeInBegin(this, fadeInTime);
         blackSreen.raycastTarget = false;
         blackSreen.DOFade(0, fadeInTime).From(1);
     }
     public void FadeIn(float time)
     {
-        Actions.OnFadeInBegin(this, time);
+        //Actions.OnFadeInBegin(this, time);
         blackSreen.raycastTarget = false;
         blackSreen.DOFade(0, time).From(1);
     }
     public void FadeOut()
     {
-        Actions.OnFadeOutBegin(this, fadeOutTime);
+        //Actions.OnFadeOutBegin(this, fadeOutTime);
         blackSreen.raycastTarget = true;
         blackSreen.DOFade(1, fadeOutTime).From(0);
     }
     public void FadeOut(float time)
     {
-        Actions.OnFadeOutBegin(this, time);
+        //Actions.OnFadeOutBegin(this, time);
         blackSreen.raycastTarget = true;
         blackSreen.DOFade(1, time).From(0);
     }

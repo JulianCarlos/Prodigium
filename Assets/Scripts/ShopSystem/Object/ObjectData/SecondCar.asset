@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: second
   previewItem: {fileID: 704159154237622831, guid: ff763ed60c1ee6448ac26b77d9cc4d93, type: 3}
-  price: 500
+  price: 9000
   isBought: 0

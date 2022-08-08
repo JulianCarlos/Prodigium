@@ -12,7 +12,8 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI previewItemTitleText;
     [SerializeField] private TextMeshProUGUI previewItemPriceText;
     [SerializeField] private TextMeshProUGUI unlockedCountText;
-
+    [SerializeField] private TextMeshProUGUI moneyCountText;
+    
     [Header("Preview Buttons")]
     [SerializeField] private Button leftArrowButton;
     [SerializeField] private Button rightArrowButton;
@@ -63,11 +64,17 @@ public class ShopSystem : MonoBehaviour
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategoryItems.Count - 1 && currentCategoryItems.Count != 0;
+
+        moneyCountText.text = "Balance: " + MoneySystem.Currency.ToString("0.0") + "$";
     }
 
     private void PreviewObjectInstantiation(int input)
     {
         transform.DOKill();
+        
+        if (currentSelectedObject == null) 
+            return;
+        
         var obj = Instantiate(currentSelectedObject.PreviewItem, previewItemContainer);
         obj.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
         obj.transform.DOLocalMove(Vector3.zero, 0.3f);
