@@ -24,7 +24,7 @@ public class ShopSystem : MonoBehaviour
 
     [Header("Current Object")]
     [SerializeField] private int currentItemIndex = 0;
-    [SerializeField] private Item currentSelectedObject;
+    public Item CurrentSelectedObject;
     [SerializeField] private ShopCategory currentCategory;
 
     [Header("Container")]
@@ -37,7 +37,7 @@ public class ShopSystem : MonoBehaviour
     private void Awake()
     {
         currentCategory = shopCategories[0];
-        currentSelectedObject = currentCategory.Items[0];
+        CurrentSelectedObject = currentCategory.Items[0];
 
         ChangeItem(0);
         Cursor.lockState = CursorLockMode.None;
@@ -45,11 +45,11 @@ public class ShopSystem : MonoBehaviour
 
     private void SetPreviewValues(int input)
     {
-        if(currentSelectedObject != null)
+        if(CurrentSelectedObject != null)
         {
-            previewItemTitleText.text = currentSelectedObject.ItemName;
-            previewItemPriceText.text = "Buy: " + currentSelectedObject.Price.ToString() + "$";
-            unlockedCountText.text = $"{currentCategory.Items.IndexOf(currentSelectedObject) + 1} / {currentCategory.Items.Count}";
+            previewItemTitleText.text = CurrentSelectedObject.ItemName;
+            previewItemPriceText.text = "Buy: " + CurrentSelectedObject.Price.ToString() + "$";
+            unlockedCountText.text = $"{currentCategory.Items.IndexOf(CurrentSelectedObject) + 1} / {currentCategory.Items.Count}";
         }
         else
         {
@@ -58,8 +58,8 @@ public class ShopSystem : MonoBehaviour
             unlockedCountText.text = string.Empty;
         }
 
-        buyButton.gameObject.SetActive(currentCategory.Items.Count != 0 && !currentSelectedObject.IsBought);
-        useButton.gameObject.SetActive(currentCategory.Items.Count != 0 && currentSelectedObject.IsBought);
+        buyButton.gameObject.SetActive(currentCategory.Items.Count != 0 && !CurrentSelectedObject.IsBought);
+        useButton.gameObject.SetActive(currentCategory.Items.Count != 0 && CurrentSelectedObject.IsBought);
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;
@@ -71,23 +71,23 @@ public class ShopSystem : MonoBehaviour
     {
         transform.DOKill();
         
-        if (currentSelectedObject == null) 
+        if (CurrentSelectedObject == null) 
             return;
         
-        var obj = Instantiate(currentSelectedObject.PreviewItem, previewItemContainer);
+        var obj = Instantiate(CurrentSelectedObject.PreviewItem, previewItemContainer);
         obj.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
         obj.transform.DOLocalMove(Vector3.zero, 0.3f);
     }
 
     public void ChangeItem(int input)
     {
-        currentSelectedObject = null;
+        CurrentSelectedObject = null;
         previewItemContainer.DestroyChildren();
 
         currentItemIndex += input;
 
         if(currentCategory.Items.Count > 0)
-            currentSelectedObject = currentCategory.Items[currentItemIndex];
+            CurrentSelectedObject = currentCategory.Items[currentItemIndex];
 
         PreviewObjectInstantiation(input);
         SetPreviewValues(input);
@@ -108,14 +108,14 @@ public class ShopSystem : MonoBehaviour
 
     public void BuyObject()
     {
-        float price = currentSelectedObject.Price;
+        float price = CurrentSelectedObject.Price;
 
         if (MoneySystem.MoneyCheck(price))
         {
             MoneySystem.RemoveMoney(price);
-            currentSelectedObject.IsBought = true;
+            CurrentSelectedObject.IsBought = true;
 
-            PlayerData.AddItem(currentSelectedObject);
+            PlayerData.AddItem(CurrentSelectedObject);
 
             SetPreviewValues(0);
         }

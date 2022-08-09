@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FourthCar
   m_EditorClassIdentifier: 
   itemName: fourth
-  previewItem: {fileID: 7592239693210499968, guid: 65eadf398bc4f484daaf21ae39b6295f, type: 3}
+  itemTooltip: fourth tooltip
   price: 750
   isBought: 0
+  previewItem: {fileID: 7592239693210499968, guid: 65eadf398bc4f484daaf21ae39b6295f, type: 3}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SecondCar
   m_EditorClassIdentifier: 
   itemName: second
-  previewItem: {fileID: 704159154237622831, guid: ff763ed60c1ee6448ac26b77d9cc4d93, type: 3}
+  itemTooltip: second tooltip
   price: 9000
   isBought: 0
+  previewItem: {fileID: 704159154237622831, guid: ff763ed60c1ee6448ac26b77d9cc4d93, type: 3}
