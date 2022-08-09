@@ -5,8 +5,7 @@ using TMPro;
 
 public class ShopCategory : MonoBehaviour
 {
-    public List<Objects> ShopCategoryObjects => shopCategoryObjects;
-    [SerializeField] private List<Objects> shopCategoryObjects;
+    public List<Objects> Items = new();
 
     public string ShopCategoryName;
     public TextMeshProUGUI ShopCategoryNameText;
