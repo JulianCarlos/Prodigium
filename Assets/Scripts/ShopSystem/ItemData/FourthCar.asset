@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: fourth
   itemTooltip: fourth tooltip
   price: 750
-  isBought: 0
+  isBought: 1
   previewItem: {fileID: 7592239693210499968, guid: 65eadf398bc4f484daaf21ae39b6295f, type: 3}

@@ -7,11 +7,7 @@ public abstract class Item : ScriptableObject
     public string ItemName => itemName;
     public string ItemTooltip => itemTooltip;
     public float Price => price;
-    public bool IsBought
-    {
-        get => isBought;
-        set => isBought = value;
-    }
+    public bool IsBought { get => isBought; set => isBought = value; }
     public GameObject PreviewItem => previewItem;
 
     [SerializeField] protected string itemName;

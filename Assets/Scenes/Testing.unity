@@ -2007,6 +2007,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1874769710}
     m_Modifications:
+    - target: {fileID: 685433676559221899, guid: 2b6970547f4b57b42b9b33d84340716e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 685433676573691383, guid: 2b6970547f4b57b42b9b33d84340716e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 685433677561775712, guid: 2b6970547f4b57b42b9b33d84340716e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 685433677849562374, guid: 2b6970547f4b57b42b9b33d84340716e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2094,6 +2106,10 @@ PrefabInstance:
     - target: {fileID: 685433677849562375, guid: 2b6970547f4b57b42b9b33d84340716e, type: 3}
       propertyPath: m_Name
       value: Tooltip
+      objectReference: {fileID: 0}
+    - target: {fileID: 685433677849562375, guid: 2b6970547f4b57b42b9b33d84340716e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

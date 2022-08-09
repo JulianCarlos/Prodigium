@@ -4,26 +4,45 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Tooltip : MonoBehaviour
+public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject tooltipWindow;
     [SerializeField] private TextMeshProUGUI tooltipText;
 
-    ShopSystem shopSystem;
+    private bool canUse;
 
-    private void Start()
+    private void Awake()
     {
-        shopSystem = FindObjectOfType<ShopSystem>();
+        Actions.OnSelectedItemChanged += UpdateTooltipText;
     }
 
     public void ShowTooltip()
     {
+        if (!canUse)
+            return;
+
         tooltipWindow.SetActive(true);
-        tooltipText.text = shopSystem.CurrentSelectedObject.ItemTooltip;
     }
 
     public void HideTooltip()
     {
         tooltipWindow.SetActive(false);
+    }
+
+    public void UpdateTooltipText(Item item)
+    {
+        tooltipText.text = item.ItemTooltip;
+
+        canUse = item;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ShowTooltip();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        HideTooltip();
     }
 }

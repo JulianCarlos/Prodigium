@@ -27,4 +27,8 @@ public static class Actions
     //MoneySystem Actions
     public static Action<float> OnMoneyAdded;
     public static Action<float> OnMoneyRemoved;
+
+    //ShopSystem Actions
+    public static Action<Item> OnSelectedItemChanged;
+    public static Action<Item> OnItemBought;
 }

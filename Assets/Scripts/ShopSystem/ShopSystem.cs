@@ -58,8 +58,8 @@ public class ShopSystem : MonoBehaviour
             unlockedCountText.text = string.Empty;
         }
 
-        buyButton.gameObject.SetActive(currentCategory.Items.Count != 0 && !CurrentSelectedObject.IsBought);
-        useButton.gameObject.SetActive(currentCategory.Items.Count != 0 && CurrentSelectedObject.IsBought);
+        buyButton.gameObject.SetActive(CurrentSelectedObject && currentCategory.Items.Count != 0 && !CurrentSelectedObject.IsBought);
+        useButton.gameObject.SetActive(CurrentSelectedObject && currentCategory.Items.Count != 0 && CurrentSelectedObject.IsBought);
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;
@@ -91,6 +91,7 @@ public class ShopSystem : MonoBehaviour
 
         PreviewObjectInstantiation(input);
         SetPreviewValues(input);
+        Actions.OnSelectedItemChanged(CurrentSelectedObject);
     }
 
     public void ChangeCategory(ShopCategory category)

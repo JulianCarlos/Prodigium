@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: first
   itemTooltip: first tooltip
   price: 1500
-  isBought: 0
+  isBought: 1
   previewItem: {fileID: 3109964128567274356, guid: 1b8f029109422474bb46d6bf48a0c01d, type: 3}
