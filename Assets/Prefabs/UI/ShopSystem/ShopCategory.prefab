@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapons
+  m_text: Ammo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
   m_sharedMaterial: {fileID: 6313684291086636108, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
@@ -282,10 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8743c864773929b49a67d1300a9b8d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopCategoryObjects:
-  - {fileID: 11400000, guid: 077498023522fb34abab42d7f3ea2626, type: 2}
-  - {fileID: 11400000, guid: 4ef52468f0e68444ca75d2378ea59a21, type: 2}
+  Items:
   - {fileID: 11400000, guid: 4810cc2a16d8a2249bf46bd7c1097312, type: 2}
   - {fileID: 11400000, guid: 309a67ff9ede51e4ca1d0a582ca1d198, type: 2}
-  ShopCategoryName: Weapons
+  ShopCategoryName: Ammo
   ShopCategoryNameText: {fileID: 3123428245599114712}

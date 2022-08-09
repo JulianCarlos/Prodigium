@@ -24,7 +24,7 @@ public class ShopSystem : MonoBehaviour
 
     [Header("Current Object")]
     [SerializeField] private int currentItemIndex = 0;
-    [SerializeField] private Objects currentSelectedObject;
+    [SerializeField] private Item currentSelectedObject;
     [SerializeField] private ShopCategory currentCategory;
 
     [Header("Container")]
@@ -114,6 +114,9 @@ public class ShopSystem : MonoBehaviour
         {
             MoneySystem.RemoveMoney(price);
             currentSelectedObject.IsBought = true;
+
+            PlayerData.AddItem(currentSelectedObject);
+
             SetPreviewValues(0);
         }
     }

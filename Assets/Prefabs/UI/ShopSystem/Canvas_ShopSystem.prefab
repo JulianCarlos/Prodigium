@@ -23,13 +23,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66798826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1202717047}
-  m_Father: {fileID: 2960015422043818960}
+  - {fileID: 2960015420759198490}
+  m_Father: {fileID: 2960015421373575430}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1092,7 +1093,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2960015420759198501}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1105,13 +1106,13 @@ RectTransform:
   - {fileID: 3478479972444910124}
   - {fileID: 8767756895348973153}
   - {fileID: 8767756895207476207}
-  m_Father: {fileID: 2960015421373575430}
+  m_Father: {fileID: 66798827}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 225, y: 0}
-  m_SizeDelta: {x: -550, y: 0}
+  m_SizeDelta: {x: 1100, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2960015420759198488
 CanvasRenderer:
@@ -1466,7 +1467,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2960015420759198490}
+  - {fileID: 66798827}
   - {fileID: 2960015420714700880}
   - {fileID: 2960015420863105163}
   - {fileID: 2960015421605374574}
@@ -1961,7 +1962,6 @@ RectTransform:
   m_Children:
   - {fileID: 2960015420444905469}
   - {fileID: 2960015421373575430}
-  - {fileID: 66798827}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2052,11 +2052,10 @@ MonoBehaviour:
   rightArrowButton: {fileID: 114200846}
   buyButton: {fileID: 8767756895348973152}
   useButton: {fileID: 8767756895207476206}
+  shopCategoryPrefab: {fileID: 3123428246018030408, guid: 65ef8c955d9c77744b969f7793b1f15d, type: 3}
   currentItemIndex: 0
   currentSelectedObject: {fileID: 11400000, guid: 309a67ff9ede51e4ca1d0a582ca1d198, type: 2}
-  currentCategoryItems:
-  - {fileID: 11400000, guid: 309a67ff9ede51e4ca1d0a582ca1d198, type: 2}
-  - {fileID: 11400000, guid: 077498023522fb34abab42d7f3ea2626, type: 2}
+  currentCategory: {fileID: 0}
   previewItemContainer: {fileID: 77207639}
   shopCategoryContainer: {fileID: 2960015421454556899}
   shopCategories:
@@ -2064,7 +2063,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  shopCategoryPrefab: {fileID: 3123428246018030408, guid: 65ef8c955d9c77744b969f7793b1f15d, type: 3}
 --- !u!1 &7664609401318674378
 GameObject:
   m_ObjectHideFlags: 0
