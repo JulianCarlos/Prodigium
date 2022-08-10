@@ -16,7 +16,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Actions.OnSelectedItemChanged += UpdateTooltipText;
     }
 
-    public void ShowTooltip()
+    private void ShowTooltip()
     {
         if (!canUse)
             return;
@@ -24,12 +24,12 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         tooltipWindow.SetActive(true);
     }
 
-    public void HideTooltip()
+    private void HideTooltip()
     {
         tooltipWindow.SetActive(false);
     }
 
-    public void UpdateTooltipText(Item item)
+    private void UpdateTooltipText(Item item)
     {
         tooltipText.text = item.ItemTooltip;
 

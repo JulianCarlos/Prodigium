@@ -24,7 +24,8 @@ public class ShopSystem : MonoBehaviour
 
     [Header("Current Object")]
     [SerializeField] private int currentItemIndex = 0;
-    public Item CurrentSelectedObject;
+    public Item CurrentSelectedItem { get; private set; }
+    public GameObject CurrentSelectedItemGameobject { get; private set; }
     [SerializeField] private ShopCategory currentCategory;
 
     [Header("Container")]
@@ -34,10 +35,14 @@ public class ShopSystem : MonoBehaviour
     [Header("List of Categories")]
     [SerializeField] private List<ShopCategory> shopCategories;
 
+    private Vector3 originalPreviewContainerPosition;
+
     private void Awake()
     {
+        originalPreviewContainerPosition = previewItemContainer.localPosition;
+
         currentCategory = shopCategories[0];
-        CurrentSelectedObject = currentCategory.Items[0];
+        CurrentSelectedItem = currentCategory.Items[0];
 
         ChangeItem(0);
         Cursor.lockState = CursorLockMode.None;
@@ -45,11 +50,11 @@ public class ShopSystem : MonoBehaviour
 
     private void SetPreviewValues(int input)
     {
-        if(CurrentSelectedObject != null)
+        if(CurrentSelectedItem != null)
         {
-            previewItemTitleText.text = CurrentSelectedObject.ItemName;
-            previewItemPriceText.text = "Buy: " + CurrentSelectedObject.Price.ToString() + "$";
-            unlockedCountText.text = $"{currentCategory.Items.IndexOf(CurrentSelectedObject) + 1} / {currentCategory.Items.Count}";
+            previewItemTitleText.text = CurrentSelectedItem.ItemName;
+            previewItemPriceText.text = "Buy: " + CurrentSelectedItem.Price.ToString() + "$";
+            unlockedCountText.text = $"{currentCategory.Items.IndexOf(CurrentSelectedItem) + 1} / {currentCategory.Items.Count}";
         }
         else
         {
@@ -58,8 +63,8 @@ public class ShopSystem : MonoBehaviour
             unlockedCountText.text = string.Empty;
         }
 
-        buyButton.gameObject.SetActive(CurrentSelectedObject && currentCategory.Items.Count != 0 && !CurrentSelectedObject.IsBought);
-        useButton.gameObject.SetActive(CurrentSelectedObject && currentCategory.Items.Count != 0 && CurrentSelectedObject.IsBought);
+        buyButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && !CurrentSelectedItem.IsBought);
+        useButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && CurrentSelectedItem.IsBought);
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;
@@ -71,27 +76,31 @@ public class ShopSystem : MonoBehaviour
     {
         transform.DOKill();
         
-        if (CurrentSelectedObject == null) 
+        if (CurrentSelectedItem == null) 
             return;
         
-        var obj = Instantiate(CurrentSelectedObject.PreviewItem, previewItemContainer);
-        obj.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
-        obj.transform.DOLocalMove(Vector3.zero, 0.3f);
+        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem, previewItemContainer);
+        CurrentSelectedItemGameobject.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
+        CurrentSelectedItemGameobject.transform.DOLocalMove(Vector3.zero, 0.3f);
     }
 
     public void ChangeItem(int input)
     {
-        CurrentSelectedObject = null;
+        previewItemContainer.transform.localPosition = originalPreviewContainerPosition;
+
+        CurrentSelectedItem = null;
         previewItemContainer.DestroyChildren();
 
         currentItemIndex += input;
 
         if(currentCategory.Items.Count > 0)
-            CurrentSelectedObject = currentCategory.Items[currentItemIndex];
+        {
+            CurrentSelectedItem = currentCategory.Items[currentItemIndex];
+        }
 
         PreviewObjectInstantiation(input);
         SetPreviewValues(input);
-        Actions.OnSelectedItemChanged(CurrentSelectedObject);
+        Actions.OnSelectedItemChanged(CurrentSelectedItem);
     }
 
     public void ChangeCategory(ShopCategory category)
@@ -109,14 +118,14 @@ public class ShopSystem : MonoBehaviour
 
     public void BuyObject()
     {
-        float price = CurrentSelectedObject.Price;
+        float price = CurrentSelectedItem.Price;
 
         if (MoneySystem.MoneyCheck(price))
         {
             MoneySystem.RemoveMoney(price);
-            CurrentSelectedObject.IsBought = true;
+            CurrentSelectedItem.IsBought = true;
 
-            PlayerData.AddItem(CurrentSelectedObject);
+            PlayerData.AddItem(CurrentSelectedItem);
 
             SetPreviewValues(0);
         }

@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: third
   itemTooltip: third tooltip
   price: 1350
-  isBought: 1
+  isBought: 0
   previewItem: {fileID: 7184001801649151700, guid: 7d3c6281b12872f4a9bbbdc816c9feeb, type: 3}
