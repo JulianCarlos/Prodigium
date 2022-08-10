@@ -23,12 +23,10 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         tooltipWindow.SetActive(true);
     }
-
     private void HideTooltip()
     {
         tooltipWindow.SetActive(false);
     }
-
     private void UpdateTooltipText(Item item)
     {
         tooltipText.text = item.ItemTooltip;
@@ -40,7 +38,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         ShowTooltip();
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         HideTooltip();

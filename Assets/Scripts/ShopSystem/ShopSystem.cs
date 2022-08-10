@@ -8,6 +8,9 @@ using DG.Tweening;
 
 public class ShopSystem : MonoBehaviour
 {
+    public Item CurrentSelectedItem { get; private set; }
+    public GameObject CurrentSelectedItemGameobject { get; private set; }
+
     [Header("UI Titles")]
     [SerializeField] private TextMeshProUGUI previewItemTitleText;
     [SerializeField] private TextMeshProUGUI previewItemPriceText;
@@ -24,8 +27,6 @@ public class ShopSystem : MonoBehaviour
 
     [Header("Current Object")]
     [SerializeField] private int currentItemIndex = 0;
-    public Item CurrentSelectedItem { get; private set; }
-    public GameObject CurrentSelectedItemGameobject { get; private set; }
     [SerializeField] private ShopCategory currentCategory;
 
     [Header("Container")]
@@ -123,9 +124,8 @@ public class ShopSystem : MonoBehaviour
         if (MoneySystem.MoneyCheck(price))
         {
             MoneySystem.RemoveMoney(price);
-            CurrentSelectedItem.IsBought = true;
-
             PlayerData.AddItem(CurrentSelectedItem);
+            CurrentSelectedItem.IsBought = true;
 
             SetPreviewValues(0);
         }

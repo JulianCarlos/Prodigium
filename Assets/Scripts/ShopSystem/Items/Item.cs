@@ -11,7 +11,7 @@ public abstract class Item : ScriptableObject
     public GameObject PreviewItem => previewItem;
 
     [SerializeField] protected string itemName;
-    [SerializeField] protected string itemTooltip;
+    [SerializeField, TextArea(10, 100)] protected string itemTooltip;
     [SerializeField] protected float price;
     [SerializeField] protected bool isBought;
     [SerializeField] protected GameObject previewItem;
