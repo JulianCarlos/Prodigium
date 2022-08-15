@@ -15,4 +15,6 @@ public abstract class Item : ScriptableObject
     [SerializeField] protected float price;
     [SerializeField] protected bool isBought;
     [SerializeField] protected GameObject previewItem;
+
+    //
 }

@@ -45,8 +45,12 @@ public class ShopSystem : MonoBehaviour
         currentCategory = shopCategories[0];
         CurrentSelectedItem = currentCategory.Items[0];
 
-        ChangeItem(0);
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void Start()
+    {
+        ChangeItem(0);
     }
 
     private void SetPreviewValues(int input)
@@ -75,10 +79,10 @@ public class ShopSystem : MonoBehaviour
 
     private void PreviewObjectInstantiation(int input)
     {
-        transform.DOKill();
-        
         if (CurrentSelectedItem == null) 
             return;
+
+        transform.DOKill();
         
         CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem, previewItemContainer);
         CurrentSelectedItemGameobject.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);

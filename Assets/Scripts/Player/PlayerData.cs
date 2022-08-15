@@ -6,20 +6,20 @@ using UnityEngine;
 public static class PlayerData
 {
     public static List<Item> OwnedItems = new List<Item>();
+    public static List<Item> ItemsInUse = new List<Item>();
 
-    public static List<Weapons> OwnedWeapons = new List<Weapons>();
-    public static List<Vehicles> OwnedVehicles = new List<Vehicles>();
+    public static void AddItemsIngame(List<Item> targetInventory)
+    {
+        foreach (Item item in ItemsInUse)
+        {
+            targetInventory.Add(item);
+            ItemsInUse.Remove(item);
+        }
+    }
 
     public static void AddItem(Item item)
     {
-        if (item.GetType() == typeof(Weapons))
-        {
-            OwnedWeapons.Add((Weapons)item);
-        }
-        else if (item.GetType() == typeof(Vehicles))
-        {
-            OwnedVehicles.Add((Vehicles)item);
-        }
+        OwnedItems.Add(item);
     }
 
     public static void RemoveItem(Item item)
@@ -27,3 +27,4 @@ public static class PlayerData
         OwnedItems.Remove(item);
     }
 }
+

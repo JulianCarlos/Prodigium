@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+
+//IMPPORTANT
+//Check if full monster data is needed or not
+
+
 public class MasterSpawnController : Singleton<MasterSpawnController>
 {
     //Statemachine References
@@ -79,6 +84,5 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
         }
         StateMachine.ChangeState(SpawnerCountingState);
     }
-
 }
   
