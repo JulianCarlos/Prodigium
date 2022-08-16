@@ -5,35 +5,23 @@ using UnityEngine;
 
 public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
-    public static List<Item> OwnedItems = new List<Item>();
-    public static List<Item> ItemsInUse = new List<Item>();
-
-    [SerializeField] private float testFloat;
+    public List<int> OwnedItemsID = new List<int>();
+    public List<Item> OwnedItems = new List<Item>();
 
     protected override void Awake()
     {
         base.Awake();
     }
 
-    public void AddItemsIngame(List<Item> targetInventory)
-    {
-        foreach (Item item in ItemsInUse)
-        {
-            targetInventory.Add(item);
-            ItemsInUse.Remove(item);
-        }
-    }
-
     public void AddItem(Item item)
     {
-        OwnedItems.Add(item);
-        Debug.Log(OwnedItems.Count);
+        OwnedItemsID.Add(item.ID);
         SaveManager.Instance.Save();
     }
 
     public void RemoveItem(Item item)
     {
-        OwnedItems.Remove(item);
+        OwnedItemsID.Remove(item.ID);
         SaveManager.Instance.Save();
     }
 
@@ -43,20 +31,20 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
     {
         return new SaveData
         {
-            Testfloat = testFloat,
+            OwnedItemsID = OwnedItemsID
         };
     }
 
     public void RestoreState(object state)
     {
         var saveData = (SaveData)state;
-        testFloat = saveData.Testfloat;
+        OwnedItemsID = saveData.OwnedItemsID;
     }
 
     [Serializable]
     public struct SaveData
     {
-        public float Testfloat;
+        public List<int> OwnedItemsID;
     }
 }
 

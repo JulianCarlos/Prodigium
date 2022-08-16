@@ -68,8 +68,8 @@ public class ShopSystem : MonoBehaviour
             unlockedCountText.text = string.Empty;
         }
 
-        buyButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && !PlayerData.OwnedItems.Contains(CurrentSelectedItem));
-        useButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && PlayerData.OwnedItems.Contains(CurrentSelectedItem));
+        buyButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && !PlayerData.Instance.OwnedItemsID.Contains(CurrentSelectedItem.ID));
+        useButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && PlayerData.Instance.OwnedItemsID.Contains(CurrentSelectedItem.ID));
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;

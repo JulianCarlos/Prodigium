@@ -10,6 +10,10 @@ public class SaveManager : Singleton<SaveManager>
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Start()
+    {
         Load();
     }
 

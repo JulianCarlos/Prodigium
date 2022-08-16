@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44064937f1d2b43439dbc06160496885, type: 3}
   m_Name: SecondCar
   m_EditorClassIdentifier: 
+  id: 2
   itemName: second
   itemTooltip: second tooltip
   price: 9000
-  isBought: 0
   previewItem: {fileID: 704159154237622831, guid: ff763ed60c1ee6448ac26b77d9cc4d93, type: 3}

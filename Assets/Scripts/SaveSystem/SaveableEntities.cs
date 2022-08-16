@@ -19,6 +19,9 @@ public class SaveableEntities : Singleton<SaveableEntities>
 
     private void OnValidate()
     {
+        if (id != string.Empty)
+            return;
+
         GenerateId();
     }
 

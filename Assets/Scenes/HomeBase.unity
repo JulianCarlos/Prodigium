@@ -8380,7 +8380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f934c54f7aaa2bd49af1e6f29409355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 492a83c6-5b69-4f61-b256-0bf6d2b96bd2
+  id: dbd8e59b-068f-4a4e-b6e5-c043b2ab6ce0
 --- !u!114 &1625601409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8393,7 +8393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945b7b0d9bb148542af0802eb9c3fa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testFloat: 5
+  OwnedItemsID: 
+  OwnedItems: []
 --- !u!1 &1638275839
 GameObject:
   m_ObjectHideFlags: 0

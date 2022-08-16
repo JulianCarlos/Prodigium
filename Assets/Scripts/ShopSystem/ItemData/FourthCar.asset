@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44064937f1d2b43439dbc06160496885, type: 3}
   m_Name: FourthCar
   m_EditorClassIdentifier: 
+  id: 4
   itemName: fourth
   itemTooltip: fourth tooltip
   price: 750
-  isBought: 0
   previewItem: {fileID: 7592239693210499968, guid: 65eadf398bc4f484daaf21ae39b6295f, type: 3}

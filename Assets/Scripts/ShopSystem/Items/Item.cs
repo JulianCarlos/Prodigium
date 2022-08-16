@@ -4,11 +4,13 @@ using UnityEngine;
 
 public abstract class Item : ScriptableObject
 {
+    public int ID => id;
     public string ItemName => itemName;
     public string ItemTooltip => itemTooltip;
     public float Price => price;
     public GameObject PreviewItem => previewItem;
 
+    [SerializeField] protected int id;
     [SerializeField] protected string itemName;
     [SerializeField, TextArea(10, 100)] protected string itemTooltip;
     [SerializeField] protected float price;
