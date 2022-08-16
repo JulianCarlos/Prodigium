@@ -51,7 +51,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private int defaultQualityLevel = 1;
 
     private int qualityLevel;
-    private bool isFullScreen;
+    private bool isFullScreen = true;
     private float brightnessLevel;
 
     [Header("Confirmation")]
@@ -186,13 +186,14 @@ public class UIManager : Singleton<UIManager>
         PlayerPrefs.SetInt("fullscreen", (isFullScreen ? 1 : 0));
         Screen.fullScreen = isFullScreen;
 
-        StartCoroutine(ConfirmationWindow("Graphicsettings saveds", 0.5f));
+        StartCoroutine(ConfirmationWindow("Graphicsettings saved", 0.5f));
     }
 
     //UI Button Methods
     public void OnNewGameDialogYes()
     {
-        SceneManager.LoadScene(newGameLevel);
+        //SceneManager.LoadScene(newGameLevel);
+        TransitionManager.Instance.TransitionToScene(4, TransitionMethod.LoadingScreen);
     }
     public void OnLoadGameDialogYes()
     {
@@ -335,7 +336,6 @@ public class UIManager : Singleton<UIManager>
             QualitySettings.SetQualityLevel(qualityLevel);
 
             brightnessTextValue.text = brightnessLevel.ToString("0.0");
-
             qualityDropdown.value = qualityLevel;
             brightnessSlider.value = brightnessLevel;
         }

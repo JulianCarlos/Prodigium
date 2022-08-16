@@ -7,8 +7,6 @@ public class PlayerWalkState : State<PlayerInputs>
     private float forwardWalkSpeed = 3.5f;
     private float sideWalkWalkSpeed = 3f;
 
-    private string animationStateBool;
-
     public override void EnterState(PlayerInputs owner)
     {
         owner.ChangeMovementSpeed(forwardWalkSpeed, sideWalkWalkSpeed);

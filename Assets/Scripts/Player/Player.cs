@@ -18,10 +18,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         Health = MaxHealth;
     }
-    void Update()
-    {
-        
-    }
 
     //OnVariableChanged Methods
     private void OnMaxHealthChanged()
@@ -30,10 +26,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     private void OnHealthChanged()
     {
-        if(health <= 0)
-        {
-            Die();
-        }
+
     }
     private void OnMeleeDamageChanged()
     {
@@ -44,14 +37,27 @@ public class Player : MonoBehaviour, IDamageable
 
     }
 
+    //Checks
+    private void DeathCheck()
+    {
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
     //TakeDamage
     public void TakeFallDamage(float damage)
     {
+        Actions.OnPlayerTakeFallDamage(this, damage);
         Health -= damage;
+
+        DeathCheck();
     }
     public void TakeDamage(DamageTypes[] types, float damage)
     {
-
+        Actions.OnTakeDamage(this);
+        DeathCheck();
     }
     public void ApplyDamage()
     {
@@ -59,6 +65,6 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Die()
     {
-        Debug.Log("You died");
+        Actions.OnPlayerDeath(this);
     }
 }

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+
+//IMPPORTANT
+//Check if full monster data is needed or not
+
+
 public class MasterSpawnController : Singleton<MasterSpawnController>
 {
     //Statemachine References
@@ -62,7 +67,7 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     }
     private IEnumerator Spawning()
     {
-        for (int i = 0; i < monsterSpawnCount;)
+        for (int i = 0; i < monsterSpawnCount -1 ;)
         {
             float randomPercentage = Random.Range(0f, 100f);
     
