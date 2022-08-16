@@ -8,6 +8,6 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     { 
-        PlayerData.AddItemsIngame(inventoryItems);
+        PlayerData.Instance.AddItemsIngame(inventoryItems);
     }
 }

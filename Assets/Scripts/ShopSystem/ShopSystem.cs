@@ -68,8 +68,8 @@ public class ShopSystem : MonoBehaviour
             unlockedCountText.text = string.Empty;
         }
 
-        buyButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && !CurrentSelectedItem.IsBought);
-        useButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && CurrentSelectedItem.IsBought);
+        buyButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && !PlayerData.OwnedItems.Contains(CurrentSelectedItem));
+        useButton.gameObject.SetActive(CurrentSelectedItem && currentCategory.Items.Count != 0 && PlayerData.OwnedItems.Contains(CurrentSelectedItem));
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;
@@ -128,10 +128,11 @@ public class ShopSystem : MonoBehaviour
         if (MoneySystem.MoneyCheck(price))
         {
             MoneySystem.RemoveMoney(price);
-            PlayerData.AddItem(CurrentSelectedItem);
-            CurrentSelectedItem.IsBought = true;
+            PlayerData.Instance.AddItem(CurrentSelectedItem);
 
             SetPreviewValues(0);
         }
     }
+
+
 }

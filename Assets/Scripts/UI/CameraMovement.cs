@@ -7,11 +7,6 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float randomPositionOffset;
 
-    [SerializeField] private bool hasTargetPos = false;
-
-    [SerializeField] private float minValue = 0.1f;
-    [SerializeField] private float maxValue = 1f;
-
     private Vector3 startingPos;
     [SerializeField] private Vector3 targetPos;
 
