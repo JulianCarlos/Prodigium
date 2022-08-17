@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable, ISaveable<object>
 {
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; OnMaxHealthChanged(); } }
     public float Health { get { return health; } set { health = value; OnHealthChanged(); } }
@@ -13,6 +13,9 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float health;
     [SerializeField] private float meleeDamage;
     [SerializeField] private float armor;
+
+    [SerializeField] private int level = 0;
+    [SerializeField] private float experience = 0;
 
     void Start()
     {
@@ -66,5 +69,29 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         Actions.OnPlayerDeath(this);
+    }
+
+    //Save Methods
+    public object CaptureState()
+    {
+        return new SaveData()
+        {
+            level = level,
+            experience = experience,
+        };
+    }
+
+    public void RestoreState(object state)
+    {
+        var saveData = (SaveData)state;
+
+        level = saveData.level;
+        experience = saveData.experience;
+    }
+
+    internal struct SaveData
+    {
+        internal int level;
+        internal float experience;
     }
 }

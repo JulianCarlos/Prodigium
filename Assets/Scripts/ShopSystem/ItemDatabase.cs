@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(menuName = "Item/Database")]
 public class ItemDatabase : ScriptableObject
 {
-    [SerializeField] private Item[] items;
+    [SerializeField] private List<Item> items;
+
+    public Item GetItemByID(int ID)
+    {
+        return items.FirstOrDefault(i => i.ID == ID);
+    }
 
     [ContextMenu("Get all Items")]
     public void GetAllItems()
     {
-        items = AssetFinder.GetAllInstances<Item>();
+        items = AssetFinder.GetAllInstances<Item>().ToList();
     }
 
     [ContextMenu("Apply IDs")]
@@ -25,4 +31,5 @@ public class ItemDatabase : ScriptableObject
             id++;
         }
     }
+
 }

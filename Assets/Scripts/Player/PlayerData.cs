@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
     public List<int> OwnedItemsID { get; private set; } = new List<int>();
-    public List<Item> OwnedItems { get; private set; } = new List<Item>();
 
     [SerializeField] private ItemDatabase itemDatabase;
 
@@ -25,6 +24,12 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
     {
         OwnedItemsID.Remove(item.ID);
         SaveManager.Instance.Save();
+    }
+
+    [ContextMenu("Reset Inventory Items")]
+    public void ResetInventoryItems()
+    {
+        OwnedItemsID = new List<int>();
     }
 
     //Save Methods
@@ -46,10 +51,10 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
     }
 
     [Serializable]
-    public struct SaveData
+    internal struct SaveData
     {
-        public List<int> OwnedItemsID;
-        public float CurrentMoney;
+        internal List<int> OwnedItemsID;
+        internal float CurrentMoney;
     }
 }
 
