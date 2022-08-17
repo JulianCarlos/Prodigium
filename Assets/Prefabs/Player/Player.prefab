@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 1987721640300614594}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1987721638564408306
 MeshFilter:
@@ -117,14 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30afd407493fb14a93b0666cc8edd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpStrength: 1.5
-  speedAccelerationMultiplier: 10
+  jumpStrength: 5
   drag: 0.999
   inAirMovementDivision: 8
   velocity: {x: 0, y: 0, z: 0}
-  currentForwardSpeed: 0
-  currentSideWardSpeed: 0
-  instantGroundResponse: 0
   checkSphereLength: 0.58
   checkSphereRadius: 0.5
   ignoreLayer:

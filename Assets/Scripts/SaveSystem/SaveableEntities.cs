@@ -25,7 +25,6 @@ public class SaveableEntities : Singleton<SaveableEntities>
         GenerateId();
     }
 
-    [ContextMenu("Generate Id")]
     private void GenerateId() => id = Guid.NewGuid().ToString();
 
     public object CaptureState()

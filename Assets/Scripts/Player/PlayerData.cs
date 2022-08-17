@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
-    public List<int> OwnedItemsID = new List<int>();
-    public List<Item> OwnedItems = new List<Item>();
+    public List<int> OwnedItemsID { get; private set; } = new List<int>();
+    public List<Item> OwnedItems { get; private set; } = new List<Item>();
+
+    [SerializeField] private ItemDatabase itemDatabase;
 
     protected override void Awake()
     {
@@ -25,26 +27,29 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         SaveManager.Instance.Save();
     }
 
-
     //Save Methods
     public object CaptureState()
     {
         return new SaveData
         {
-            OwnedItemsID = OwnedItemsID
+            OwnedItemsID = OwnedItemsID,
+            CurrentMoney = MoneySystem.Currency
         };
     }
 
     public void RestoreState(object state)
     {
         var saveData = (SaveData)state;
+
         OwnedItemsID = saveData.OwnedItemsID;
+        MoneySystem.Currency = saveData.CurrentMoney;
     }
 
     [Serializable]
     public struct SaveData
     {
         public List<int> OwnedItemsID;
+        public float CurrentMoney;
     }
 }
 

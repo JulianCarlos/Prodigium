@@ -25,8 +25,8 @@ public static class Actions
     public static Action<TransitionManager, float> OnFadeOutBegin;
     
     //MoneySystem Actions
-    public static Action<float> OnMoneyAdded;
-    public static Action<float> OnMoneyRemoved;
+    public static Action OnMoneyAdded;
+    public static Action OnMoneyRemoved;
 
     //ShopSystem Actions
     public static Action<Item> OnSelectedItemChanged;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Item : ScriptableObject
 {
-    public int ID => id;
+    public int ID {get => id; set=> id = value; }   
     public string ItemName => itemName;
     public string ItemTooltip => itemTooltip;
     public float Price => price;

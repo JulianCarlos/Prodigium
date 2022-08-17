@@ -45,12 +45,24 @@ public class ShopSystem : MonoBehaviour
         currentCategory = shopCategories[0];
         CurrentSelectedItem = currentCategory.Items[0];
 
+        Actions.OnMoneyAdded += SetCurrencyTextAmount;
+        Actions.OnMoneyRemoved += SetCurrencyTextAmount;
+
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void Start()
     {
         ChangeItem(0);
+        SetCurrencyTextAmount();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            MoneySystem.AddMoney(100000f);
+        }
     }
 
     private void SetPreviewValues(int input)
@@ -73,8 +85,6 @@ public class ShopSystem : MonoBehaviour
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;
-
-        moneyCountText.text = "Balance: " + MoneySystem.Currency.ToString("0.0") + "$";
     }
 
     private void PreviewObjectInstantiation(int input)
@@ -121,6 +131,11 @@ public class ShopSystem : MonoBehaviour
         ChangeItem(0);
     }
 
+    public void SetCurrencyTextAmount()
+    {
+        moneyCountText.text = "Balance: " + MoneySystem.Currency.ToString() + "$";
+    }
+
     public void BuyObject()
     {
         float price = CurrentSelectedItem.Price;
@@ -133,6 +148,4 @@ public class ShopSystem : MonoBehaviour
             SetPreviewValues(0);
         }
     }
-
-
 }
