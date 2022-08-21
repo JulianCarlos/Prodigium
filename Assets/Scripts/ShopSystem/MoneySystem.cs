@@ -14,7 +14,7 @@ public static class MoneySystem
     {
         Currency += amount * CurrencyMultiplier;
         
-        Actions.OnMoneyAdded();
+        Actions.OnMoneyChanged(amount);
     }
 
     public static void RemoveMoney(float amount)
@@ -27,7 +27,7 @@ public static class MoneySystem
         else 
             Currency -= amount;
 
-        Actions.OnMoneyRemoved();
+        Actions.OnMoneyChanged(amount);
     }
 
     public static bool MoneyCheck(float amount)

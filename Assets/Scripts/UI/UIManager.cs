@@ -344,4 +344,9 @@ public class UIManager : Singleton<UIManager>
             ResetButton("Graphics");
         }
     }
+
+    public void CreateAchivements(Achievement achievement)
+    {
+        
+    }
 }

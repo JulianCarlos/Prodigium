@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Vampire : Monster
 {
-
+    protected override void Awake()
+    {
+        base.Start();
+    }
 }

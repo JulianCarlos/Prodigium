@@ -7,6 +7,8 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
     public List<int> OwnedItemsID { get; private set; } = new List<int>();
 
+    public List<Item> SelectedItems { get; private set; } = new List<Item>();
+
     [SerializeField] private ItemDatabase itemDatabase;
 
     protected override void Awake()

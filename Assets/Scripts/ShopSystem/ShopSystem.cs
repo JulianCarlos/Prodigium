@@ -45,8 +45,7 @@ public class ShopSystem : MonoBehaviour
         currentCategory = shopCategories[0];
         CurrentSelectedItem = currentCategory.Items[0];
 
-        Actions.OnMoneyAdded += SetCurrencyTextAmount;
-        Actions.OnMoneyRemoved += SetCurrencyTextAmount;
+        Actions.OnMoneyChanged += SetCurrencyTextAmount;
 
         Cursor.lockState = CursorLockMode.None;
     }
@@ -54,7 +53,7 @@ public class ShopSystem : MonoBehaviour
     private void Start()
     {
         ChangeItem(0);
-        SetCurrencyTextAmount();
+        SetCurrencyTextAmount(MoneySystem.Currency);
     }
 
     private void Update()
@@ -131,7 +130,7 @@ public class ShopSystem : MonoBehaviour
         ChangeItem(0);
     }
 
-    public void SetCurrencyTextAmount()
+    public void SetCurrencyTextAmount(float amount)
     {
         moneyCountText.text = "Balance: " + MoneySystem.Currency.ToString() + "$";
     }

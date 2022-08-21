@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,17 +10,49 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     public float MeleeDamage { get { return meleeDamage; } set { meleeDamage = value; OnMeleeDamageChanged(); } }
     public float Armor { get { return armor; } set { armor = value; OnArmorChanged(); } }
 
+    [Header("Player Stats")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float health;
     [SerializeField] private float meleeDamage;
     [SerializeField] private float armor;
 
-    [SerializeField] private int level = 0;
-    [SerializeField] private float experience = 0;
+    [Header("Level Settings")]
+    [SerializeField] private int level = 1;
+    [SerializeField] private float currentExperience = 0;
+    [SerializeField] private float experienceForNextLevel = 1000f;
+    [SerializeField] private float levelUpExpMultiplier = 1.15f;
 
     void Start()
     {
         Health = MaxHealth;
+    }
+
+    //Level Methods
+    private void LevelUp()
+    {
+        level++;
+        experienceForNextLevel += (experienceForNextLevel * levelUpExpMultiplier);
+    }
+    private void AddExperience(float exp)
+    {
+        var expGranted = exp;
+
+        while(expGranted > 0)
+        {
+            float experienceNeededForLevelup = experienceForNextLevel - expGranted;
+
+            if(expGranted < experienceNeededForLevelup)
+            {
+                currentExperience += expGranted;
+                break;
+            }
+            else
+            {
+                currentExperience += experienceNeededForLevelup;
+                expGranted -= experienceNeededForLevelup;
+                LevelUp();
+            }
+        }
     }
 
     //OnVariableChanged Methods
@@ -52,7 +85,7 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     //TakeDamage
     public void TakeFallDamage(float damage)
     {
-        Actions.OnPlayerTakeFallDamage(this, damage);
+        //Actions.OnPlayerTakeFallDamage(this, damage);
         Health -= damage;
 
         DeathCheck();
@@ -68,7 +101,7 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     }
     public void Die()
     {
-        Actions.OnPlayerDeath(this);
+        //Actions.OnPlayerDeath(this);
     }
 
     //Save Methods
@@ -77,7 +110,8 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
         return new SaveData()
         {
             level = level,
-            experience = experience,
+            experience = currentExperience,
+            experienceForNextLevel = experienceForNextLevel
         };
     }
 
@@ -86,12 +120,15 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
         var saveData = (SaveData)state;
 
         level = saveData.level;
-        experience = saveData.experience;
+        currentExperience = saveData.experience;
+        experienceForNextLevel = saveData.experienceForNextLevel;
     }
 
+    [Serializable]
     internal struct SaveData
     {
         internal int level;
         internal float experience;
+        internal float experienceForNextLevel;
     }
 }

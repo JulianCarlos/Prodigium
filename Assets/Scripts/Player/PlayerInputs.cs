@@ -82,6 +82,14 @@ public class PlayerInputs : MonoBehaviour
         playerInputAction.Player.Run.canceled += ToggleRun;
         playerInputAction.Player.Crouch.started += ToggleCrouch;
         playerInputAction.Player.Crawl.started += ToggleCrawl;
+
+        playerInputAction.Player.OpenInventory.started += OpenInventory;
+        playerInputAction.Player.PickUp.started += UseOrPickup;
+        playerInputAction.Player.Reload.started += Reload;
+        playerInputAction.Player.DropItem.started += DropItem;
+
+        playerInputAction.Player.LeftClick.started += LeftClick;
+        playerInputAction.Player.RightClick.started += RightClick;
     }
     private void Start()
     {
@@ -174,6 +182,36 @@ public class PlayerInputs : MonoBehaviour
         {
             StateMachine.ChangeState(CrawlState);
         }
+    }
+    public void OpenInventory(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("Open Inventory");
+        }
+    }
+    public void UseOrPickup(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("Use or Pickup");
+        }
+    }
+    public void Reload(InputAction.CallbackContext context)
+    {
+        Debug.Log("Reloaded");
+    }
+    public void DropItem(InputAction.CallbackContext context)
+    {
+        Debug.Log("Dropped Item");
+    }
+    public void LeftClick(InputAction.CallbackContext context)
+    {
+        Debug.Log("Clicked Left");
+    }
+    public void RightClick(InputAction.CallbackContext context)
+    {
+        Debug.Log("Clicked Right");
     }
 
     //Changes
