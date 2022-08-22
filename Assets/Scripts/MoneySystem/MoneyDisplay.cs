@@ -35,7 +35,7 @@ public class MoneyDisplay : MonoBehaviour
     {
         changedMoneyText.alpha = 1;
         changedMoneyText.transform.position = originalChangedMoneyTextPos;
-        changedMoneyText.text = ((amount >= 0) ? "+" : "-") + amount.ToString() + "$";
+        changedMoneyText.text = ((amount >= 0) ? "+" : "") + amount.ToString() + "$";
         yield return new WaitForSeconds(2f);
         Tween tween = changedMoneyText.DOFade(0, 2);
         yield return new WaitForSeconds(2f);

@@ -36,4 +36,7 @@ public static class Actions
 
     //Collect Actions
     public static Action<Item> OnItemCollected;
+
+    //Achievement Actions
+    public static Action<Achievement> OnAchievementCompleted;
 }

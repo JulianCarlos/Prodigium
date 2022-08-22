@@ -27,7 +27,7 @@ public static class MoneySystem
         else 
             Currency -= amount;
 
-        Actions.OnMoneyChanged(amount);
+        Actions.OnMoneyChanged(-amount);
     }
 
     public static bool MoneyCheck(float amount)

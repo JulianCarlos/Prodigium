@@ -54,8 +54,8 @@ public class Achievement
 
     private void SetKillAchievement()
     {
-        MaxAchievementAmount = UnityEngine.Random.Range(1, 3);
-        MoneyReward = UnityEngine.Random.Range(100, 250);
+        MaxAchievementAmount = UnityEngine.Random.Range(1, 4);
+        MoneyReward = UnityEngine.Random.Range(100, 250) * MaxAchievementAmount;
         AchievementType = AchievementType.Kill;
         AchievementDifficulty = AchievementDifficulty.Medium;
         AchievementName = $"Kill Target: {MoneyReward}$ ({AchievementDifficulty.ToString()})";
@@ -64,8 +64,8 @@ public class Achievement
 
     private void SetCollectAchievement()
     {
-        MaxAchievementAmount = UnityEngine.Random.Range(1, 3);
-        MoneyReward = UnityEngine.Random.Range(100, 250);
+        MaxAchievementAmount = UnityEngine.Random.Range(1, 4);
+        MoneyReward = UnityEngine.Random.Range(100, 250)  * MaxAchievementAmount;
         AchievementType = AchievementType.Collect;
         AchievementDifficulty = AchievementDifficulty.Easy;
         AchievementName = $"Collect Items: {MoneyReward}$ ({AchievementDifficulty.ToString()})";
@@ -87,13 +87,7 @@ public class Achievement
         if (IsCompleted)
             return;
 
-        CurrentAchievementAmount++;
-
-        if(CurrentAchievementAmount >= MaxAchievementAmount)
-        {
-            AchievementManager.CompleteAchievement(this);
-            IsCompleted = true;
-        }
+        ConditionCheck();
 
         Child.SetValues(this);
     }
@@ -103,13 +97,7 @@ public class Achievement
         if (IsCompleted)
             return;
 
-        CurrentAchievementAmount++;
-
-        if (CurrentAchievementAmount >= MaxAchievementAmount)
-        {
-            AchievementManager.CompleteAchievement(this);
-            IsCompleted = true;
-        }
+        ConditionCheck();
 
         Child.SetValues(this);
     }
@@ -119,14 +107,20 @@ public class Achievement
         if (IsCompleted)
             return;
 
+        ConditionCheck();
+
+        Child.SetValues(this);
+    }
+
+    private void ConditionCheck()
+    {
         CurrentAchievementAmount++;
 
         if (CurrentAchievementAmount >= MaxAchievementAmount)
         {
             AchievementManager.CompleteAchievement(this);
+            MoneySystem.AddMoney(MoneyReward);
             IsCompleted = true;
         }
-
-        Child.SetValues(this);
     }
 }

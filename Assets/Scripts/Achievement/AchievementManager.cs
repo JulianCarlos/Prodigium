@@ -38,7 +38,6 @@ public static class AchievementManager
     public static void CompleteAchievement(Achievement achievement)
     {
         CompletedAchievements.Add(achievement);
-        Actions.OnMoneyChanged(achievement.MoneyReward);
     }
 }
 
