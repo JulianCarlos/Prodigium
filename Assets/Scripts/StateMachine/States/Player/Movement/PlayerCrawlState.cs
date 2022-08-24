@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCrawlState : State<PlayerInputs>
+public class PlayerCrawlState : State<FirstPersonController>
 {
     private float forwardCrawlSpeed = 1.5f;
     private float sideWalkCrawlSpeed = 1f;
 
-    public override void EnterState(PlayerInputs owner)
+    public override void EnterState(FirstPersonController owner)
     {
-        owner.ChangeMovementSpeed(forwardCrawlSpeed, sideWalkCrawlSpeed);
+        //owner.ChangeMovementSpeed(forwardCrawlSpeed, sideWalkCrawlSpeed);
     }
 
-    public override void ExitState(PlayerInputs owner)
-    {
-
-    }
-
-    public override void FixedUpdateState(PlayerInputs owner)
+    public override void ExitState(FirstPersonController owner)
     {
 
     }
 
-    public override void UpdateState(PlayerInputs owner)
+    public override void FixedUpdateState(FirstPersonController owner)
+    {
+
+    }
+
+    public override void UpdateState(FirstPersonController owner)
     {
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public static class AssetFinder
 {
@@ -16,5 +17,17 @@ public static class AssetFinder
             a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
         }
         return a;
+    }
+
+    public static List<Monster> GetAllMonsters()
+    {
+        IEnumerable<Monster> GetAll()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => type.IsSubclassOf(typeof(Monster)))
+                .Select(type => Activator.CreateInstance(type) as Monster);
+        }
+        return GetAll().ToList();
     }
 }

@@ -6,26 +6,31 @@ using UnityEngine;
 [System.Serializable]
 public class Achievement
 {
-    public string AchievementName;
-    public string AchievementDescription;
+    public string AchievementName { get; private set; }
+    public string AchievementDescription { get; private set; }
 
-    public int CurrentAchievementAmount;
-    public int MaxAchievementAmount;
+    public int CurrentAchievementAmount { get; private set; }
+    public int MaxAchievementAmount { get; private set; }
 
-    public AchievementType AchievementType;
-    public AchievementDifficulty AchievementDifficulty;
+    public AchievementType AchievementType { get; private set; }
+    public AchievementDifficulty AchievementDifficulty { get; private set; }
 
-    public float MoneyReward;
+    public float MoneyReward { get; private set; }
 
-    public AchievementUI Child;
+    internal AchievementUI Child;
 
-    public bool IsCompleted;
+    public bool IsCompleted { get; private set; }
+
+    [SerializeField] private Type monsterType;
+    [SerializeField] private Type itemType;
+    [SerializeField] private Vector3 locationType;
 
     public Achievement(AchievementType type, AchievementUI uiPrefab)
     {
         Child = uiPrefab;
         CurrentAchievementAmount = 0;
 
+        monsterType = AchievementDatabase.GetRandomMonsterType();
         SelectAchievement(type);
 
         Child.SetValues(this);
@@ -59,7 +64,7 @@ public class Achievement
         AchievementType = AchievementType.Kill;
         AchievementDifficulty = AchievementDifficulty.Medium;
         AchievementName = $"Kill Target: {MoneyReward}$ ({AchievementDifficulty.ToString()})";
-        AchievementDescription = "Kill target test";
+        AchievementDescription = $"Kill {MaxAchievementAmount} {monsterType.Name}";
     }
 
     private void SetCollectAchievement()
@@ -84,7 +89,7 @@ public class Achievement
 
     private void OnMonsterKill(Monster monster)
     {
-        if (IsCompleted)
+        if (IsCompleted || monster.GetType() != monsterType)
             return;
 
         ConditionCheck();
@@ -94,7 +99,7 @@ public class Achievement
 
     private void OnCollectedItem(Item item)
     {
-        if (IsCompleted)
+        if (IsCompleted || item.GetType() != itemType)
             return;
 
         ConditionCheck();

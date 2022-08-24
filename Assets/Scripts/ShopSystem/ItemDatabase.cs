@@ -13,7 +13,7 @@ public class ItemDatabase : ScriptableObject
     {
         return items.FirstOrDefault(i => i.ID == ID);
     }
-
+    
     [ContextMenu("Get all Items")]
     public void GetAllItems()
     {

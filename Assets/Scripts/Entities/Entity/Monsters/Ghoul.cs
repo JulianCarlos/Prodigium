@@ -15,14 +15,6 @@ public class Ghoul : Monster
         monsterType = MonsterType.Ghoul;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Die();
-        }
-    }
-
     public override void TakeDamage(DamageTypes[] types, float damage)
     {
         base.TakeDamage(types, damage);

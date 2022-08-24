@@ -96,7 +96,7 @@ public class PlayerInputs : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         StateMachine = new StateMachine<PlayerInputs>(this);
-        StateMachine.InitializeFirstState(WalkState);
+        //StateMachine.InitializeFirstState(WalkState);
 
         sensitivityY = PlayerPrefs.GetFloat("sensY");
         sensitivityX = PlayerPrefs.GetFloat("sensX");
@@ -153,12 +153,12 @@ public class PlayerInputs : MonoBehaviour
     {
         if (context.started)
         {
-            StateMachine.ChangeState(RunState);
+            //StateMachine.ChangeState(RunState);
             IsRunning = true;
         }
         else if (context.canceled)
         {
-            StateMachine.ChangeState(WalkState);
+            //StateMachine.ChangeState(WalkState);
             IsRunning= false;
         }
     }
@@ -166,21 +166,21 @@ public class PlayerInputs : MonoBehaviour
     {
         if (context.started)
         {
-            if(StateMachine.CurrentState == CrouchState)
-            {
-                StateMachine.ChangeState(WalkState);
-            }
-            else
-            {
-                StateMachine.ChangeState(CrouchState);
-            }
+            //if(StateMachine.CurrentState == CrouchState)
+            //{
+            //    StateMachine.ChangeState(WalkState);
+            //}
+            //else
+            //{
+            //    StateMachine.ChangeState(CrouchState);
+            //}
         }
     }
     public void ToggleCrawl(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            StateMachine.ChangeState(CrawlState);
+            //StateMachine.ChangeState(WalkState);
         }
     }
     public void OpenInventory(InputAction.CallbackContext context)
