@@ -6,8 +6,9 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     public StateMachine<FirstPersonController> StateMachine { get; private set; }
+    public PlayerInputs PlayerInputs { get; private set; }
 
-    [SerializeField] PlayerInputAction playerInputAction;
+    [SerializeField] private PlayerInputAction playerInputAction;
 
     public PlayerCrawlState CrawlState { get; private set; } = new();
     public PlayerCrouchState CrouchState { get; private set; } = new();
@@ -122,6 +123,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void GetComponents()
     {
+        PlayerInputs = GetComponent<PlayerInputs>();
         playerInputAction = new PlayerInputAction();
         playerInputAction.Player.Enable();
         characterController = GetComponent<CharacterController>();
@@ -149,7 +151,7 @@ public class FirstPersonController : MonoBehaviour
     {
         smoothCurrentSpeed = Mathf.Lerp(smoothCurrentSpeed, currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-        if (playerInputAction.Player.Run.IsPressed() && CanRun())
+        if (PlayerInputs.IsRunning && CanRun())
         {
             float walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, smoothCurrentSpeed);
             finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(walkRunPercent) * walkRunSpeedDifference + walkSpeed;
@@ -204,8 +206,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void CalculateSpeed()
     {
-        currentSpeed = playerInputAction.Player.Run.IsPressed() && CanRun() ? runSpeed : walkSpeed;
-        currentSpeed = playerInputAction.Player.Crouch.WasPressedThisFrame() ? crouchSpeed : currentSpeed;
+        currentSpeed = PlayerInputs.IsRunning && CanRun() ? runSpeed : walkSpeed;
+        currentSpeed = StateMachine.CurrentState == CrouchState ? crouchSpeed : currentSpeed;
         currentSpeed = playerInputAction.Player.Movement.ReadValue<Vector2>().magnitude == 0 ? 0f : currentSpeed;
         currentSpeed = playerInputAction.Player.Movement.ReadValue<Vector2>().y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
         currentSpeed = playerInputAction.Player.Movement.ReadValue<Vector2>().x != 0 && playerInputAction.Player.Movement.ReadValue<Vector2>().y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
@@ -227,9 +229,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (playerInputAction.Player.Jump.WasPressedThisFrame() && !playerInputAction.Player.Crouch.WasPressedThisFrame())
+        if (playerInputAction.Player.Jump.WasPressedThisFrame() && StateMachine.CurrentState != CrouchState)
         {
-            finalMoveVector.y = jumpSpeed;
+            finalMoveVector.y = Mathf.Sqrt(jumpSpeed * -2 * (Forces.Gravity.y * gravityMultiplier));
 
             previouslyGrounded = true;
             isGrounded = false;
@@ -293,7 +295,6 @@ public class FirstPersonController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not Grounded");
             finalMoveVector += Forces.Gravity * gravityMultiplier * Time.deltaTime;
         }
     }
