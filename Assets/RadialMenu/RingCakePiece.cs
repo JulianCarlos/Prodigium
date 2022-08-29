@@ -26,13 +26,13 @@ public class RingCakePiece : MonoBehaviour
 
         currentSelectedItemIndex = 0;
 
-        if (categoryItems != null)
+        if (categoryItems.Count > 0)
             currentSelectedItem = categoryItems[currentSelectedItemIndex];
     }
 
     public void ScrollPrevious()
     {
-        if (categoryItems != null && currentSelectedItemIndex != 0)
+        if (categoryItems.Count > 0 && currentSelectedItemIndex != 0)
         {
             currentSelectedItemIndex--;
             currentSelectedItem = categoryItems[currentSelectedItemIndex];
@@ -41,7 +41,7 @@ public class RingCakePiece : MonoBehaviour
 
     public void ScrollNext()
     {
-        if (categoryItems != null && currentSelectedItemIndex != categoryItems.Count - 1)
+        if (categoryItems.Count > 0 && currentSelectedItemIndex != categoryItems.Count - 1)
         {
             currentSelectedItemIndex++;
             currentSelectedItem = categoryItems[currentSelectedItemIndex];

@@ -335,6 +335,22 @@ PrefabInstance:
       propertyPath: highlightColor.r
       value: 0.4245283
       objectReference: {fileID: 0}
+    - target: {fileID: 5561851626750250093, guid: cbf053f2de9d93e4eb75dbd4cb300751, type: 3}
+      propertyPath: segmentData.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5561851626750250093, guid: cbf053f2de9d93e4eb75dbd4cb300751, type: 3}
+      propertyPath: segmentData.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9721b9e9b50c6e34a8b241872acc3019, type: 2}
+    - target: {fileID: 5561851626750250093, guid: cbf053f2de9d93e4eb75dbd4cb300751, type: 3}
+      propertyPath: segmentData.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ab816e37f4d25440978e09a7e316d63, type: 2}
+    - target: {fileID: 5561851626750250093, guid: cbf053f2de9d93e4eb75dbd4cb300751, type: 3}
+      propertyPath: segmentData.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3375a398bab5d7842a5c924cde96b2d2, type: 2}
     - target: {fileID: 8189616656858234858, guid: cbf053f2de9d93e4eb75dbd4cb300751, type: 3}
       propertyPath: m_Name
       value: Ring

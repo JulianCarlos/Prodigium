@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba79ebf8b8dfb2c499f3604e97332639, type: 3}
-  m_Name: Third
+  m_Name: Food
   m_EditorClassIdentifier: 
   Name: 
   Icon: {fileID: 21300000, guid: e18986586738e8243a14322310cb1121, type: 3}

@@ -7,4 +7,11 @@ public class RingSegment : ScriptableObject
 {
     public string Name;
     public Sprite Icon;
+
+    [SerializeField] private List<ItemData> items;
+
+    public void GetAllItems()
+    {
+
+    }
 }

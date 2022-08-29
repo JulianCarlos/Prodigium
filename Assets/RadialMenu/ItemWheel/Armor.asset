@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba79ebf8b8dfb2c499f3604e97332639, type: 3}
-  m_Name: Second
+  m_Name: Armor
   m_EditorClassIdentifier: 
   Name: 
   Icon: {fileID: 21300000, guid: cabb4b9bfa8cfbc4fa308e8b0234e811, type: 3}
