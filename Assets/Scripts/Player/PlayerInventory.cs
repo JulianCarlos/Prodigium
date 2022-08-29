@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] private List<Item> inventoryItems = new List<Item>();
+    [SerializeField] private List<ItemData> inventoryItems = new List<ItemData>();
 
-    [SerializeField] private Item itemInUse;
+    [SerializeField] private ItemData itemInUse;
 
     private void Start()
     { 

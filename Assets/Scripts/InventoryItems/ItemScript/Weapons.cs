@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Objects/Weapons")]
-public class Weapons : Item
+public class Weapons : ItemData
 {
 
 }

@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class ShopSystem : MonoBehaviour
 {
-    public Item CurrentSelectedItem { get; private set; }
+    public ItemData CurrentSelectedItem { get; private set; }
     public GameObject CurrentSelectedItemGameobject { get; private set; }
 
     [Header("UI Titles")]
@@ -93,7 +93,7 @@ public class ShopSystem : MonoBehaviour
 
         transform.DOKill();
         
-        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem, previewItemContainer);
+        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem.gameObject, previewItemContainer);
         CurrentSelectedItemGameobject.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
         CurrentSelectedItemGameobject.transform.DOLocalMove(Vector3.zero, 0.3f);
     }

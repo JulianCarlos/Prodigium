@@ -7,7 +7,7 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
     public List<int> OwnedItemsID { get; private set; } = new List<int>();
 
-    public List<Item> SelectedItems { get; private set; } = new List<Item>();
+    public List<ItemData> SelectedItems { get; private set; } = new List<ItemData>();
 
     [SerializeField] private ItemDatabase itemDatabase;
 
@@ -16,13 +16,13 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         base.Awake();
     }
 
-    public void AddItem(Item item)
+    public void AddItem(ItemData item)
     {
         OwnedItemsID.Add(item.ID);
         SaveManager.Instance.Save();
     }
 
-    public void RemoveItem(Item item)
+    public void RemoveItem(ItemData item)
     {
         OwnedItemsID.Remove(item.ID);
         SaveManager.Instance.Save();

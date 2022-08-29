@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class PlayerCrouchState : State<FirstPersonController>
 {
-    private float forwardCrouchSpeed = 2.5f;
-    private float sideWalkCrouchSpeed = 2f;
-
     public override void EnterState(FirstPersonController owner)
     {
-        //owner.ChangeMovementSpeed(forwardCrouchSpeed, sideWalkCrouchSpeed);
+
     }
 
     public override void ExitState(FirstPersonController owner)

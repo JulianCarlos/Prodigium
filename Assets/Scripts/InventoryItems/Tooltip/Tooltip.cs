@@ -27,7 +27,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         tooltipWindow.SetActive(false);
     }
-    private void UpdateTooltipText(Item item)
+    private void UpdateTooltipText(ItemData item)
     {
         tooltipText.text = item.ItemTooltip;
 

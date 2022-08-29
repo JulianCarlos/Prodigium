@@ -63,7 +63,7 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 finalMoveDir;
     private Vector3 smoothFinalMoveDir;
 
-    private Vector3 finalMoveVector;
+    private Vector3 finalVelocity;
 
     private float currentSpeed;
     private float smoothCurrentSpeed;
@@ -142,7 +142,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void SmoothInput()
     {
-        inputVector = playerInputAction.Player.Movement.ReadValue<Vector2>().normalized;
+        inputVector = PlayerInputs.MoveInput.normalized;
         smoothInputVector = Vector2.Lerp(smoothInputVector, inputVector, Time.deltaTime * smoothInputSpeed);
         Debug.DrawRay(transform.position, new Vector3(smoothInputVector.x, 0, smoothInputVector.y), Color.green);
     }
@@ -151,7 +151,7 @@ public class FirstPersonController : MonoBehaviour
     {
         smoothCurrentSpeed = Mathf.Lerp(smoothCurrentSpeed, currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-        if (PlayerInputs.IsRunning && CanRun())
+        if (PlayerInputs.RunButtonPressed && CanRun())
         {
             float walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, smoothCurrentSpeed);
             finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(walkRunPercent) * walkRunSpeedDifference + walkSpeed;
@@ -180,7 +180,7 @@ public class FirstPersonController : MonoBehaviour
             normalizeDir = smoothFinalMoveDir.normalized;
 
         float dot = Vector3.Dot(transform.forward, normalizeDir);
-        return dot >= canRunTreshold && !playerInputAction.Player.Crouch.IsPressed() ? true : false;
+        return dot >= canRunTreshold && StateMachine.CurrentState != CrouchState ? true : false;
     }
 
     private void CalculateMovementDirection()
@@ -206,11 +206,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void CalculateSpeed()
     {
-        currentSpeed = PlayerInputs.IsRunning && CanRun() ? runSpeed : walkSpeed;
+        currentSpeed = PlayerInputs.RunButtonPressed && CanRun() ? runSpeed : walkSpeed;
         currentSpeed = StateMachine.CurrentState == CrouchState ? crouchSpeed : currentSpeed;
-        currentSpeed = playerInputAction.Player.Movement.ReadValue<Vector2>().magnitude == 0 ? 0f : currentSpeed;
-        currentSpeed = playerInputAction.Player.Movement.ReadValue<Vector2>().y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
-        currentSpeed = playerInputAction.Player.Movement.ReadValue<Vector2>().x != 0 && playerInputAction.Player.Movement.ReadValue<Vector2>().y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
+        currentSpeed = PlayerInputs.MoveInput.magnitude == 0 ? 0f : currentSpeed;
+        currentSpeed = PlayerInputs.MoveInput.y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
+        currentSpeed = PlayerInputs.MoveInput.x != 0 && PlayerInputs.MoveInput.y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
     }
 
     private void CalculateFinalMovement()
@@ -218,12 +218,12 @@ public class FirstPersonController : MonoBehaviour
         float smoothInputVectorMagnitude = 1f;
         Vector3 finalVector = smoothFinalMoveDir * finalSmoothCurrentSpeed * smoothInputVectorMagnitude;
 
-        finalMoveVector.x = finalVector.x;
-        finalMoveVector.z = finalVector.z;
+        finalVelocity.x = finalVector.x;
+        finalVelocity.z = finalVector.z;
 
         if (isGrounded)
         {
-            finalMoveVector.y = finalVector.y;
+            finalVelocity.y = finalVector.y;
         }
     }
 
@@ -231,7 +231,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (playerInputAction.Player.Jump.WasPressedThisFrame() && StateMachine.CurrentState != CrouchState)
         {
-            finalMoveVector.y = Mathf.Sqrt(jumpSpeed * -2 * (Forces.Gravity.y * gravityMultiplier));
+            finalVelocity.y = Mathf.Sqrt(jumpSpeed * -2 * (Forces.Gravity.y * gravityMultiplier));
 
             previouslyGrounded = true;
             isGrounded = false;
@@ -243,7 +243,7 @@ public class FirstPersonController : MonoBehaviour
         if(!previouslyGrounded && isGrounded)
         {
             FallDamageCheck();
-            InvokeLandingRoutine();
+            //InvokeLandingRoutine();
         }
     }
 
@@ -263,12 +263,13 @@ public class FirstPersonController : MonoBehaviour
 
         float speed = 1f / landDuration;
 
-        Vector3 localPos = yawTransform.localPosition;
+        Vector3 originalPos = yawTransform.localPosition;
+        Vector3 localPos = originalPos;
         float initLandHeight = localPos.y;
 
         landAmount = highLandAmount;
 
-        while (percent < 1f)
+        while (percent <= 1f)
         {
             percent += Time.deltaTime * speed;
             float desiredY = landCurve.Evaluate(percent) * 15;
@@ -278,6 +279,8 @@ public class FirstPersonController : MonoBehaviour
 
             yield return null;
         }
+
+        yawTransform.localPosition = originalPos;
     }
 
     private void FallDamageCheck()
@@ -289,19 +292,19 @@ public class FirstPersonController : MonoBehaviour
     {
         if (isGrounded)
         {
-            finalMoveVector.y = -stickToGroundForce;
+            finalVelocity.y = -stickToGroundForce;
 
             HandleJump();
         }
         else
         {
-            finalMoveVector += Forces.Gravity * gravityMultiplier * Time.deltaTime;
+            finalVelocity += Forces.Gravity * gravityMultiplier * Time.deltaTime;
         }
     }
 
     private void ApplyMovement()
     {
-        characterController.Move(finalMoveVector * Time.deltaTime);
+        characterController.Move(finalVelocity * Time.deltaTime);
     }
 
     private void RotateTowardsCamera()

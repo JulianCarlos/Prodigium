@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc9e71860742bf49ac7498e61992398, type: 3}
+  m_Name: MainItemWheel
+  m_EditorClassIdentifier: 
+  Segments:
+  - {fileID: 11400000, guid: 9721b9e9b50c6e34a8b241872acc3019, type: 2}
+  - {fileID: 11400000, guid: 0ab816e37f4d25440978e09a7e316d63, type: 2}
+  - {fileID: 11400000, guid: 3375a398bab5d7842a5c924cde96b2d2, type: 2}
+  - {fileID: 11400000, guid: 0ab816e37f4d25440978e09a7e316d63, type: 2}
+  - {fileID: 11400000, guid: 0ab816e37f4d25440978e09a7e316d63, type: 2}
+  - {fileID: 11400000, guid: 3375a398bab5d7842a5c924cde96b2d2, type: 2}

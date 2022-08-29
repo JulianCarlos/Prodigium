@@ -18,7 +18,7 @@ public static class AchievementDatabase
 
     };
 
-    public static void AddItem(Item item)
+    public static void AddItem(ItemData item)
     {
         ItemTypes.Add(item.GetType());
     }

@@ -97,7 +97,7 @@ public class Achievement
         Child.SetValues(this);
     }
 
-    private void OnCollectedItem(Item item)
+    private void OnCollectedItem(ItemData item)
     {
         if (IsCompleted || item.GetType() != itemType)
             return;

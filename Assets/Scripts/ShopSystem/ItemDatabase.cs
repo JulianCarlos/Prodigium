@@ -7,9 +7,9 @@ using System.Linq;
 [CreateAssetMenu(menuName = "Item/Database")]
 public class ItemDatabase : ScriptableObject
 {
-    [SerializeField] private List<Item> items;
+    [SerializeField] private List<ItemData> items;
 
-    public Item GetItemByID(int ID)
+    public ItemData GetItemByID(int ID)
     {
         return items.FirstOrDefault(i => i.ID == ID);
     }
@@ -17,7 +17,7 @@ public class ItemDatabase : ScriptableObject
     [ContextMenu("Get all Items")]
     public void GetAllItems()
     {
-        items = AssetFinder.GetAllInstances<Item>().ToList();
+        items = AssetFinder.GetAllInstances<ItemData>().ToList();
     }
 
     [ContextMenu("Apply IDs")]

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Objects/Vehicles")]
-public class Vehicles : Item
+public class Vehicles : ItemData
 {
 
 }

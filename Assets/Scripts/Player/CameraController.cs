@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public PlayerInputs PlayerInputs { get; private set; }
+
     [SerializeField] private Vector2 sensitivity = Vector2.zero;
     [SerializeField] private Vector2 smoothAmount = Vector2.zero;
     [SerializeField] private Vector2 lookAngleMinMax = Vector2.zero;
@@ -23,6 +25,7 @@ public class CameraController : MonoBehaviour
     {
         playerInputAction = new PlayerInputAction();
         playerInputAction.Enable();
+        PlayerInputs = GetComponentInParent<PlayerInputs>();
 
         GetComponents();
         InitValues();
@@ -50,8 +53,8 @@ public class CameraController : MonoBehaviour
 
     void CalculateRotation()
     {
-        desiredYaw += playerInputAction.Player.Look.ReadValue<Vector2>().x * sensitivity.x * Time.deltaTime;
-        desiredPitch -= playerInputAction.Player.Look.ReadValue<Vector2>().y * sensitivity.y * Time.deltaTime;
+        desiredYaw += PlayerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
+        desiredPitch -= PlayerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
 
         desiredPitch = Mathf.Clamp(desiredPitch, lookAngleMinMax.x, lookAngleMinMax.y);
     }

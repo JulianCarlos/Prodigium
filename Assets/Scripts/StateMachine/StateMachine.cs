@@ -23,6 +23,7 @@ public class StateMachine<T>
         CurrentState?.ExitState(Owner);
         CurrentState = newState;
         CurrentState.EnterState(Owner);
+        Debug.Log(CurrentState.ToString());
     }
 
     public void Update()

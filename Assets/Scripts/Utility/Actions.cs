@@ -28,14 +28,14 @@ public static class Actions
     public static Action<float> OnMoneyChanged;
 
     //ShopSystem Actions
-    public static Action<Item> OnSelectedItemChanged;
-    public static Action<Item> OnItemBought;
+    public static Action<ItemData> OnSelectedItemChanged;
+    public static Action<ItemData> OnItemBought;
 
     //Location Arrived Actions
     public static Action<Vector3> OnLocationArrived;
 
     //Collect Actions
-    public static Action<Item> OnItemCollected;
+    public static Action<ItemData> OnItemCollected;
 
     //Achievement Actions
     public static Action<Achievement> OnAchievementCompleted;

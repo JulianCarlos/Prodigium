@@ -4,51 +4,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// HUGE IMPROVEMENT NEEDED; FUCKING HELL;;;;
-/// </summary>
 public class PlayerInputs : Singleton<PlayerInputs>
 {
-    public PlayerInputAction PlayerInputAction { get; private set; }
+    public Vector2 MoveInput { get; private set; }
+    public Vector2 MouseInput { get; private set; }
 
-    public bool IsRunning { get; private set; }
+    public bool RunButtonPressed { get; private set; }  
 
-    public Vector3 MoveInput { get; private set; }
+    private PlayerInputAction playerInputAction;
+    private PlayerInteraction playerInteraction;
+    private FirstPersonController firstPersonController;
 
     protected override void Awake()
     {
         base.Awake();
 
-        PlayerInputAction = new PlayerInputAction();
+        firstPersonController = GetComponent<FirstPersonController>();
+        playerInputAction = new PlayerInputAction();
         
-        PlayerInputAction.Player.Enable();
-        PlayerInputAction.Player.Jump.performed += Jump;
-        //playerInputAction.Player.Look.performed += MouseLook;
+        playerInputAction.Player.Enable();
+        playerInputAction.Player.Jump.performed += Jump;
 
-        PlayerInputAction.Player.Run.started += ToggleRun;
-        PlayerInputAction.Player.Run.canceled += ToggleRun;
-        PlayerInputAction.Player.Crouch.started += ToggleCrouch;
-        PlayerInputAction.Player.Crawl.started += ToggleCrawl;
+        playerInputAction.Player.Run.started += ToggleRun;
+        playerInputAction.Player.Run.canceled += ToggleRun;
+        playerInputAction.Player.Crouch.started += ToggleCrouch;
+        playerInputAction.Player.Crawl.started += ToggleCrawl;
 
-        PlayerInputAction.Player.OpenInventory.started += OpenInventory;
-        PlayerInputAction.Player.PickUp.started += UseOrPickup;
-        PlayerInputAction.Player.Reload.started += Reload;
-        PlayerInputAction.Player.DropItem.started += DropItem;
+        playerInputAction.Player.OpenInventory.started += OpenInventory;
+        playerInputAction.Player.PickUp.started += UseOrPickup;
+        playerInputAction.Player.Reload.started += Reload;
+        playerInputAction.Player.DropItem.started += DropItem;
 
-        PlayerInputAction.Player.LeftClick.started += LeftClick;
-        PlayerInputAction.Player.RightClick.started += RightClick;
+        playerInputAction.Player.LeftClick.started += LeftClick;
+        playerInputAction.Player.RightClick.started += RightClick;
     }
 
     private void Update()
     {
-        MoveInput = PlayerInputAction.Player.Movement.ReadValue<Vector2>();
+        MoveInput = playerInputAction.Player.Movement.ReadValue<Vector2>();
+        MouseInput = playerInputAction.Player.Look.ReadValue<Vector2>();
     }
 
-    //Input Actions
-    private void MovePlayer(Vector2 moveVector)
-    {
-        
-    }
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -61,25 +57,40 @@ public class PlayerInputs : Singleton<PlayerInputs>
     {
         if (context.started)
         {
-            IsRunning = true;
+            firstPersonController.StateMachine.ChangeState(firstPersonController.RunState);
+            RunButtonPressed = true;
         }
         else if (context.canceled)
         {
-            IsRunning= false;
+            firstPersonController.StateMachine.ChangeState(firstPersonController.WalkState);
+            RunButtonPressed = false;
         }
     }
     public void ToggleCrouch(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-
+            if (!RunButtonPressed)
+            {
+                if(firstPersonController.StateMachine.CurrentState == firstPersonController.CrouchState)
+                {
+                    firstPersonController.StateMachine.ChangeState(firstPersonController.WalkState);
+                }
+                else
+                {
+                    firstPersonController.StateMachine.ChangeState(firstPersonController.CrouchState);
+                }
+            }
         }
     }
     public void ToggleCrawl(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-
+            if (!RunButtonPressed)
+            {
+                firstPersonController.StateMachine.ChangeState(firstPersonController.CrawlState);
+            }
         }
     }
     public void OpenInventory(InputAction.CallbackContext context)
@@ -93,7 +104,7 @@ public class PlayerInputs : Singleton<PlayerInputs>
     {
         if (context.started)
         {
-
+            
         }
     }
     public void Reload(InputAction.CallbackContext context)
@@ -116,10 +127,10 @@ public class PlayerInputs : Singleton<PlayerInputs>
     //Script disable/enable
     private void OnEnable()
     {
-        PlayerInputAction.Player.Enable();
+        playerInputAction.Player.Enable();
     }
     private void OnDisable()
     {
-        PlayerInputAction.Player.Disable();
+        playerInputAction.Player.Disable();
     }
 }
