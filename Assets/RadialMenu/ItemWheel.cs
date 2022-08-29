@@ -12,20 +12,25 @@ public class ItemWheel : MonoBehaviour
     [SerializeField] private float segmentGap;
 
     //Lists
-    [SerializeField] private RingSegment[] segmentData;
+    //[SerializeField] private RingSegment[] segmentData;
     [SerializeField] private RingCakePiece[] segments;
 
     //Prefab
     [SerializeField] private RingCakePiece ringCakePiecePrefab;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    GenerateSegments();
+    //}
+
+    private void GenerateSegments()
     {
-        var stepLength = 360 / segmentData.Length;
+        var stepLength = 360 / segments.Length;
         var iconDist = Vector3.Distance(ringCakePiecePrefab.Icon.transform.position, ringCakePiecePrefab.CakePiece.transform.position);
 
-        segments = new RingCakePiece[segmentData.Length];
+        //segments = new RingCakePiece[segmentData.Length];
 
-        for (int i = 0; i < segmentData.Length; i++)
+        for (int i = 0; i < segments.Length; i++)
         {
             segments[i] = Instantiate(ringCakePiecePrefab, transform);
 
@@ -34,24 +39,24 @@ public class ItemWheel : MonoBehaviour
             segments[i].transform.localRotation = Quaternion.identity;
 
             //Set cake piece
-            segments[i].CakePiece.fillAmount = 1f / segmentData.Length - segmentGap / 360;
+            segments[i].CakePiece.fillAmount = 1f / segments.Length - segmentGap / 360;
             segments[i].CakePiece.transform.localPosition = Vector3.zero;
             segments[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, stepLength / 2f + segmentGap / 2 + i * stepLength - segmentGap);
-            segments[i].CakePiece.color = new Color(1, 1, 1, 0.5f);    
+            segments[i].CakePiece.color = new Color(1, 1, 1, 0.5f);
 
             //Set Icon
             segments[i].Icon.transform.localPosition = segments[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
-            segments[i].Icon.sprite = segmentData[i].Icon;
+            //segments[i].Icon.sprite = segments[i].Icon;
         }
     }
 
     private void Update()
     {
-        var stepLength = 360f / segmentData.Length;
+        var stepLength = 360f / segments.Length;
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2), Vector3.forward) + stepLength / 2f);
         var activeElement = (int)(mouseAngle / stepLength);
 
-        for (int i = 0; i < segmentData.Length; i++)
+        for (int i = 0; i < segments.Length; i++)
         {
             if (TargetIsValid(activeElement, i))
                 segments[i].CakePiece.color = highlightColor;
@@ -66,4 +71,13 @@ public class ItemWheel : MonoBehaviour
     }
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
+
+    [ContextMenu("Generate Wheel")]
+    public void GenerateWheel()
+    {
+        for (int i = this.transform.childCount; i > 0; --i)
+            DestroyImmediate(this.transform.GetChild(0).gameObject);
+
+        GenerateSegments();
+    }
 }
