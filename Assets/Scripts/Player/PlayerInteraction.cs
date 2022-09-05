@@ -7,24 +7,22 @@ public class PlayerInteraction : MonoBehaviour
 {
     public RaycastHit HitInfo => hitInfo;
 
-    [SerializeField] private LayerMask itemLayer = 1 << 9;
-    [SerializeField] private LayerMask monsterLayer = 1 << 9;
-
     private bool hasTarget;
 
+    private PlayerInputs playerInputs;
     private RaycastHit hitInfo;
     private Camera playerCamera;
 
     private void Awake()
     {
         playerCamera = GetComponentInChildren<Camera>();
+        playerInputs = GetComponentInChildren<PlayerInputs>();
         hitInfo = new RaycastHit();
     }
 
     private void Update()
     {
         hasTarget = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 100);
-
         CheckForRaycastType();
     }
 
@@ -33,14 +31,13 @@ public class PlayerInteraction : MonoBehaviour
         if (!hasTarget)
             return;
 
-        if (hitInfo.transform.gameObject.layer == monsterLayer)
+        var Interact = HitInfo.collider.transform.GetComponent<IInteractable>();
+        if (Interact != null)
         {
-            Debug.Log("You found a Item");
+            if (playerInputs.PlayerInputAction.Player.PickUp.WasPressedThisFrame())
+            {
+                Interact.Interact();
+            }
         }
-
-        if(hitInfo.transform.gameObject.layer == ~monsterLayer)
-        {
-            Debug.Log("You found a Monster");
-        }
-    }
+    }   
 }

@@ -8017,6 +8017,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4509350802832492702, guid: c7544ef4a15627443874f283de72830c, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1023
+      objectReference: {fileID: 0}
     - target: {fileID: 4509350802832492703, guid: c7544ef4a15627443874f283de72830c, type: 3}
       propertyPath: m_ScreenMatchMode
       value: 0
@@ -12550,7 +12554,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
 --- !u!114 &849759632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12594,7 +12598,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &891315399
 GameObject:
@@ -17713,9 +17717,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomPositionOffset: 0.2
-  hasTargetPos: 0
-  minValue: 1
-  maxValue: 3
   targetPos: {x: 0, y: 5, z: 5}
 --- !u!1001 &1687922622
 PrefabInstance:

@@ -34,6 +34,9 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
+            return;
+
         CalculateRotation();
         SmoothRotation();
         ApplyRotation();

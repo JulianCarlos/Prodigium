@@ -9,9 +9,9 @@ public class PlayerInputs : Singleton<PlayerInputs>
     public Vector2 MoveInput { get; private set; }
     public Vector2 MouseInput { get; private set; }
 
-    public bool RunButtonPressed { get; private set; }  
+    public bool RunButtonPressed { get; private set; }
 
-    private PlayerInputAction playerInputAction;
+    public PlayerInputAction PlayerInputAction;
     private PlayerInteraction playerInteraction;
     private FirstPersonController firstPersonController;
 
@@ -20,29 +20,29 @@ public class PlayerInputs : Singleton<PlayerInputs>
         base.Awake();
 
         firstPersonController = GetComponent<FirstPersonController>();
-        playerInputAction = new PlayerInputAction();
+        PlayerInputAction = new PlayerInputAction();
         
-        playerInputAction.Player.Enable();
-        playerInputAction.Player.Jump.performed += Jump;
+        PlayerInputAction.Player.Enable();
+        PlayerInputAction.Player.Jump.performed += Jump;
 
-        playerInputAction.Player.Run.started += ToggleRun;
-        playerInputAction.Player.Run.canceled += ToggleRun;
-        playerInputAction.Player.Crouch.started += ToggleCrouch;
-        playerInputAction.Player.Crawl.started += ToggleCrawl;
+        PlayerInputAction.Player.Run.started += ToggleRun;
+        PlayerInputAction.Player.Run.canceled += ToggleRun;
+        PlayerInputAction.Player.Crouch.started += ToggleCrouch;
+        PlayerInputAction.Player.Crawl.started += ToggleCrawl;
 
-        playerInputAction.Player.OpenInventory.started += OpenInventory;
-        playerInputAction.Player.PickUp.started += UseOrPickup;
-        playerInputAction.Player.Reload.started += Reload;
-        playerInputAction.Player.DropItem.started += DropItem;
+        PlayerInputAction.Player.OpenInventory.started += OpenInventory;
+        PlayerInputAction.Player.PickUp.started += UseOrPickup;
+        PlayerInputAction.Player.Reload.started += Reload;
+        PlayerInputAction.Player.DropItem.started += DropItem;
 
-        playerInputAction.Player.LeftClick.started += LeftClick;
-        playerInputAction.Player.RightClick.started += RightClick;
+        PlayerInputAction.Player.LeftClick.started += LeftClick;
+        PlayerInputAction.Player.RightClick.started += RightClick;
     }
 
     private void Update()
     {
-        MoveInput = playerInputAction.Player.Movement.ReadValue<Vector2>();
-        MouseInput = playerInputAction.Player.Look.ReadValue<Vector2>();
+        MoveInput = PlayerInputAction.Player.Movement.ReadValue<Vector2>();
+        MouseInput = PlayerInputAction.Player.Look.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -127,10 +127,10 @@ public class PlayerInputs : Singleton<PlayerInputs>
     //Script disable/enable
     private void OnEnable()
     {
-        playerInputAction.Player.Enable();
+        PlayerInputAction.Player.Enable();
     }
     private void OnDisable()
     {
-        playerInputAction.Player.Disable();
+        PlayerInputAction.Player.Disable();
     }
 }

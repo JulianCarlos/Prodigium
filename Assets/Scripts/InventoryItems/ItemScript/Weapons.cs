@@ -5,5 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Objects/Weapons")]
 public class Weapons : ItemData
 {
-
+    private void Awake()
+    {
+        itemCategoryType = ItemCategoryType.Weapons;
+    }
 }

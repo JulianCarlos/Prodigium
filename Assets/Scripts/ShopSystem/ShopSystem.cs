@@ -58,9 +58,13 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.R))
         {
-            MoneySystem.AddMoney(100000f);
+            PlayerData.Instance.ResetInventoryItems();
+        }
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            MoneySystem.AddMoney(10000f);
         }
     }
 

@@ -1,32 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class ItemWheel : MonoBehaviour
 {
     //Color
+    [Header("Color Settings")]
     [SerializeField] private Color normalColor;
     [SerializeField] private Color highlightColor;
 
     //Wheel Settings
+    [Header("Wheel Settings")]
     [SerializeField] private float segmentGap;
+    [SerializeField] private float iconDistanceOffset;
 
     //Lists
-    //[SerializeField] private RingSegment[] segmentData;
-    [SerializeField] private RingCakePiece[] segments;
+    [Header("Segments")]
+    [SerializeField] private ItemWheelSegment[] segments;
 
     //Prefab
-    [SerializeField] private RingCakePiece ringCakePiecePrefab;
+    [Header("Prefabs")]
+    [SerializeField] private ItemWheelSegment ringCakePiecePrefab;
 
-    //private void Start()
-    //{
-    //    GenerateSegments();
-    //}
+    [Space]
+    [SerializeField, Range(2, 15)] private uint numberOfSegments = 5;
+
+    private void Update()
+    {
+        var stepLength = 360f / segments.Length;
+        var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2), Vector3.forward) + stepLength / 2f);
+        var activeElement = (int)(mouseAngle / stepLength);
+
+        for (int i = 0; i < segments.Length; i++)
+        {
+            if (TargetIsValid(activeElement, i))
+                segments[i].CakePiece.color = highlightColor;
+            else
+                segments[i].CakePiece.color = normalColor;
+        }
+    }
 
     private void GenerateSegments()
     {
+        segments = new ItemWheelSegment[numberOfSegments];
+
         var stepLength = 360 / segments.Length;
-        var iconDist = Vector3.Distance(ringCakePiecePrefab.Icon.transform.position, ringCakePiecePrefab.CakePiece.transform.position);
+        var iconDist = Vector3.Distance(ringCakePiecePrefab.Icon.transform.position, ringCakePiecePrefab.CakePiece.transform.position) + iconDistanceOffset;
 
         //segments = new RingCakePiece[segmentData.Length];
 
@@ -50,21 +70,6 @@ public class ItemWheel : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        var stepLength = 360f / segments.Length;
-        var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2), Vector3.forward) + stepLength / 2f);
-        var activeElement = (int)(mouseAngle / stepLength);
-
-        for (int i = 0; i < segments.Length; i++)
-        {
-            if (TargetIsValid(activeElement, i))
-                segments[i].CakePiece.color = highlightColor;
-            else
-                segments[i].CakePiece.color = normalColor;
-        }
-    }
-
     private bool TargetIsValid(int activeElement, int i)
     {
         return i == activeElement && Vector2.Distance(Input.mousePosition, transform.position) <= segments[i].CakePiece.sprite.rect.width / 4 && Vector2.Distance(Input.mousePosition, transform.position) >= 250;
@@ -72,11 +77,16 @@ public class ItemWheel : MonoBehaviour
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
 
-    [ContextMenu("Generate Wheel")]
+
+
+    [Button("Generate Wheel")]
     public void GenerateWheel()
     {
-        for (int i = this.transform.childCount; i > 0; --i)
-            DestroyImmediate(this.transform.GetChild(0).gameObject);
+        if(transform.childCount > 0)
+        {
+            for (int i = this.transform.childCount; i > 0; --i)
+                DestroyImmediate(this.transform.GetChild(0).gameObject);
+        }
 
         GenerateSegments();
     }

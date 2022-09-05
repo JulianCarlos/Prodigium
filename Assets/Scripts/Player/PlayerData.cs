@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
     public List<int> OwnedItemsID { get; private set; } = new List<int>();
+    public List<ItemData> OwnedItems { get; private set; } = new List<ItemData>();
 
     public List<ItemData> SelectedItems { get; private set; } = new List<ItemData>();
 
@@ -14,24 +15,67 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
     protected override void Awake()
     {
         base.Awake();
+
+        GetItemsBySavedIDs();
+    }
+
+    public void SelectItem(ItemData item)
+    {
+        if (itemDatabase == null)
+            return;
+
+        SelectedItems.Add(itemDatabase.GetItemByID(item.ID));
+        Debug.Log("Selected Items are; " + SelectedItems.Count);
+    }
+
+    public void DeSelectItem(ItemData item)
+    {
+        if (itemDatabase == null)
+            return;
+
+        SelectedItems.Remove(itemDatabase.GetItemByID(item.ID));
+        Debug.Log("Selected Items are; " + SelectedItems.Count);
+    }
+
+    private void GetItemsBySavedIDs()
+    {
+        foreach (var itemID in OwnedItemsID)
+        {
+            OwnedItems.Add(itemDatabase.GetItemByID(itemID));
+        }
+        Debug.Log(OwnedItems.Count);
+    }
+
+    public void SortSelectedItemsIntoCategories(ItemCategoryType type, List<ItemData> targetList)
+    {
+        for (int i = 0; i < SelectedItems.Count; i++)
+        {
+            if(SelectedItems[i].ItemCategoryType == type)
+            {
+                targetList.Add(SelectedItems[i]);
+            }
+        }
     }
 
     public void AddItem(ItemData item)
     {
         OwnedItemsID.Add(item.ID);
+        OwnedItems.Add(item);
         SaveManager.Instance.Save();
     }
 
     public void RemoveItem(ItemData item)
     {
         OwnedItemsID.Remove(item.ID);
+        OwnedItems.Remove(item);
         SaveManager.Instance.Save();
     }
 
     [ContextMenu("Reset Inventory Items")]
     public void ResetInventoryItems()
     {
-        OwnedItemsID = new List<int>();
+        OwnedItemsID.Clear();
+        OwnedItems.Clear();
     }
 
     //Save Methods
