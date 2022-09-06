@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public PlayerInputs PlayerInputs { get; private set; }
+    [SerializeField] private Player player;
+    public PlayerInputs PlayerInputs;
+    [SerializeField] private PlayerInputAction playerInputAction;
 
     [SerializeField] private Vector2 sensitivity = Vector2.zero;
     [SerializeField] private Vector2 smoothAmount = Vector2.zero;
@@ -19,17 +21,30 @@ public class CameraController : MonoBehaviour
     private Transform pitchTransform;
     private Camera cam;
 
-    private PlayerInputAction playerInputAction;
+    private float cameraToBodyDistance;
+
+    [SerializeField] private float targetFOW;
+    [SerializeField] private float zoomSpeed;
 
     private void Awake()
     {
+        cameraToBodyDistance = transform.position.y - player.gameObject.transform.position.y;
+        cam = GetComponentInChildren<Camera>();
+
         playerInputAction = new PlayerInputAction();
         playerInputAction.Enable();
-        PlayerInputs = GetComponentInParent<PlayerInputs>();
 
         GetComponents();
         InitValues();
-        ChangeCursorState();
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraToBodyDistance, player.transform.position.z);
+
+        ChangeFOW();
     }
 
     private void LateUpdate()
@@ -74,9 +89,13 @@ public class CameraController : MonoBehaviour
         pitchTransform.localEulerAngles = new Vector3(pitch, 0f, 0f);
     }
 
-    void ChangeCursorState()
+    private void ChangeFOW()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, targetFOW, zoomSpeed * Time.deltaTime);
+    }
+
+    public void ApplyFOWValue(float target)
+    {
+        targetFOW = target;
     }
 }

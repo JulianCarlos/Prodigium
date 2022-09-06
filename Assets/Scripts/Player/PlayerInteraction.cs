@@ -11,11 +11,10 @@ public class PlayerInteraction : MonoBehaviour
 
     private PlayerInputs playerInputs;
     private RaycastHit hitInfo;
-    private Camera playerCamera;
+    [SerializeField] private Camera playerCamera;
 
     private void Awake()
     {
-        playerCamera = GetComponentInChildren<Camera>();
         playerInputs = GetComponentInChildren<PlayerInputs>();
         hitInfo = new RaycastHit();
     }

@@ -81,7 +81,7 @@ public class FirstPersonController : MonoBehaviour
     private CharacterController characterController;
     private Transform yawTransform;
     private Transform camTransform;
-    private CameraController cameraController;
+    public CameraController CameraController;
 
     private RaycastHit hitInfo;
     private IEnumerator landRoutine;
@@ -127,9 +127,8 @@ public class FirstPersonController : MonoBehaviour
         playerInputAction = new PlayerInputAction();
         playerInputAction.Player.Enable();
         characterController = GetComponent<CharacterController>();
-        cameraController = GetComponentInChildren<CameraController>();
-        yawTransform = cameraController.transform;
-        camTransform = GetComponentInChildren<Camera>().transform;
+        yawTransform = CameraController.transform;
+        camTransform = CameraController.GetComponentInChildren<Camera>().transform;
     }
 
     private void InitVariables()
