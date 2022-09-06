@@ -48,8 +48,6 @@ public class ItemWheel : MonoBehaviour
         var stepLength = 360 / segments.Length;
         var iconDist = Vector3.Distance(ringCakePiecePrefab.Icon.transform.position, ringCakePiecePrefab.CakePiece.transform.position) + iconDistanceOffset;
 
-        //segments = new RingCakePiece[segmentData.Length];
-
         for (int i = 0; i < segments.Length; i++)
         {
             segments[i] = Instantiate(ringCakePiecePrefab, transform);
@@ -61,7 +59,7 @@ public class ItemWheel : MonoBehaviour
             //Set cake piece
             segments[i].CakePiece.fillAmount = 1f / segments.Length - segmentGap / 360;
             segments[i].CakePiece.transform.localPosition = Vector3.zero;
-            segments[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, stepLength / 2f + segmentGap / 2 + i * stepLength - segmentGap);
+            segments[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, stepLength / 2f + segmentGap / 2f + i * stepLength - segmentGap);
             segments[i].CakePiece.color = new Color(1, 1, 1, 0.5f);
 
             //Set Icon

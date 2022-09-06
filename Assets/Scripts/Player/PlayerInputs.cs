@@ -37,6 +37,9 @@ public class PlayerInputs : Singleton<PlayerInputs>
 
         PlayerInputAction.Player.LeftClick.started += LeftClick;
         PlayerInputAction.Player.RightClick.started += RightClick;
+
+        PlayerInputAction.Player.TabClick.started += TabClick;
+        PlayerInputAction.Player.TabClick.canceled += TabClick;
     }
 
     private void Update()
@@ -55,7 +58,7 @@ public class PlayerInputs : Singleton<PlayerInputs>
 
     public void ToggleRun(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && PlayerInputAction.Player.Movement.ReadValue<Vector2>().y > 0)
         {
             firstPersonController.StateMachine.ChangeState(firstPersonController.RunState);
             RunButtonPressed = true;
@@ -122,6 +125,18 @@ public class PlayerInputs : Singleton<PlayerInputs>
     public void RightClick(InputAction.CallbackContext context)
     {
 
+    }
+
+    public void TabClick(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PlayerCanvasController.Instance.OpenItemWheel();
+        }
+        if (context.canceled)
+        {
+            PlayerCanvasController.Instance.CloseItemWheel();
+        }
     }
 
     //Script disable/enable

@@ -100,7 +100,7 @@ public class FirstPersonController : MonoBehaviour
         if (yawTransform != null)
             RotateTowardsCamera();
 
-        if (characterController && PlayerState.PlayerStateType != PlayerStateType.InMenu)
+        if (characterController)
         {
             CheckIfGrounded();
 
@@ -115,6 +115,7 @@ public class FirstPersonController : MonoBehaviour
             HandleLanding();
 
             ApplyGravity();
+
             ApplyMovement();
 
             previouslyGrounded = isGrounded;

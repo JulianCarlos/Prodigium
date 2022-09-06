@@ -8164,6 +8164,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9219975203255427697, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1209552034}
+    - target: {fileID: 9219975203255427697, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+      propertyPath: PlayerInputs
+      value: 
+      objectReference: {fileID: 1209552033}
     - target: {fileID: 9219975203606981575, guid: aea418f5300aee740a00aba17714c26f, type: 3}
       propertyPath: m_Name
       value: PlayerNew
@@ -8172,6 +8180,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9219975203606981625, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+      propertyPath: CameraController
+      value: 
+      objectReference: {fileID: 1209552032}
     - target: {fileID: 9219975203606981627, guid: aea418f5300aee740a00aba17714c26f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -8216,6 +8228,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9219975203606981630, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1209552031}
     - target: {fileID: 9219975205049959429, guid: aea418f5300aee740a00aba17714c26f, type: 3}
       propertyPath: m_Depth
       value: 1
@@ -8223,6 +8239,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+--- !u!1 &1209552030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9219975203606981575, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+  m_PrefabInstance: {fileID: 1209552029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1209552031 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 9219975205049959429, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+  m_PrefabInstance: {fileID: 1209552029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1209552032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9219975203255427697, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+  m_PrefabInstance: {fileID: 1209552029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c033702b37dbd41bee415017355ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1209552033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9219975203606981631, guid: aea418f5300aee740a00aba17714c26f, type: 3}
+  m_PrefabInstance: {fileID: 1209552029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209552030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30afd407493fb14a93b0666cc8edd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1209552034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209552030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f7440901caaa04784a93da28f04ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  health: 0
+  meleeDamage: 0
+  armor: 0
+  level: 1
+  currentExperience: 0
+  experienceForNextLevel: 1000
+  levelUpExpMultiplier: 1.15
 --- !u!1 &1247087085
 GameObject:
   m_ObjectHideFlags: 0

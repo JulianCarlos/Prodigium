@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerRunState : State<FirstPersonController>
 {
-    private float targetFOW = 90f;
+    private float targetFOW = 65f;
 
     public override void EnterState(FirstPersonController owner)
     {

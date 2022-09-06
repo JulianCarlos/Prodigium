@@ -45,12 +45,6 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraToBodyDistance, player.transform.position.z);
 
         ChangeFOW();
-    }
-
-    private void LateUpdate()
-    {
-        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
-            return;
 
         CalculateRotation();
         SmoothRotation();
@@ -71,6 +65,9 @@ public class CameraController : MonoBehaviour
 
     void CalculateRotation()
     {
+        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
+            return;
+
         desiredYaw += PlayerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
         desiredPitch -= PlayerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
 
