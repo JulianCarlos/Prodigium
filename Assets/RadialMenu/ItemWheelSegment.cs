@@ -12,17 +12,16 @@ public class ItemWheelSegment : MonoBehaviour
     [SerializeField] private ItemCategoryType categoryType;
 
     [Space]
-    [SerializeField] private ItemData currentSelectedItem;
     [SerializeField] private int currentSelectedItemIndex;
 
-    [Space]
-    [SerializeField] private List<ItemData> categoryItems;
+    public ItemData CurrentSelectedItem { get; private set; }
+    public List<ItemData> CategoryItems;
 
     private Vector3 originalPos;
 
     private void Awake()
     {
-        PlayerData.Instance.SortSelectedItemsIntoCategories(categoryType, categoryItems);
+        PlayerData.Instance.SortSelectedItemsIntoCategories(categoryType, CategoryItems);
 
         SetIcon();
     }
@@ -33,16 +32,16 @@ public class ItemWheelSegment : MonoBehaviour
 
         currentSelectedItemIndex = 0;
 
-        if (categoryItems.Count > 0)
-            currentSelectedItem = categoryItems[currentSelectedItemIndex];
+        if (CategoryItems.Count > 0)
+            CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
     }
 
     private void SetIcon()
     {
-        if (categoryItems.Count > 0)
+        if (CategoryItems.Count > 0)
         {
             Icon.enabled = true;
-            Icon.sprite = categoryItems[0].ItemIcon;
+            Icon.sprite = CategoryItems[0].ItemIcon;
         }
         else
         {
@@ -53,19 +52,19 @@ public class ItemWheelSegment : MonoBehaviour
 
     public void ScrollPrevious()
     {
-        if (categoryItems.Count > 0 && currentSelectedItemIndex != 0)
+        if (CategoryItems.Count > 0 && currentSelectedItemIndex != 0)
         {
             currentSelectedItemIndex--;
-            currentSelectedItem = categoryItems[currentSelectedItemIndex];
+            CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
         }
     }
 
     public void ScrollNext()
     {
-        if (categoryItems.Count > 0 && currentSelectedItemIndex != categoryItems.Count - 1)
+        if (CategoryItems.Count > 0 && currentSelectedItemIndex != CategoryItems.Count - 1)
         {
             currentSelectedItemIndex++;
-            currentSelectedItem = categoryItems[currentSelectedItemIndex];
+            CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
         }
     }
 }

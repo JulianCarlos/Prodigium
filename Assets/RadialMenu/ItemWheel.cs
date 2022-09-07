@@ -19,6 +19,7 @@ public class ItemWheel : MonoBehaviour
     [Header("Segments")]
     [SerializeField] private ItemWheelSegment[] segments;
     [SerializeField] private ItemWheelSegment currentSegment;
+    [SerializeField] private ItemWheelSegment previousSegment;
 
     //Prefab
     [Header("Prefabs")]
@@ -33,19 +34,23 @@ public class ItemWheel : MonoBehaviour
         var mouseAngle = NormalizeAngle(Vector3.SignedAngle(Vector3.up, Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2), Vector3.forward) + stepLength / 2f);
         var activeElement = (int)(mouseAngle / stepLength);
 
-        for (int i = 0; i < segments.Length; i++)
+        currentSegment = segments[activeElement];
+
+        if (previousSegment != currentSegment)
         {
-            if (TargetIsValid(activeElement, i))
-            {
-                segments[i].CakePiece.color = highlightColor;
-                currentSegment = segments[activeElement];
-            }
-            else
-            {
-                segments[i].CakePiece.color = normalColor;
-                currentSegment = null;
-            }
+            if(previousSegment != null)
+                previousSegment.CakePiece.color = normalColor;
+
+            currentSegment.CakePiece.color = highlightColor;
         }
+
+        if (PlayerInputs.Instance.PlayerInputAction.Player.LeftClick.WasPressedThisFrame())
+        {
+            if(currentSegment.CategoryItems.Count > 0)
+                PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+        }
+
+        previousSegment = currentSegment;
     }
 
     private void GenerateSegments()
@@ -72,11 +77,6 @@ public class ItemWheel : MonoBehaviour
             //Set Icon
             segments[i].Icon.transform.localPosition = segments[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
         }
-    }
-
-    private bool TargetIsValid(int activeElement, int i)
-    {
-        return i == activeElement && Vector2.Distance(Input.mousePosition, transform.position) <= segments[i].CakePiece.sprite.rect.width / 4 && Vector2.Distance(Input.mousePosition, transform.position) >= 250;
     }
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;

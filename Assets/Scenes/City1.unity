@@ -887,8 +887,9 @@ Transform:
   - {fileID: 9219975204932996511}
   - {fileID: 9219975204210770966}
   - {fileID: 1127125559}
+  - {fileID: 652027292}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &50589907
 PrefabInstance:
@@ -3312,7 +3313,6 @@ MonoBehaviour:
   Icon: {fileID: 1760129498}
   CakePiece: {fileID: 548983074}
   categoryType: 3
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
   categoryItems: []
 --- !u!222 &189093833
@@ -11607,7 +11607,7 @@ GameObject:
   - component: {fileID: 652027292}
   - component: {fileID: 652027293}
   m_Layer: 0
-  m_Name: Canvases
+  m_Name: PlayerCanvases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11620,16 +11620,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652027291}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.504826, y: 2.0209079, z: 9.683318}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -40.516594, y: 0.5278193, z: 9.768235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6698778160614473654}
   - {fileID: 1341879796}
   - {fileID: 603707794}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 45904793}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &652027293
 MonoBehaviour:
@@ -18680,7 +18680,6 @@ MonoBehaviour:
   Icon: {fileID: 301677651}
   CakePiece: {fileID: 347601959}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
   categoryItems: []
 --- !u!222 &1072847220
@@ -19945,7 +19944,6 @@ MonoBehaviour:
   Icon: {fileID: 971498117}
   CakePiece: {fileID: 2142452937}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
   categoryItems: []
 --- !u!222 &1135963756
@@ -21631,7 +21629,6 @@ MonoBehaviour:
   Icon: {fileID: 1016026037}
   CakePiece: {fileID: 71770049}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
   categoryItems: []
 --- !u!222 &1232232929
@@ -24686,7 +24683,7 @@ Transform:
   - {fileID: 1493704105}
   - {fileID: 1537635292}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1467003809
 PrefabInstance:
@@ -28868,7 +28865,6 @@ MonoBehaviour:
   Icon: {fileID: 651275792}
   CakePiece: {fileID: 93682879}
   categoryType: 1
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
   categoryItems: []
 --- !u!222 &1665309953
@@ -29518,7 +29514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2d0ec8c0ca1d1446a66d1ca4c69a9af, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2d0ec8c0ca1d1446a66d1ca4c69a9af, type: 3}
       propertyPath: m_LocalScale.x
@@ -35743,7 +35739,6 @@ MonoBehaviour:
   Icon: {fileID: 420715346}
   CakePiece: {fileID: 535204109}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
   categoryItems: []
 --- !u!222 &2035663671
@@ -36348,7 +36343,7 @@ Transform:
   - {fileID: 736029269}
   - {fileID: 1036408730}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098098489
 GameObject:
@@ -36992,6 +36987,8 @@ MonoBehaviour:
   - {fileID: 2035663670}
   - {fileID: 1135963755}
   - {fileID: 1232232928}
+  currentSegment: {fileID: 0}
+  previousSegment: {fileID: 0}
   ringCakePiecePrefab: {fileID: 4858973124289633460, guid: bac4a3a175516d9428123763e8527126, type: 3}
   numberOfSegments: 6
 --- !u!1001 &1479096258830629384
@@ -37684,11 +37681,12 @@ GameObject:
   - component: {fileID: 9219975204932996513}
   - component: {fileID: 9219975204932996514}
   - component: {fileID: 9219975204932996510}
+  - component: {fileID: 9219975204932996516}
   - component: {fileID: 9219975204932996509}
+  - component: {fileID: 9219975204932996506}
+  - component: {fileID: 9219975204932996517}
   - component: {fileID: 9219975204932996507}
   - component: {fileID: 9219975204932996508}
-  - component: {fileID: 9219975204932996506}
-  - component: {fileID: 9219975204932996516}
   m_Layer: 2
   m_Name: PlayerNew
   m_TagString: Untagged
@@ -37708,11 +37706,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f7440901caaa04784a93da28f04ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 100
   health: 0
-  meleeDamage: 0
-  armor: 0
+  meleeDamage: 15
+  armor: 50
   level: 1
   currentExperience: 0
   experienceForNextLevel: 1000
   levelUpExpMultiplier: 1.15
+--- !u!114 &9219975204932996517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219975204932996515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94775b0d94e767c459880d14b7a183ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemContainer: {fileID: 1127125559}
+  currentItem: {fileID: 0}
