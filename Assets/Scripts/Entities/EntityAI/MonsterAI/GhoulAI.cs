@@ -15,6 +15,7 @@ public class GhoulAI : MonsterAI
     {
         wanderState = new GhoulWanderState();
         ChaseState = new GhoulChaseState();
+        attackState = new GhoulAttackState();
         FleeState = new GhoulFleeState();
         DeadState = new GhoulDeadState();
         ScoutState = new GhoulScoutState();

@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class PumpkinManAI : MonsterAI
 {
+    private void Start()
+    {
+        SetupStates();
+        StateMachine.InitializeFirstState(wanderState);
+    }
+
     protected override void SetupStates()
     {
-        throw new System.NotImplementedException();
+        wanderState = new PumpkinManWalkingState();
+        ChaseState = new PumpkinManChaseState();
+        FleeState = new PumpkinManFleeState();
+        deadState = new PumpkinManDeadState();
+        attackState = new PumpkinManAttackState();
+        ScoutState = new PumpinManScoutState();
     }
 }

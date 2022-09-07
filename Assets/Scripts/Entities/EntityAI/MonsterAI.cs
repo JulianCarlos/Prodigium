@@ -18,6 +18,7 @@ public abstract class MonsterAI : Entity
     public State<MonsterAI> ScoutState { get => scoutState; set => scoutState = value; }
     public State<MonsterAI> FleeState { get => fleeState; set => fleeState = value; }
     public State<MonsterAI> DeadState { get => deadState; set => deadState = value; }
+    public State<MonsterAI> AttackState { get => attackState; set => attackState = value; }
 
     //Types
     [SerializeField] protected StateType stateType;
@@ -45,6 +46,7 @@ public abstract class MonsterAI : Entity
     protected State<MonsterAI> scoutState;
     protected State<MonsterAI> fleeState;
     protected State<MonsterAI> deadState;
+    protected State<MonsterAI> attackState;
 
     protected Monster monster;
     protected NavMeshAgent agent;

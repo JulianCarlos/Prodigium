@@ -48,11 +48,7 @@ public class ItemWheel : MonoBehaviour
         {
             PlayerCanvasController.Instance.CloseItemWheel();
 
-            //if (currentSegment.CategoryItems.Count > 0)
-            //    PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
-
             PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
-
         }
 
         previousSegment = currentSegment;
