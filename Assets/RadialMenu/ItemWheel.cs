@@ -18,6 +18,7 @@ public class ItemWheel : MonoBehaviour
     //Lists
     [Header("Segments")]
     [SerializeField] private ItemWheelSegment[] segments;
+    [SerializeField] private ItemWheelSegment currentSegment;
 
     //Prefab
     [Header("Prefabs")]
@@ -35,9 +36,15 @@ public class ItemWheel : MonoBehaviour
         for (int i = 0; i < segments.Length; i++)
         {
             if (TargetIsValid(activeElement, i))
+            {
                 segments[i].CakePiece.color = highlightColor;
+                currentSegment = segments[activeElement];
+            }
             else
+            {
                 segments[i].CakePiece.color = normalColor;
+                currentSegment = null;
+            }
         }
     }
 
@@ -64,7 +71,6 @@ public class ItemWheel : MonoBehaviour
 
             //Set Icon
             segments[i].Icon.transform.localPosition = segments[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
-            //segments[i].Icon.sprite = segments[i].Icon;
         }
     }
 
@@ -74,8 +80,6 @@ public class ItemWheel : MonoBehaviour
     }
 
     private float NormalizeAngle(float a) => (a + 360f) % 360f;
-
-
 
     [Button("Generate Wheel")]
     public void GenerateWheel()

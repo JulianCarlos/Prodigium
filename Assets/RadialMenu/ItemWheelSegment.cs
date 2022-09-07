@@ -42,7 +42,7 @@ public class ItemWheelSegment : MonoBehaviour
         if (categoryItems.Count > 0)
         {
             Icon.enabled = true;
-            Icon = categoryItems[0].ItemIcon;
+            Icon.sprite = categoryItems[0].ItemIcon;
         }
         else
         {

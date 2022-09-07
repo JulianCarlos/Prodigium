@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 199.75, y: 327.75}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1951998499560395423
 CanvasRenderer:
@@ -214,3 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 5368207822599761996}
   CakePiece: {fileID: 2502007703417902378}
+  categoryType: 0
+  currentSelectedItem: {fileID: 0}
+  currentSelectedItemIndex: 0
+  categoryItems: []

@@ -21,8 +21,8 @@ public class AvailableItem : MonoBehaviour
     public void SetValues(ItemData item)
     {
         availableItem = item;
-        availableItemName = availableItem.ItemName;
-        availableItemNameText.text = availableItem.ItemName;
+        availableItemName = item.ItemName;
+        availableItemNameText.text = item.ItemName;
 
         index = 0;
         UpdateButtonInteraction();
