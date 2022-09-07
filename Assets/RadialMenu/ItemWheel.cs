@@ -46,7 +46,9 @@ public class ItemWheel : MonoBehaviour
 
         if (PlayerInputs.Instance.PlayerInputAction.Player.LeftClick.WasPressedThisFrame())
         {
-            if(currentSegment.CategoryItems.Count > 0)
+            PlayerCanvasController.Instance.CloseItemWheel();
+
+            if (currentSegment.CategoryItems.Count > 0)
                 PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
         }
 

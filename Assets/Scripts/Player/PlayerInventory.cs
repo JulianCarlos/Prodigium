@@ -15,8 +15,6 @@ public class PlayerInventory : Singleton<PlayerInventory>
 
     public void InstantiateItem(ItemData selectedItem)
     {
-        PlayerCanvasController.Instance.CloseItemWheel();
-
         if (currentItem == selectedItem.PreviewItem)
             return;
 
