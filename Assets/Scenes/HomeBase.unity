@@ -9755,12 +9755,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1589120940}
     - target: {fileID: 4331132490986640182, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
+      propertyPath: minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331132490986640182, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
       propertyPath: zoomProgressionSpeed
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4331132490986640182, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
       propertyPath: rotateProgressionSpeed
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331132491324551974, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331132491324551974, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331132491324551974, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4331132491363121791, guid: d22b22de8a56c9443884e932d1f726d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

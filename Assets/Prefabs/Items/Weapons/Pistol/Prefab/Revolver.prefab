@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4580851988781530455}
   - component: {fileID: 5203858111760417820}
   - component: {fileID: 3071682999840092056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Object018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4102485064219614516}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.1, y: -0.22, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5901584037049944009}
   - component: {fileID: -5895134421682454751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Revolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}

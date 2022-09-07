@@ -15,13 +15,17 @@ public class PlayerInventory : Singleton<PlayerInventory>
 
     public void InstantiateItem(ItemData selectedItem)
     {
-        if (currentItem == selectedItem.PreviewItem)
+        if(currentItem != null && currentItem == selectedItem)
+        {
             return;
+        }
 
         itemContainer.DestroyChildren();
 
-        currentItem = selectedItem.PreviewItem;
+        if (selectedItem == null)
+            return;
 
+        currentItem = selectedItem.PreviewItem;
         var item = Instantiate(currentItem, itemContainer);
     }
 }

@@ -48,8 +48,11 @@ public class ItemWheel : MonoBehaviour
         {
             PlayerCanvasController.Instance.CloseItemWheel();
 
-            if (currentSegment.CategoryItems.Count > 0)
-                PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+            //if (currentSegment.CategoryItems.Count > 0)
+            //    PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+
+            PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+
         }
 
         previousSegment = currentSegment;
@@ -59,7 +62,7 @@ public class ItemWheel : MonoBehaviour
     {
         segments = new ItemWheelSegment[numberOfSegments];
 
-        var stepLength = 360 / segments.Length;
+        float stepLength = 360f / segments.Length;
         var iconDist = Vector3.Distance(ringCakePiecePrefab.Icon.transform.position, ringCakePiecePrefab.CakePiece.transform.position) + iconDistanceOffset;
 
         for (int i = 0; i < segments.Length; i++)

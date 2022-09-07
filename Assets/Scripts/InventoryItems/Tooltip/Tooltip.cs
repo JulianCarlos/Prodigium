@@ -29,6 +29,12 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     private void UpdateTooltipText(ItemData item)
     {
+        if(item == null)
+        {
+            tooltipText.text = string.Empty; 
+            return;
+        }
+
         tooltipText.text = item.ItemTooltip;
 
         canUse = item;

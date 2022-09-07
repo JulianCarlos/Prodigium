@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 / 5
+  m_text: 0 / 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
   m_sharedMaterial: {fileID: 6313684291086636108, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hunt the Raging Ghoul
+  m_text: 'Find Place: 169$ (Easy)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
   m_sharedMaterial: {fileID: 6313684291086636108, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
@@ -459,10 +459,10 @@ RectTransform:
   m_Father: {fileID: 9011694661673999126}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 445.078, y: 236.7437}
+  m_SizeDelta: {x: -24.921997, y: -13.256302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1259924770
 GameObject:
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is a Test Description, which says what you have to do, got it?
+  m_text: 'Find this Place: Test'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
   m_sharedMaterial: {fileID: 6313684291086636108, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
@@ -846,5 +846,3 @@ MonoBehaviour:
   achievementDescriptionText: {fileID: 1259924772}
   achievementAmountText: {fileID: 500861344}
   checkmarkImage: {fileID: 4963695222276313324}
-  achievementType: 0
-  achievementDifficulty: 0
