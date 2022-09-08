@@ -12,6 +12,7 @@ public class PumpkinMan : Monster
     protected override void Start()
     {
         base.Start();
+        monsterType = MonsterType.PumpkinMan;
     }
 
     public override void TakeDamage(DamageTypes[] types, float damage)

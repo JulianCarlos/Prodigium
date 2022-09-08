@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3080733182577229107, guid: 5df5e08f0b99f1e4685c9705b38e6721, type: 3}
       propertyPath: fileName
-      value: Axe
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 3080733182577229107, guid: 5df5e08f0b99f1e4685c9705b38e6721, type: 3}
       propertyPath: folderName

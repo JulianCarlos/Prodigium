@@ -8348,6 +8348,7 @@ MonoBehaviour:
   ShopCategoryNameText: {fileID: 1828464071}
   Items:
   - {fileID: 11400000, guid: 1a60b377dc6dfe94cb8cfae34261be95, type: 2}
+  - {fileID: 11400000, guid: 60d2f8946b941b343822440698ea2580, type: 2}
 --- !u!114 &1233518299
 MonoBehaviour:
   m_ObjectHideFlags: 0
