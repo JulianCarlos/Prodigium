@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Player player;
-    public PlayerInputs PlayerInputs;
+    [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private PlayerInputAction playerInputAction;
 
     [SerializeField] private Vector2 sensitivity = Vector2.zero;
@@ -68,8 +68,8 @@ public class CameraController : MonoBehaviour
         if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
             return;
 
-        desiredYaw += PlayerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
-        desiredPitch -= PlayerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
+        desiredYaw += playerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
+        desiredPitch -= playerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
 
         desiredPitch = Mathf.Clamp(desiredPitch, lookAngleMinMax.x, lookAngleMinMax.y);
     }

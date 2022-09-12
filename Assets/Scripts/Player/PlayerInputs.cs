@@ -15,11 +15,13 @@ public class PlayerInputs : Singleton<PlayerInputs>
     private PlayerInteraction playerInteraction;
     private FirstPersonController firstPersonController;
 
+    public InputAction.CallbackContext JumpContext;
+
     protected override void Awake()
     {
         base.Awake();
 
-        firstPersonController = GetComponent<FirstPersonController>();
+        firstPersonController = GetComponentInChildren<FirstPersonController>();
         PlayerInputAction = new PlayerInputAction();
         
         PlayerInputAction.Player.Enable();
@@ -40,6 +42,8 @@ public class PlayerInputs : Singleton<PlayerInputs>
 
         PlayerInputAction.Player.TabClick.started += TabClick;
         PlayerInputAction.Player.TabClick.canceled += TabClick;
+
+        PlayerInputAction.Player.EscClick.started += EscClick;
     }
 
     private void Update()
@@ -131,11 +135,22 @@ public class PlayerInputs : Singleton<PlayerInputs>
     {
         if (context.started)
         {
-            PlayerCanvasController.Instance.OpenItemWheel();
+            if (PlayerCanvasController.Instance != null)
+                PlayerCanvasController.Instance.OpenItemWheel();
         }
         if (context.canceled)
         {
-            PlayerCanvasController.Instance.CloseItemWheel();
+            if (PlayerCanvasController.Instance != null)
+                PlayerCanvasController.Instance.CloseItemWheel();
+        }
+    }
+
+    public void EscClick(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if(PlayerCanvasController.Instance != null)
+                PlayerCanvasController.Instance.OpenOptionsMenu();
         }
     }
 

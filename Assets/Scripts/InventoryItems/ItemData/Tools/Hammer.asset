@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cb4c6f686b17e49a00e67eacde6192, type: 3}
   m_Name: Hammer
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   itemName: Hammer
   itemTooltip: This is a old Hammer
   price: 500

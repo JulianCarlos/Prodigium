@@ -6,8 +6,8 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     public StateMachine<FirstPersonController> StateMachine { get; private set; }
-    public PlayerInputs PlayerInputs { get; private set; }
 
+    [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private PlayerInputAction playerInputAction;
 
     public PlayerCrawlState CrawlState { get; private set; } = new();
@@ -124,7 +124,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void GetComponents()
     {
-        PlayerInputs = GetComponent<PlayerInputs>();
         playerInputAction = new PlayerInputAction();
         playerInputAction.Player.Enable();
         characterController = GetComponent<CharacterController>();
@@ -142,7 +141,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void SmoothInput()
     {
-        inputVector = PlayerInputs.MoveInput.normalized;
+        inputVector = playerInputs.MoveInput.normalized;
         smoothInputVector = Vector2.Lerp(smoothInputVector, inputVector, Time.deltaTime * smoothInputSpeed);
         Debug.DrawRay(transform.position, new Vector3(smoothInputVector.x, 0, smoothInputVector.y), Color.green);
     }
@@ -151,7 +150,7 @@ public class FirstPersonController : MonoBehaviour
     {
         smoothCurrentSpeed = Mathf.Lerp(smoothCurrentSpeed, currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-        if (PlayerInputs.RunButtonPressed && CanRun())
+        if (playerInputs.RunButtonPressed && CanRun())
         {
             float walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, smoothCurrentSpeed);
             finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(walkRunPercent) * walkRunSpeedDifference + walkSpeed;
@@ -206,11 +205,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void CalculateSpeed()
     {
-        currentSpeed = PlayerInputs.RunButtonPressed && CanRun() ? runSpeed : walkSpeed;
+        currentSpeed = playerInputs.RunButtonPressed && CanRun() ? runSpeed : walkSpeed;
         currentSpeed = StateMachine.CurrentState == CrouchState ? crouchSpeed : currentSpeed;
-        currentSpeed = PlayerInputs.MoveInput.magnitude == 0 ? 0f : currentSpeed;
-        currentSpeed = PlayerInputs.MoveInput.y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
-        currentSpeed = PlayerInputs.MoveInput.x != 0 && PlayerInputs.MoveInput.y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
+        currentSpeed = playerInputs.MoveInput.magnitude == 0 ? 0f : currentSpeed;
+        currentSpeed = playerInputs.MoveInput.y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
+        currentSpeed = playerInputs.MoveInput.x != 0 && playerInputs.MoveInput.y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
     }
 
     private void CalculateFinalMovement()

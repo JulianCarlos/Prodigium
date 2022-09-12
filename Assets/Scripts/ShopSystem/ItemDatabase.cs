@@ -28,6 +28,7 @@ public class ItemDatabase : ScriptableObject
         foreach (var item in items)
         {
             item.ID = id;
+            EditorUtility.SetDirty(item);
             id++;
         }
     }

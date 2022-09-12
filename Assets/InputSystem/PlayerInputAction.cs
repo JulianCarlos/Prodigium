@@ -143,6 +143,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""08a4e67d-6a95-43a2-8a9c-f25216915002"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -332,6 +341,17 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""TabClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49f60b65-62f1-4c7b-be2b-40b446166633"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -353,6 +373,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_LeftClick = m_Player.FindAction("LeftClick", throwIfNotFound: true);
         m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         m_Player_TabClick = m_Player.FindAction("TabClick", throwIfNotFound: true);
+        m_Player_EscClick = m_Player.FindAction("EscClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,6 +446,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftClick;
     private readonly InputAction m_Player_RightClick;
     private readonly InputAction m_Player_TabClick;
+    private readonly InputAction m_Player_EscClick;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -442,6 +464,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @LeftClick => m_Wrapper.m_Player_LeftClick;
         public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputAction @TabClick => m_Wrapper.m_Player_TabClick;
+        public InputAction @EscClick => m_Wrapper.m_Player_EscClick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -490,6 +513,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @TabClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTabClick;
                 @TabClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTabClick;
                 @TabClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTabClick;
+                @EscClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscClick;
+                @EscClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscClick;
+                @EscClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscClick;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -533,6 +559,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @TabClick.started += instance.OnTabClick;
                 @TabClick.performed += instance.OnTabClick;
                 @TabClick.canceled += instance.OnTabClick;
+                @EscClick.started += instance.OnEscClick;
+                @EscClick.performed += instance.OnEscClick;
+                @EscClick.canceled += instance.OnEscClick;
             }
         }
     }
@@ -552,5 +581,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnLeftClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
         void OnTabClick(InputAction.CallbackContext context);
+        void OnEscClick(InputAction.CallbackContext context);
     }
 }

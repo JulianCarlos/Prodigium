@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (playerInputs.PlayerInputAction.Player.PickUp.WasPressedThisFrame())
             {
-                Interact.Interact();
+                Interact.EnterTerminal();
             }
         }
     }   

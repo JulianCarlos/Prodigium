@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &910996915629123014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5816753128481030299, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Name
-      value: OptionsButton
+      value: AudioButton
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Pivot.x
@@ -434,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -510,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657714070204023731, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_text
-      value: Options
+      value: Audio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -530,7 +530,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5816753128481030299, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Name
-      value: LoadGameButton
+      value: GameplayButton
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Pivot.x
@@ -602,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -678,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657714070204023731, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_text
-      value: Load Game
+      value: Gameplay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -698,7 +698,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5816753128481030299, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Name
-      value: QuitButton
+      value: BackButton
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Pivot.x
@@ -770,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -350
+      value: -400
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -798,11 +798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030301, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: CloseOptionsMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030301, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
+      value: PlayerCanvasController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030301, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -818,7 +818,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657714070204023731, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_text
-      value: Quit
+      value: 'Back
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -838,7 +840,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5816753128481030299, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Name
-      value: NewGameButton
+      value: GraphicsButton
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_Pivot.x
@@ -910,7 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 100
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 5816753128481030300, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -979,6 +981,10 @@ PrefabInstance:
     - target: {fileID: 5816753128481030302, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657714070204023731, guid: c3bf9dd15316c564eb28fb87abc0b73f, type: 3}
+      propertyPath: m_text
+      value: Graphics
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

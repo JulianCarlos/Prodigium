@@ -93,5 +93,20 @@ public class TransitionManager : Singleton<TransitionManager>
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
         FadeIn();
+
+        switch (scene.buildIndex)
+        {
+            case 0:
+                PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+                break;
+
+            case 1:
+                PlayerState.ChangePlayerState(PlayerStateType.InGame);
+                break;
+
+            case 2:
+                PlayerState.ChangePlayerState(PlayerStateType.InGame);
+                break;
+        }
     }
 }
