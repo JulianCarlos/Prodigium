@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5901584037049944009}
-  - component: {fileID: -5895134421682454751}
+  - component: {fileID: 5733178544731723405}
   m_Layer: 7
   m_Name: Revolver
   m_TagString: Untagged
@@ -116,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5895134421682454751
+--- !u!114 &5733178544731723405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6534005926323166579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6522a16e9f362ab4a91bc1e1b237d301, type: 3}
+  m_Script: {fileID: 11500000, guid: 4551a3053dc1b3a4bb7f6af9f451774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData: {fileID: 0}

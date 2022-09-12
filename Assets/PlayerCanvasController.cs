@@ -45,4 +45,5 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
     {
         TransitionManager.Instance.TransitionToScene(0, TransitionMethod.BlackScreen);
     }
+
 }
