@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCanvasController : Singleton<PlayerCanvasController>
 {
@@ -46,4 +47,9 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
         TransitionManager.Instance.TransitionToScene(0, TransitionMethod.BlackScreen);
     }
 
+
+    public void OnTabClick()
+    {
+        Debug.Log("Action Clicked Tab");
+    }
 }

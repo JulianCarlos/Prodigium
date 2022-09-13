@@ -50,7 +50,7 @@ public class ItemWheelSegment : MonoBehaviour
         }
     }
 
-    public void ScrollPrevious()
+    private void ScrollPrevious()
     {
         if (CategoryItems.Count > 0 && currentSelectedItemIndex != 0)
         {
@@ -59,7 +59,7 @@ public class ItemWheelSegment : MonoBehaviour
         }
     }
 
-    public void ScrollNext()
+    private void ScrollNext()
     {
         if (CategoryItems.Count > 0 && currentSelectedItemIndex != CategoryItems.Count - 1)
         {

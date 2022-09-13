@@ -141,7 +141,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""id"": ""c2c9d176-9722-43ff-9c99-7c5fa90a8b65"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -152,6 +152,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""35c3e432-9549-4d77-abd9-6d424fc3db6f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -352,6 +361,17 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""EscClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2fa9e4f-43e9-4cde-9f54-8a67ee3030da"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -374,6 +394,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         m_Player_TabClick = m_Player.FindAction("TabClick", throwIfNotFound: true);
         m_Player_EscClick = m_Player.FindAction("EscClick", throwIfNotFound: true);
+        m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -447,6 +468,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RightClick;
     private readonly InputAction m_Player_TabClick;
     private readonly InputAction m_Player_EscClick;
+    private readonly InputAction m_Player_Scroll;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -465,6 +487,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputAction @TabClick => m_Wrapper.m_Player_TabClick;
         public InputAction @EscClick => m_Wrapper.m_Player_EscClick;
+        public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -516,6 +539,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @EscClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscClick;
                 @EscClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscClick;
                 @EscClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscClick;
+                @Scroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -562,6 +588,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @EscClick.started += instance.OnEscClick;
                 @EscClick.performed += instance.OnEscClick;
                 @EscClick.canceled += instance.OnEscClick;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
             }
         }
     }
@@ -582,5 +611,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTabClick(InputAction.CallbackContext context);
         void OnEscClick(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

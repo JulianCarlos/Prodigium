@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 
+
+
 [CreateAssetMenu(menuName = "Item/Database")]
 public class ItemDatabase : ScriptableObject
 {
@@ -13,7 +15,7 @@ public class ItemDatabase : ScriptableObject
     {
         return items.FirstOrDefault(i => i.ID == ID);
     }
-    
+#if UNITY_EDITOR
     [ContextMenu("Get all Items")]
     public void GetAllItems()
     {
@@ -32,5 +34,5 @@ public class ItemDatabase : ScriptableObject
             id++;
         }
     }
-
+#endif
 }

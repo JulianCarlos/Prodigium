@@ -25655,10 +25655,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 330828336}
     m_Modifications:
-    - target: {fileID: 34114911251630432, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_text
-      value: New Game
-      objectReference: {fileID: 0}
     - target: {fileID: 910996915163886917, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -25747,66 +25743,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 910996915163886918, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 910996916329908808, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_Name
-      value: NewGameButton
-      objectReference: {fileID: 0}
     - target: {fileID: 910996916329908814, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 666659719}
-    - target: {fileID: 5818775453574625655, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_text
-      value: Quit Game
-      objectReference: {fileID: 0}
-    - target: {fileID: 5818775453582841519, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_text
-      value: Load Game
-      objectReference: {fileID: 0}
-    - target: {fileID: 5818775453961257980, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_text
-      value: Options
-      objectReference: {fileID: 0}
     - target: {fileID: 6637673601006764242, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 476712859}
-    - target: {fileID: 6637673601006764242, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637673601006764244, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_Name
-      value: OptionsButton
-      objectReference: {fileID: 0}
     - target: {fileID: 6637673601383388545, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1174110408}
-    - target: {fileID: 6637673601383388551, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_Name
-      value: LoadGameButton
-      objectReference: {fileID: 0}
     - target: {fileID: 6637673601391884889, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 774660862}
-    - target: {fileID: 6637673601391884889, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637673601391884889, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637673601391884895, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_Name
-      value: QuitButton
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 428dae85123a38f42948636f80e275e7, type: 3}

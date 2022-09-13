@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Hammer
   itemTooltip: This is a old Hammer
   price: 500
-  previewItem: {fileID: 5730961406534181575, guid: 250a57f72901c1741a64e6cd09540b6f, type: 3}
+  previewItem: {fileID: 1376339749998476524, guid: 250a57f72901c1741a64e6cd09540b6f, type: 3}
   itemCategoryType: 3
   itemIcon: {fileID: 21300000, guid: 88f9cf2d786cfcd4bbf7f0604c3ebc09, type: 3}

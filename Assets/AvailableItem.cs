@@ -9,6 +9,7 @@ public class AvailableItem : MonoBehaviour
     [SerializeField] private string availableItemName;
     [SerializeField] private TextMeshProUGUI availableItemNameText;
     [SerializeField] private TextMeshProUGUI availableItemCountText;
+    [SerializeField] private Image availableItemIcon;
 
     [SerializeField] private ItemData availableItem;
 
@@ -23,6 +24,7 @@ public class AvailableItem : MonoBehaviour
         availableItem = item;
         availableItemName = item.ItemName;
         availableItemNameText.text = item.ItemName;
+        availableItemIcon.sprite = item.ItemIcon;
 
         index = 0;
         UpdateButtonInteraction();

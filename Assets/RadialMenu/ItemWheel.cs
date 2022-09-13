@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.InputSystem;
 
 public class ItemWheel : MonoBehaviour
-{
+{ 
     //Color
     [Header("Color Settings")]
     [SerializeField] private Color normalColor;

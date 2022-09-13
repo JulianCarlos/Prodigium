@@ -22,28 +22,28 @@ public class PlayerInputs : Singleton<PlayerInputs>
         base.Awake();
 
         firstPersonController = GetComponentInChildren<FirstPersonController>();
-        PlayerInputAction = new PlayerInputAction();
-        
-        PlayerInputAction.Player.Enable();
-        PlayerInputAction.Player.Jump.performed += Jump;
-
-        PlayerInputAction.Player.Run.started += ToggleRun;
-        PlayerInputAction.Player.Run.canceled += ToggleRun;
-        PlayerInputAction.Player.Crouch.started += ToggleCrouch;
-        PlayerInputAction.Player.Crawl.started += ToggleCrawl;
-
-        PlayerInputAction.Player.OpenInventory.started += OpenInventory;
-        PlayerInputAction.Player.PickUp.started += UseOrPickup;
-        PlayerInputAction.Player.Reload.started += Reload;
-        PlayerInputAction.Player.DropItem.started += DropItem;
-
-        PlayerInputAction.Player.LeftClick.started += LeftClick;
-        PlayerInputAction.Player.RightClick.started += RightClick;
-
-        PlayerInputAction.Player.TabClick.started += TabClick;
-        PlayerInputAction.Player.TabClick.canceled += TabClick;
-
-        PlayerInputAction.Player.EscClick.started += EscClick;
+        //PlayerInputAction = new PlayerInputAction();
+        //
+        //PlayerInputAction.Player.Enable();
+        //PlayerInputAction.Player.Jump.performed += Jump;
+        //
+        //PlayerInputAction.Player.Run.started += ToggleRun;
+        //PlayerInputAction.Player.Run.canceled += ToggleRun;
+        //PlayerInputAction.Player.Crouch.started += ToggleCrouch;
+        //PlayerInputAction.Player.Crawl.started += ToggleCrawl;
+        //
+        //PlayerInputAction.Player.OpenInventory.started += OpenInventory;
+        //PlayerInputAction.Player.PickUp.started += UseOrPickup;
+        //PlayerInputAction.Player.Reload.started += Reload;
+        //PlayerInputAction.Player.DropItem.started += DropItem;
+        //
+        //PlayerInputAction.Player.LeftClick.started += LeftClick;
+        //PlayerInputAction.Player.RightClick.started += RightClick;
+        //
+        //PlayerInputAction.Player.TabClick.started += TabClick;
+        //PlayerInputAction.Player.TabClick.canceled += TabClick;
+        //
+        //PlayerInputAction.Player.EscClick.started += EscClick;
     }
 
     private void Update()
@@ -131,18 +131,18 @@ public class PlayerInputs : Singleton<PlayerInputs>
 
     }
 
-    public void TabClick(InputAction.CallbackContext context)
+    public void OnTabClick(InputValue value)
     {
-        if (context.started)
-        {
-            if (PlayerCanvasController.Instance != null)
-                PlayerCanvasController.Instance.OpenItemWheel();
-        }
-        if (context.canceled)
-        {
-            if (PlayerCanvasController.Instance != null)
-                PlayerCanvasController.Instance.CloseItemWheel();
-        }
+        //if (context.started)
+        //{
+        //    if (PlayerCanvasController.Instance != null)
+        //        PlayerCanvasController.Instance.OpenItemWheel();
+        //}
+        //if (context.canceled)
+        //{
+        //    if (PlayerCanvasController.Instance != null)
+        //        PlayerCanvasController.Instance.CloseItemWheel();
+        //}
     }
 
     public void EscClick(InputAction.CallbackContext context)
@@ -154,13 +154,18 @@ public class PlayerInputs : Singleton<PlayerInputs>
         }
     }
 
+    public void OnScroll(InputValue value)
+    {
+        Debug.Log("Scrolled");
+    }
+
     //Script disable/enable
     private void OnEnable()
     {
-        PlayerInputAction.Player.Enable();
+        //PlayerInputAction.Player.Enable();
     }
     private void OnDisable()
     {
-        PlayerInputAction.Player.Disable();
+        //PlayerInputAction.Player.Disable();
     }
 }

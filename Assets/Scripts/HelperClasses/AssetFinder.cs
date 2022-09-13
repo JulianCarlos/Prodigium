@@ -7,6 +7,7 @@ using System;
 
 public static class AssetFinder
 {
+#if UNITY_EDITOR
     public static T[] GetAllInstances<T>() where T : ScriptableObject
     {
         string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
@@ -30,4 +31,5 @@ public static class AssetFinder
         }
         return GetAll().ToList();
     }
+#endif
 }

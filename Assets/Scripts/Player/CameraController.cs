@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private PlayerInputs playerInputs;
-    [SerializeField] private PlayerInputAction playerInputAction;
 
     [SerializeField] private Vector2 sensitivity = Vector2.zero;
     [SerializeField] private Vector2 smoothAmount = Vector2.zero;
@@ -30,9 +30,6 @@ public class CameraController : MonoBehaviour
     {
         cameraToBodyDistance = transform.position.y - player.gameObject.transform.position.y;
         cam = GetComponentInChildren<Camera>();
-
-        playerInputAction = new PlayerInputAction();
-        playerInputAction.Enable();
 
         GetComponents();
         InitValues();
@@ -94,5 +91,10 @@ public class CameraController : MonoBehaviour
     public void ApplyFOWValue(float target)
     {
         targetFOW = target;
+    }
+    // Test Only
+    public void OnReload()
+    {
+        Debug.Log("Reload pressed");
     }
 }
