@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class Tool : Item
+public class Axe : Tool
 {
+    protected override void Use(InputAction.CallbackContext context)
+    {
 
+    }
 }

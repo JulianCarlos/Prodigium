@@ -14,22 +14,13 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
         base.Awake();
     }
 
-    public void OpenItemWheel()
+    private void Start()
     {
-        itemWheel?.SetActive(true);
-
-        Cursor.lockState = CursorLockMode.None;
-        PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+        PlayerInputs.InputAction.Player.TabClick.started += OpenItemWheel;
+        PlayerInputs.InputAction.Player.TabClick.canceled += CloseItemWheel;
     }
 
-    public void CloseItemWheel()
-    {
-        itemWheel?.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.Locked;
-        PlayerState.ChangePlayerState(PlayerStateType.InGame);
-    }
-
+    //UI Button Methods
     public void OpenOptionsMenu()
     {
         optionsWindow?.SetActive(true);
@@ -47,9 +38,41 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
         TransitionManager.Instance.TransitionToScene(0, TransitionMethod.BlackScreen);
     }
 
+    //Item Wheel
 
-    public void OnTabClick()
+    //public void ToggleItemWheel(InputAction.CallbackContext context)
+    //{
+    //    if (context.started)
+    //    {
+    //        OpenItemWheel();
+    //    }
+    //    else if (context.canceled)
+    //    {
+    //        CloseItemWheel();
+    //    }
+    //}
+
+    private void OpenItemWheel(InputAction.CallbackContext context)
     {
-        Debug.Log("Action Clicked Tab");
+        itemWheel?.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+    }
+
+    public void CloseItemWheel()
+    {
+        itemWheel?.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        PlayerState.ChangePlayerState(PlayerStateType.InGame);
+    }
+
+    public void CloseItemWheel(InputAction.CallbackContext context)
+    {
+        itemWheel?.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        PlayerState.ChangePlayerState(PlayerStateType.InGame);
     }
 }

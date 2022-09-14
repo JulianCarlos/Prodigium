@@ -65,8 +65,8 @@ public class CameraController : MonoBehaviour
         if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
             return;
 
-        desiredYaw += playerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
-        desiredPitch -= playerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
+        desiredYaw += PlayerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
+        desiredPitch -= PlayerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
 
         desiredPitch = Mathf.Clamp(desiredPitch, lookAngleMinMax.x, lookAngleMinMax.y);
     }
@@ -91,10 +91,5 @@ public class CameraController : MonoBehaviour
     public void ApplyFOWValue(float target)
     {
         targetFOW = target;
-    }
-    // Test Only
-    public void OnReload()
-    {
-        Debug.Log("Reload pressed");
     }
 }

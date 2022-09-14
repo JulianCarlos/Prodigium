@@ -141,7 +141,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void SmoothInput()
     {
-        inputVector = playerInputs.MoveInput.normalized;
+        inputVector = PlayerInputs.MoveInput.normalized;
         smoothInputVector = Vector2.Lerp(smoothInputVector, inputVector, Time.deltaTime * smoothInputSpeed);
         Debug.DrawRay(transform.position, new Vector3(smoothInputVector.x, 0, smoothInputVector.y), Color.green);
     }
@@ -150,7 +150,7 @@ public class FirstPersonController : MonoBehaviour
     {
         smoothCurrentSpeed = Mathf.Lerp(smoothCurrentSpeed, currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
-        if (playerInputs.RunButtonPressed && CanRun())
+        if (PlayerInputs.RunButtonPressed && CanRun())
         {
             float walkRunPercent = Mathf.InverseLerp(walkSpeed, runSpeed, smoothCurrentSpeed);
             finalSmoothCurrentSpeed = runTransitionCurve.Evaluate(walkRunPercent) * walkRunSpeedDifference + walkSpeed;
@@ -205,11 +205,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void CalculateSpeed()
     {
-        currentSpeed = playerInputs.RunButtonPressed && CanRun() ? runSpeed : walkSpeed;
+        currentSpeed = PlayerInputs.RunButtonPressed && CanRun() ? runSpeed : walkSpeed;
         currentSpeed = StateMachine.CurrentState == CrouchState ? crouchSpeed : currentSpeed;
-        currentSpeed = playerInputs.MoveInput.magnitude == 0 ? 0f : currentSpeed;
-        currentSpeed = playerInputs.MoveInput.y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
-        currentSpeed = playerInputs.MoveInput.x != 0 && playerInputs.MoveInput.y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
+        currentSpeed = PlayerInputs.MoveInput.magnitude == 0 ? 0f : currentSpeed;
+        currentSpeed = PlayerInputs.MoveInput.y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
+        currentSpeed = PlayerInputs.MoveInput.x != 0 && PlayerInputs.MoveInput.y == 0 ? currentSpeed * moveSideSpeedPercent : currentSpeed; 
     }
 
     private void CalculateFinalMovement()

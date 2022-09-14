@@ -43,14 +43,21 @@ public class ItemWheel : MonoBehaviour
             currentSegment.CakePiece.color = highlightColor;
         }
 
-        if (PlayerInputs.Instance.PlayerInputAction.Player.LeftClick.WasPressedThisFrame())
-        {
-            PlayerCanvasController.Instance.CloseItemWheel();
-
-            PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
-        }
-
         previousSegment = currentSegment;
+    }
+
+    private void OnEnable()
+    {
+        PlayerInputs.InputAction.Player.LeftClick.started += SelectItem;
+        PlayerInputs.InputAction.Player.LeftClick.canceled += SelectItem;
+        PlayerInputs.InputAction.Player.Scroll.performed += ChangeSelectedSegmentItem;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputs.InputAction.Player.LeftClick.started -= SelectItem;
+        PlayerInputs.InputAction.Player.LeftClick.canceled -= SelectItem;
+        PlayerInputs.InputAction.Player.Scroll.performed -= ChangeSelectedSegmentItem;
     }
 
     private void GenerateSegments()
@@ -91,5 +98,34 @@ public class ItemWheel : MonoBehaviour
         }
 
         GenerateSegments();
+    }
+
+    //Action
+    public void SelectItem(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if(currentSegment.CurrentSelectedItem != null)
+            {
+                PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+                PlayerCanvasController.Instance.CloseItemWheel();
+            }
+        }
+    }
+
+    public void ChangeSelectedSegmentItem(InputAction.CallbackContext context)
+    {
+        float value = context.ReadValue<float>();
+
+        if (value > 0)
+        {
+            currentSegment.ScrollPrevious();
+            Debug.Log("Scrolled Previous");
+        }
+        else if (value < 0)
+        {
+            currentSegment.ScrollNext();
+            Debug.Log("Scrolled Next");
+        }
     }
 }

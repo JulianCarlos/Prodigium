@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -19,21 +20,27 @@ public class PlayerInteraction : MonoBehaviour
         hitInfo = new RaycastHit();
     }
 
+    private void Start()
+    {
+        PlayerInputs.InputAction.Player.PickUp.started += CheckForRaycastType;
+    }
+
     private void Update()
     {
         hasTarget = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 100);
-        CheckForRaycastType();
     }
 
-    private void CheckForRaycastType()
+    private void CheckForRaycastType(InputAction.CallbackContext context)
     {
-        if (!hasTarget)
-            return;
+        Debug.Log("InteractPressed");
 
-        var Interact = HitInfo.collider.transform.GetComponent<IInteractable>();
-        if (Interact != null)
+        if (context.started)
         {
-            if (playerInputs.PlayerInputAction.Player.PickUp.WasPressedThisFrame())
+            if (!hasTarget)
+                return;
+
+            var Interact = HitInfo.collider.transform.GetComponent<IInteractable>();
+            if (Interact != null)
             {
                 Interact.EnterTerminal();
             }

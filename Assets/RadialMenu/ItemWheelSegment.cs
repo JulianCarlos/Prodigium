@@ -50,21 +50,28 @@ public class ItemWheelSegment : MonoBehaviour
         }
     }
 
-    private void ScrollPrevious()
+    private void UpdateIcon()
+    {
+        Icon.sprite = CategoryItems[currentSelectedItemIndex].ItemIcon;
+    }
+
+    public void ScrollPrevious()
     {
         if (CategoryItems.Count > 0 && currentSelectedItemIndex != 0)
         {
             currentSelectedItemIndex--;
             CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
+            UpdateIcon();
         }
     }
 
-    private void ScrollNext()
+    public void ScrollNext()
     {
         if (CategoryItems.Count > 0 && currentSelectedItemIndex != CategoryItems.Count - 1)
         {
             currentSelectedItemIndex++;
             CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
+            UpdateIcon();
         }
     }
 }
