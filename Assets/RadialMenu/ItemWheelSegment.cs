@@ -6,22 +6,35 @@ using UnityEngine.UI;
 
 public class ItemWheelSegment : MonoBehaviour
 {
-    public Image Icon;
-    public Image CakePiece;
+    public Image Icon => icon;
+    public Image CakePiece => cakePiece;
+    public Image SitePrefab => sitePrefab;
+
+    public ItemData CurrentSelectedItem { get; private set; }
+    public List<ItemData> CategoryItems { get; private set; }
+
+
+    [SerializeField] private Image icon;
+    [SerializeField] private Image cakePiece;
+
+    [SerializeField] private Image sitePrefab;
+    [SerializeField] private Transform sideContainer;
+
+    [SerializeField] private Color baseColor;
+    [SerializeField] private Color selectedColor;
 
     [SerializeField] private ItemCategoryType categoryType;
 
     [Space]
     [SerializeField] private int currentSelectedItemIndex;
 
-    public ItemData CurrentSelectedItem { get; private set; }
-    public List<ItemData> CategoryItems;
+    [SerializeField] List<Image> siteItems;
 
     private Vector3 originalPos;
 
     private void Awake()
     {
-        PlayerData.Instance.SortSelectedItemsIntoCategories(categoryType, CategoryItems);
+        CategoryItems = PlayerData.Instance.SortSelectedItemsIntoCategories(categoryType);
 
         SetIcon();
     }
@@ -38,29 +51,46 @@ public class ItemWheelSegment : MonoBehaviour
 
     private void SetIcon()
     {
+        for (int i = 0; i < CategoryItems.Count; i++)
+        {
+            var siteElement = Instantiate(sitePrefab, sideContainer);
+            siteItems.Add(siteElement);
+        }
+
+        if (siteItems.Count > 0)
+            siteItems[0].color = selectedColor;
+
         if (CategoryItems.Count > 0)
         {
-            Icon.enabled = true;
-            Icon.sprite = CategoryItems[0].ItemIcon;
+            icon.enabled = true;
+            icon.sprite = CategoryItems[0].ItemIcon;
+            siteItems[0].color = selectedColor;
         }
         else
         {
-            Icon.enabled = false;
-            Icon = null;
+            icon.enabled = false;
+            icon = null;
         }
+    }
+
+    public void ChangeSegmentColor(Color targetColor)
+    {
+        cakePiece.color = targetColor;
     }
 
     private void UpdateIcon()
     {
-        Icon.sprite = CategoryItems[currentSelectedItemIndex].ItemIcon;
+        icon.sprite = CategoryItems[currentSelectedItemIndex].ItemIcon;
     }
 
     public void ScrollPrevious()
     {
         if (CategoryItems.Count > 0 && currentSelectedItemIndex != 0)
         {
+            siteItems[currentSelectedItemIndex].color = baseColor;
             currentSelectedItemIndex--;
             CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
+            siteItems[currentSelectedItemIndex].color = selectedColor;
             UpdateIcon();
         }
     }
@@ -69,8 +99,10 @@ public class ItemWheelSegment : MonoBehaviour
     {
         if (CategoryItems.Count > 0 && currentSelectedItemIndex != CategoryItems.Count - 1)
         {
+            siteItems[currentSelectedItemIndex].color = baseColor;
             currentSelectedItemIndex++;
             CurrentSelectedItem = CategoryItems[currentSelectedItemIndex];
+            siteItems[currentSelectedItemIndex].color = selectedColor;
             UpdateIcon();
         }
     }

@@ -46,8 +46,10 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         Debug.Log(OwnedItems.Count);
     }
 
-    public void SortSelectedItemsIntoCategories(ItemCategoryType type, List<ItemData> targetList)
+    public List<ItemData> SortSelectedItemsIntoCategories(ItemCategoryType type)
     {
+        List<ItemData> targetList = new List<ItemData>();
+
         for (int i = 0; i < SelectedItems.Count; i++)
         {
             if(SelectedItems[i].ItemCategoryType == type)
@@ -55,6 +57,8 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
                 targetList.Add(SelectedItems[i]);
             }
         }
+
+        return targetList;
     }
 
     public void AddItem(ItemData item)

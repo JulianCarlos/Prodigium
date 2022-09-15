@@ -9,7 +9,6 @@ public class PlayerRunState : State<FirstPersonController>
 
     public override void EnterState(FirstPersonController owner)
     {
-        Debug.Log("Entered Run State");
         owner.CameraController.ApplyFOWValue(targetFOW);
     }
 

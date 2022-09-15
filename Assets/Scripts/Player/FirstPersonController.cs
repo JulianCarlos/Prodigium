@@ -70,12 +70,8 @@ public class FirstPersonController : MonoBehaviour
     private float finalSmoothCurrentSpeed;
     private float walkRunSpeedDifference;
 
-    private float finalRayLength;
     private bool previouslyGrounded;
     private bool isGrounded;
-
-    private bool duringCrouchAnimation;
-    private bool duringRunAnimation;
     #endregion
 
     private CharacterController characterController;
@@ -228,7 +224,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (playerInputAction.Player.Jump.WasPressedThisFrame() && StateMachine.CurrentState != CrouchState)
+        if (isGrounded && playerInputAction.Player.Jump.IsPressed() && StateMachine.CurrentState != CrouchState)
         {
             finalVelocity.y = Mathf.Sqrt(jumpSpeed * -2 * (Forces.Gravity.y * gravityMultiplier));
 

@@ -8,7 +8,6 @@ public class PlayerWalkState : State<FirstPersonController>
 
     public override void EnterState(FirstPersonController owner)
     {
-        Debug.Log("Entered Walk State");
         owner.CameraController.ApplyFOWValue(targetFOW);
     }
 

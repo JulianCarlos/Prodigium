@@ -38,9 +38,9 @@ public class ItemWheel : MonoBehaviour
         if (previousSegment != currentSegment)
         {
             if(previousSegment != null)
-                previousSegment.CakePiece.color = normalColor;
+                previousSegment.ChangeSegmentColor(normalColor);
 
-            currentSegment.CakePiece.color = highlightColor;
+            currentSegment.ChangeSegmentColor(highlightColor);
         }
 
         previousSegment = currentSegment;
