@@ -18,13 +18,18 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
     {
         PlayerInputs.InputAction.Player.TabClick.started += OpenItemWheel;
         PlayerInputs.InputAction.Player.TabClick.canceled += CloseItemWheel;
+
+        PlayerInputs.InputAction.Player.EscClick.started += OpenOptionsMenu;
     }
 
     //UI Button Methods
-    public void OpenOptionsMenu()
+    public void OpenOptionsMenu(InputAction.CallbackContext context)
     {
-        optionsWindow?.SetActive(true);
-        PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+        if (context.started)
+        {
+            optionsWindow?.SetActive(true);
+            PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+        }
     }
 
     public void CloseOptionsMenu()
@@ -37,20 +42,6 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
     {
         TransitionManager.Instance.TransitionToScene(0, TransitionMethod.BlackScreen);
     }
-
-    //Item Wheel
-
-    //public void ToggleItemWheel(InputAction.CallbackContext context)
-    //{
-    //    if (context.started)
-    //    {
-    //        OpenItemWheel();
-    //    }
-    //    else if (context.canceled)
-    //    {
-    //        CloseItemWheel();
-    //    }
-    //}
 
     private void OpenItemWheel(InputAction.CallbackContext context)
     {

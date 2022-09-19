@@ -288,10 +288,9 @@ MonoBehaviour:
   icon: {fileID: 5368207822599761996}
   cakePiece: {fileID: 2502007703417902378}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 1176736777563269332}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 1176736777563269332}
   categoryType: 0
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []

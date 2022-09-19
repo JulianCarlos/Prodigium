@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerInventory : Singleton<PlayerInventory>
 {
-    [SerializeField] private Transform itemContainer;
-
     [SerializeField] private Item currentItem;
+
+    [SerializeField] private Transform itemContainer;
 
     protected override void Awake()
     {
@@ -15,10 +15,8 @@ public class PlayerInventory : Singleton<PlayerInventory>
 
     public void InstantiateItem(ItemData selectedItem)
     {
-        if(currentItem != null && currentItem == selectedItem)
-        {
+        if(currentItem == selectedItem)
             return;
-        }
 
         itemContainer.DestroyChildren();
 

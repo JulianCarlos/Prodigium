@@ -105,11 +105,8 @@ public class ItemWheel : MonoBehaviour
     {
         if (context.started)
         {
-            if(currentSegment.CurrentSelectedItem != null)
-            {
-                PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
-                PlayerCanvasController.Instance.CloseItemWheel();
-            }
+            PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+            PlayerCanvasController.Instance.CloseItemWheel();
         }
     }
 

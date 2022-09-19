@@ -63,12 +63,11 @@ MonoBehaviour:
   icon: {fileID: 1926048042639421928}
   cakePiece: {fileID: 7662913421252910869}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 8119566063854458140}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 8119566063854458140}
   categoryType: 0
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &226117462803685704
 GameObject:
@@ -772,12 +771,11 @@ MonoBehaviour:
   icon: {fileID: 4319632363338268167}
   cakePiece: {fileID: 8208969539536538677}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 7731191351643111482}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 7731191351643111482}
   categoryType: 0
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &1494944907685776824
 GameObject:
@@ -842,12 +840,11 @@ MonoBehaviour:
   icon: {fileID: 922312917112191635}
   cakePiece: {fileID: 8768890798328353735}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 7289524207039218929}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 7289524207039218929}
   categoryType: 1
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &1795745624118660517
 GameObject:
@@ -989,12 +986,11 @@ MonoBehaviour:
   icon: {fileID: 671346980131888328}
   cakePiece: {fileID: 1405186914394176462}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 8901146682406897307}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 8901146682406897307}
   categoryType: 0
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &2325443877522365079
 GameObject:
@@ -2055,12 +2051,11 @@ MonoBehaviour:
   icon: {fileID: 8639395238795341602}
   cakePiece: {fileID: 3673744655988436451}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 6258218419209223288}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 6258218419209223288}
   categoryType: 0
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &5900557839703873217
 GameObject:
@@ -2197,12 +2192,11 @@ MonoBehaviour:
   icon: {fileID: 5456027000380463851}
   cakePiece: {fileID: 3311122887546565161}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 3285189806151452834}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 3285189806151452834}
   categoryType: 3
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &6172391048812448761
 GameObject:
@@ -2646,12 +2640,11 @@ MonoBehaviour:
   icon: {fileID: 2491109340820047152}
   cakePiece: {fileID: 4913107778990230762}
   sitePrefab: {fileID: 2379694504331897712, guid: 8e8b4116aadfa9941987e05f2697d165, type: 3}
+  sideContainer: {fileID: 7020600044619506323}
   baseColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
   selectedColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  sideContainer: {fileID: 7020600044619506323}
   categoryType: 0
   currentSelectedItemIndex: 0
-  CategoryItems: []
   siteItems: []
 --- !u!1 &8985655269338315966
 GameObject:

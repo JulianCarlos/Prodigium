@@ -8,15 +8,13 @@ public class PlayerInteraction : MonoBehaviour
 {
     public RaycastHit HitInfo => hitInfo;
 
-    private bool hasTarget;
-
-    private PlayerInputs playerInputs;
-    private RaycastHit hitInfo;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private bool hasTarget;
+
+    private RaycastHit hitInfo;
 
     private void Awake()
     {
-        playerInputs = GetComponentInChildren<PlayerInputs>();
         hitInfo = new RaycastHit();
     }
 
@@ -32,8 +30,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckForRaycastType(InputAction.CallbackContext context)
     {
-        Debug.Log("InteractPressed");
-
         if (context.started)
         {
             if (!hasTarget)

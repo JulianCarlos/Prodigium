@@ -288,12 +288,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778159699559852}
-  CakePiece: {fileID: 6698778160882417074}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778159413145413
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,12 +509,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778159413145419}
-  CakePiece: {fileID: 6698778159263798434}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778159624075905
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,12 +806,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778160587615653}
-  CakePiece: {fileID: 6698778161294450800}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160132002259
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,12 +875,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778161132998866}
-  CakePiece: {fileID: 6698778159381690106}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160165721300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,12 +1020,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778161285300518}
-  CakePiece: {fileID: 6698778159219914308}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160271413701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,12 +1089,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778160868354526}
-  CakePiece: {fileID: 6698778161156032856}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160342903816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,12 +1234,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778161248771617}
-  CakePiece: {fileID: 6698778160465770345}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160437135766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,12 +1633,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778160765256967}
-  CakePiece: {fileID: 6698778159420788171}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160765256961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,12 +1778,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778161038466330}
-  CakePiece: {fileID: 6698778160342903822}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778160868354520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,12 +2151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778161192230194}
-  CakePiece: {fileID: 6698778159766257025}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778161132998700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,12 +2524,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778160165721306}
-  CakePiece: {fileID: 6698778161033648361}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778161285300512
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,12 +2669,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de9c2abe0fc52d44bd668d590bdd6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 6698778159624075911}
-  CakePiece: {fileID: 6698778160530691411}
+  icon: {fileID: 0}
+  cakePiece: {fileID: 0}
+  sitePrefab: {fileID: 0}
+  sideContainer: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
   categoryType: 0
-  currentSelectedItem: {fileID: 0}
   currentSelectedItemIndex: 0
-  categoryItems: []
+  siteItems: []
 --- !u!1 &6698778161294450802
 GameObject:
   m_ObjectHideFlags: 0

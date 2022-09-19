@@ -282,8 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8743c864773929b49a67d1300a9b8d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShopCategoryName: Ammo
+  ShopCategoryNameText: {fileID: 3123428245599114712}
   Items:
   - {fileID: 11400000, guid: 4810cc2a16d8a2249bf46bd7c1097312, type: 2}
   - {fileID: 11400000, guid: 309a67ff9ede51e4ca1d0a582ca1d198, type: 2}
-  ShopCategoryName: Ammo
-  ShopCategoryNameText: {fileID: 3123428245599114712}

@@ -25,7 +25,10 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
             return;
 
         SelectedItems.Add(itemDatabase.GetItemByID(item.ID));
+        OwnedItems.Remove(item);
+        OwnedItemsID.Remove(item.ID);
         Debug.Log("Selected Items are; " + SelectedItems.Count);
+        Debug.Log("OwnedItems are; " + OwnedItems.Count);
     }
 
     public void DeSelectItem(ItemData item)
@@ -34,7 +37,10 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
             return;
 
         SelectedItems.Remove(itemDatabase.GetItemByID(item.ID));
+        OwnedItems.Add(item);
+        OwnedItemsID.Add(item.ID);
         Debug.Log("Selected Items are; " + SelectedItems.Count);
+        Debug.Log("OwnedItems are; " + OwnedItems.Count);
     }
 
     private void GetItemsBySavedIDs()
@@ -43,7 +49,6 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         {
             OwnedItems.Add(itemDatabase.GetItemByID(itemID));
         }
-        Debug.Log(OwnedItems.Count);
     }
 
     public List<ItemData> SortSelectedItemsIntoCategories(ItemCategoryType type)
@@ -55,9 +60,9 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
             if(SelectedItems[i].ItemCategoryType == type)
             {
                 targetList.Add(SelectedItems[i]);
+                OwnedItemsID.Remove(SelectedItems[i].ID);
             }
         }
-
         return targetList;
     }
 

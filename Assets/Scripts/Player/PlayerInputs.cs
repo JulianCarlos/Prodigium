@@ -52,6 +52,4 @@ public class PlayerInputs : Singleton<PlayerInputs>
             RunButtonPressed= false;
         }
     }
-
-
 }

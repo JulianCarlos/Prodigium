@@ -95,7 +95,8 @@ public abstract class Monster : Entity, IDamageable
     //IDamageable Methods
     public virtual void TakeDamage(DamageTypes[] types, float damage)
     {
-        Actions.OnMonsterTakeDamage(this);
+        //Actions.OnMonsterTakeDamage(this);
+        health -= damage;
     }
     public virtual void ApplyDamage()
     {

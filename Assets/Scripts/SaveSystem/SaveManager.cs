@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : Singleton<SaveManager>
 {
@@ -10,16 +11,8 @@ public class SaveManager : Singleton<SaveManager>
     protected override void Awake()
     {
         base.Awake();
-    }
-
-    private void Start()
-    {
         Load();
-    }
-
-    private void OnValidate()
-    {
-        Load();
+        SceneManager.sceneLoaded += Load;
     }
 
     public void Save()
@@ -35,6 +28,13 @@ public class SaveManager : Singleton<SaveManager>
         var state = LoadFile();
         RestoreState(state);
         Debug.Log("Loaded");
+    }
+
+    public void Load(Scene scene, LoadSceneMode mode)
+    {
+        var state = LoadFile();
+        RestoreState(state);
+        Debug.Log("Loaded on SceneChange");
     }
 
     private Dictionary<string, object> LoadFile()
@@ -82,6 +82,6 @@ public class SaveManager : Singleton<SaveManager>
 
     private void OnApplicationQuit()
     {
-        Save();
+        //Save();
     }
 }

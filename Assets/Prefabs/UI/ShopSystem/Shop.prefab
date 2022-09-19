@@ -2243,7 +2243,8 @@ MonoBehaviour:
   itemPreviewContainer: {fileID: 4331132491324551974}
   maxDistance: 5
   minDistance: 1.5
-  progressionSpeed: 0.5
+  zoomProgressionSpeed: 0
+  rotateProgressionSpeed: 0
 --- !u!1 &4331132491313983387
 GameObject:
   m_ObjectHideFlags: 0
