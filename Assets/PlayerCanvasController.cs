@@ -66,7 +66,7 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
 
     public void CloseItemWheel(InputAction.CallbackContext context)
     {
-        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
+        if (itemWheel.activeSelf == false)
             return;
 
         itemWheel?.SetActive(false);
