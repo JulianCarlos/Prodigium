@@ -38,9 +38,9 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
         PlayerState.ChangePlayerState(PlayerStateType.InGame);
     }
 
-    public void LeaveGame()
+    public void HeadToHomeBase()
     {
-        TransitionManager.Instance.TransitionToScene(0, TransitionMethod.BlackScreen);
+        TransitionManager.Instance.TransitionToScene(1, TransitionMethod.BlackScreen);
     }
 
     private void OpenItemWheel(InputAction.CallbackContext context)

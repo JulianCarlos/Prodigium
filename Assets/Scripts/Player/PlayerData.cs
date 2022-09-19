@@ -2,13 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
     public List<int> OwnedItemsID { get; private set; } = new List<int>();
-    public List<ItemData> OwnedItems { get; private set; } = new List<ItemData>();
 
+    public List<ItemData> OwnedItems { get; private set; } = new List<ItemData>();
     public List<ItemData> SelectedItems { get; private set; } = new List<ItemData>();
+    public List<ItemData> IngameItems { get; private set; } = new List<ItemData>();
+
 
     [SerializeField] private ItemDatabase itemDatabase;
 
@@ -19,16 +23,30 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         GetItemsBySavedIDs();
     }
 
+    public void TransferItemsToIngameInventory()
+    {
+        IngameItems = SelectedItems;
+
+        SelectedItems = new List<ItemData>();
+
+        var ingameIDs = IngameItems.Select(i => i.ID);
+
+        OwnedItemsID = OwnedItemsID.Where(i => !ingameIDs.Contains(i)).ToList();
+
+        SaveManager.Instance.Save();
+    }
+
+    public void ResetSelectedItems()
+    {
+        SelectedItems.Clear();
+    }
+
     public void SelectItem(ItemData item)
     {
         if (itemDatabase == null)
             return;
 
         SelectedItems.Add(itemDatabase.GetItemByID(item.ID));
-        OwnedItems.Remove(item);
-        OwnedItemsID.Remove(item.ID);
-        Debug.Log("Selected Items are; " + SelectedItems.Count);
-        Debug.Log("OwnedItems are; " + OwnedItems.Count);
     }
 
     public void DeSelectItem(ItemData item)
@@ -37,10 +55,6 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
             return;
 
         SelectedItems.Remove(itemDatabase.GetItemByID(item.ID));
-        OwnedItems.Add(item);
-        OwnedItemsID.Add(item.ID);
-        Debug.Log("Selected Items are; " + SelectedItems.Count);
-        Debug.Log("OwnedItems are; " + OwnedItems.Count);
     }
 
     private void GetItemsBySavedIDs()
@@ -55,12 +69,11 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
     {
         List<ItemData> targetList = new List<ItemData>();
 
-        for (int i = 0; i < SelectedItems.Count; i++)
+        for (int i = 0; i < IngameItems.Count; i++)
         {
-            if(SelectedItems[i].ItemCategoryType == type)
+            if(IngameItems[i].ItemCategoryType == type)
             {
-                targetList.Add(SelectedItems[i]);
-                OwnedItemsID.Remove(SelectedItems[i].ID);
+                targetList.Add(IngameItems[i]);
             }
         }
         return targetList;

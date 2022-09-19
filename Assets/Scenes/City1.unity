@@ -35117,6 +35117,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105289354926404284, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HeadToHomeBase
+      objectReference: {fileID: 0}
     - target: {fileID: 125130265211994493, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

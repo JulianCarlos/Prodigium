@@ -9,11 +9,13 @@ public class AvailableItemsPreview : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("Count is: " + PlayerData.Instance.SelectedItems.Count);
         UpdateItemList();
     }
 
     private void UpdateItemList()
     {
+        PlayerData.Instance.ResetSelectedItems();
         this.transform.DestroyChildren();
 
         foreach (var item in PlayerData.Instance.OwnedItems)
