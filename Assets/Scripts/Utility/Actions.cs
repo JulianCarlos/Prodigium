@@ -39,4 +39,11 @@ public static class Actions
 
     //Achievement Actions
     public static Action<Achievement> OnAchievementCompleted;
+
+    //ITem Actions
+    public static Action<ItemData> OnItemChanged;
+    public static Action<Weapon> OnAmmoChanged;
+
+    //UI Change Actions
+    public static Action<Vector2> OnSensitivityChanged;
 }

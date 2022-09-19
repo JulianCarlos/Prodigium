@@ -16,9 +16,9 @@ public abstract class Weapon : Item
     [SerializeField] private bool automatic;
 
     [Header("Magazine Settings")]
-    [SerializeField] private int currentMagazineCapacity;
-    [SerializeField] private int maxMagazineCapacity; 
-    [SerializeField] private int backupAmmo;
+    public int currentMagazineCapacity;
+    public int maxMagazineCapacity; 
+    public int backupAmmo;
 
     [Header("Reload Settings")]
     [SerializeField] private float reloadTime;
@@ -127,6 +127,7 @@ public abstract class Weapon : Item
         var amount = (backupAmmo > difference) ? difference : backupAmmo;
         currentMagazineCapacity += amount;
         backupAmmo -= amount;
+        Actions.OnAmmoChanged(this);
     }
 
     protected virtual void Shoot()
@@ -136,7 +137,9 @@ public abstract class Weapon : Item
         InstantiateMuzzleFlash();
         currentMagazineCapacity--;
 
-        if(currentMagazineCapacity <= 0)
+        Actions.OnAmmoChanged(this);
+
+        if (currentMagazineCapacity <= 0)
         {
             StopCoroutine(nameof(C_Automatic_Shooting));
         }

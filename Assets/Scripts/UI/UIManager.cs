@@ -128,8 +128,9 @@ public class UIManager : Singleton<UIManager>
     }
     public void GameplayApply()
     {
-        PlayerPrefs.SetFloat("sensY", sensY);
         PlayerPrefs.SetFloat("sensX", sensX);
+        PlayerPrefs.SetFloat("sensY", sensY);
+        Actions.OnSensitivityChanged(new Vector2(sensX, sensY));
         StartCoroutine(ConfirmationWindow("Gameplaysettings saved", .5f));
     }
 

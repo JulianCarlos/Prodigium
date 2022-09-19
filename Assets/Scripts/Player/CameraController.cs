@@ -30,11 +30,19 @@ public class CameraController : MonoBehaviour
     {
         cameraToBodyDistance = transform.position.y - player.gameObject.transform.position.y;
         cam = GetComponentInChildren<Camera>();
+        
+        sensitivity.x = PlayerPrefs.GetFloat("sensX");
+        sensitivity.y = PlayerPrefs.GetFloat("sensY");
 
         GetComponents();
         InitValues();
 
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Start()
+    {
+        Actions.OnSensitivityChanged += UpdateSensValues;
     }
 
     private void Update()
@@ -46,6 +54,12 @@ public class CameraController : MonoBehaviour
         CalculateRotation();
         SmoothRotation();
         ApplyRotation();
+    }
+
+    private void UpdateSensValues(Vector2 sensitivityValue)
+    {
+        sensitivity.x = sensitivityValue.x;
+        sensitivity.y = sensitivityValue.y;
     }
 
     void GetComponents()

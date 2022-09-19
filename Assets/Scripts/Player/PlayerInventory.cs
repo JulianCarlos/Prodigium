@@ -20,6 +20,8 @@ public class PlayerInventory : Singleton<PlayerInventory>
 
         itemContainer.DestroyChildren();
 
+        Actions.OnItemChanged(selectedItem);
+
         if (selectedItem == null)
             return;
 

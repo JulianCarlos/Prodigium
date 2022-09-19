@@ -27,6 +27,8 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
     {
         if (context.started)
         {
+            CloseItemWheel();
+
             optionsWindow?.SetActive(true);
             PlayerState.ChangePlayerState(PlayerStateType.InMenu);
         }
@@ -45,6 +47,9 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
 
     private void OpenItemWheel(InputAction.CallbackContext context)
     {
+        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
+            return;
+
         itemWheel?.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
@@ -61,6 +66,9 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
 
     public void CloseItemWheel(InputAction.CallbackContext context)
     {
+        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
+            return;
+
         itemWheel?.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
