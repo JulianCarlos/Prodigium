@@ -29198,7 +29198,7 @@ MonoBehaviour:
   rightLeg: {fileID: 0}
   bodyParts: []
   monsterLevel: 0
-  killReward: 0
+  killReward: 1444
   weakness: 
   individualBodyPartHealth: 0
 --- !u!114 &1694113626

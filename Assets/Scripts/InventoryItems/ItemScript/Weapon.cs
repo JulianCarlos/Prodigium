@@ -152,12 +152,9 @@ public abstract class Weapon : Item
 
         var damageType = new DamageTypes[2] { DamageTypes.Fire, DamageTypes.Salt };
 
-        Debug.Log("Executed DamageCheck");
-
         if (Monster != null)
         {
             Monster.TakeDamage(damageType, this.damage);
-            Debug.Log("Damaged Monster");
         }
     }
 

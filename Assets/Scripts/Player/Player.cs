@@ -25,6 +25,8 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     void Start()
     {
         Health = MaxHealth;
+
+        Actions.OnMonsterDeath += ReceiveMonsterBounty;
     }
 
     //Level Methods
@@ -95,13 +97,22 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
         Actions.OnTakeDamage(this);
         DeathCheck();
     }
+    public void TakeDamage(DamageTypes types, float damage)
+    {
+
+    }
     public void ApplyDamage()
     {
 
     }
     public void Die()
     {
-        //Actions.OnPlayerDeath(this);
+
+    }
+
+    public void ReceiveMonsterBounty(Monster monster)
+    {
+        MoneySystem.AddMoney(monster.KillReward);
     }
 
     //Save Methods
@@ -123,6 +134,8 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
         currentExperience = saveData.experience;
         experienceForNextLevel = saveData.experienceForNextLevel;
     }
+
+
 
     [Serializable]
     internal struct SaveData

@@ -53,6 +53,8 @@ public abstract class Monster : Entity, IDamageable
 
     protected MonsterAI monsterAI;
 
+    protected bool isDead = false;
+
     protected virtual void Awake()
     {
         monsterAI = GetComponent<MonsterAI>();
@@ -95,8 +97,27 @@ public abstract class Monster : Entity, IDamageable
     //IDamageable Methods
     public virtual void TakeDamage(DamageTypes[] types, float damage)
     {
-        //Actions.OnMonsterTakeDamage(this);
+        if (isDead)
+            return;
+
         health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    public void TakeDamage(DamageTypes types, float damage)
+    {
+        if (isDead)
+            return;
+
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
     }
     public virtual void ApplyDamage()
     {
@@ -114,7 +135,7 @@ public abstract class Monster : Entity, IDamageable
     }
     protected virtual void OnHealthChanged()
     {
-        Debug.Log("Health Changed");
+
     }
     protected virtual void OnHealthRegenerationSpeedChanged()
     {
@@ -136,4 +157,6 @@ public abstract class Monster : Entity, IDamageable
     {
         Debug.Log("OnMovementSpeedChanged");
     }
+
+
 }
