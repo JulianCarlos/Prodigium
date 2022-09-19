@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
 
     private void CreateAchievements(int amount)
     {
+        activeAchievements.Clear();
+
         activeAchievements = AchievementManager.CreateAchievements(amount, achievementUIPrefab);
 
         foreach (var achievement in activeAchievements)
