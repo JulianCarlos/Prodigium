@@ -39,6 +39,9 @@ public abstract class MonsterAI : Entity
     [Space(10)]
     [SerializeField] protected float minAttackRange;
     [SerializeField] protected float maxAttackRange;
+    [Space(10)]
+    [SerializeField] protected float minWanderWaitTime;
+    [SerializeField] protected float maxWanderWaitTime;
     [SerializeField] protected float stoppingDistance;
 
     protected State<MonsterAI> wanderState;
@@ -49,13 +52,15 @@ public abstract class MonsterAI : Entity
     protected State<MonsterAI> attackState;
 
     protected Monster monster;
+    protected Animator animator;
     protected NavMeshAgent agent;
 
     private void Awake()
     {
         StateMachine = new StateMachine<MonsterAI>(this);
-        agent = GetComponent<NavMeshAgent>();
         monster = GetComponent<Monster>();
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -69,4 +74,32 @@ public abstract class MonsterAI : Entity
     }
 
     protected abstract void SetupStates();
+
+    public virtual IEnumerator Wander()
+    {
+        yield return new WaitForSeconds(2f);
+        while (true)
+        {
+            if (monster.IsDead)
+                break;
+
+            var waitingTime = Random.Range(minWanderWaitTime, maxWanderWaitTime);
+            animator.SetBool("walking", true);
+            Wandering();
+            yield return new WaitForSeconds(1f);
+            yield return new WaitWhile(() => agent.hasPath);
+            animator.SetBool("walking", false);
+            yield return new WaitForSeconds(waitingTime);
+        }
+    }
+
+    private void Wandering()
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * wanderRange;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, wanderRange, -1);
+        Vector3 finalPosition = hit.position;
+        agent.SetDestination(finalPosition);
+    }
 }

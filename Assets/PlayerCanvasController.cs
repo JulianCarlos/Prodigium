@@ -45,6 +45,11 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
         TransitionManager.Instance.TransitionToScene(1, TransitionMethod.BlackScreen);
     }
 
+    public void HeadToMainMenu()
+    {
+        TransitionManager.Instance.TransitionToScene(0, TransitionMethod.BlackScreen);
+    }
+
     private void OpenItemWheel(InputAction.CallbackContext context)
     {
         if (PlayerState.PlayerStateType == PlayerStateType.InMenu)

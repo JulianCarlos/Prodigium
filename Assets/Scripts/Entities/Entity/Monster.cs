@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 
 public abstract class Monster : Entity, IDamageable
 {
+    public bool IsDead => isDead;
+
     //Properties Fields
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; OnMaxHealthChanged(); } }
     public float Health { get { return maxHealth; } set { maxHealth = value; OnHealthChanged(); } }
@@ -52,12 +54,14 @@ public abstract class Monster : Entity, IDamageable
     [SerializeField] protected bool individualBodyPartHealth = false;
 
     protected MonsterAI monsterAI;
+    protected Animator animator;
 
     protected bool isDead = false;
 
     protected virtual void Awake()
     {
         monsterAI = GetComponent<MonsterAI>();
+        animator = GetComponent<Animator>();
 
         if (!individualBodyPartHealth)
             return;
@@ -102,6 +106,8 @@ public abstract class Monster : Entity, IDamageable
 
         health -= damage;
 
+        animator.SetTrigger("hit");
+
         if (health <= 0)
         {
             Die();
@@ -114,6 +120,8 @@ public abstract class Monster : Entity, IDamageable
 
         health -= damage;
 
+        animator.SetTrigger("hit");
+
         if (health <= 0)
         {
             Die();
@@ -125,6 +133,8 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void Die()
     {
+        isDead = true;
+        animator.SetTrigger("death");
         Actions.OnMonsterDeath(this);
     }
 

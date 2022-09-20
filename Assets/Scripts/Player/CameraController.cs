@@ -79,8 +79,8 @@ public class CameraController : MonoBehaviour
         if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
             return;
 
-        desiredYaw += PlayerInputs.MouseInput.x * sensitivity.x * Time.deltaTime;
-        desiredPitch -= PlayerInputs.MouseInput.y * sensitivity.y * Time.deltaTime;
+        desiredYaw += (PlayerInputs.MouseInput.x / 3) * sensitivity.x * Time.deltaTime;
+        desiredPitch -= (PlayerInputs.MouseInput.y / 3) * sensitivity.y * Time.deltaTime;
 
         desiredPitch = Mathf.Clamp(desiredPitch, lookAngleMinMax.x, lookAngleMinMax.y);
     }
