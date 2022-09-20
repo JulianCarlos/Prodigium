@@ -106,11 +106,13 @@ public abstract class Monster : Entity, IDamageable
 
         health -= damage;
 
-        animator.SetTrigger("hit");
-
         if (health <= 0)
         {
             Die();
+        }
+        else
+        {
+            animator.SetTrigger("hit");
         }
     }
     public void TakeDamage(DamageTypes types, float damage)
@@ -120,11 +122,13 @@ public abstract class Monster : Entity, IDamageable
 
         health -= damage;
 
-        animator.SetTrigger("hit");
-
         if (health <= 0)
         {
             Die();
+        }
+        else
+        {
+            animator.SetTrigger("hit");
         }
     }
     public virtual void ApplyDamage()
