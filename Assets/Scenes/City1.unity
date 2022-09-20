@@ -33769,6 +33769,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8985655269807511222, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 8985655269761623344}
+    - target: {fileID: 8985655269807511222, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8985655270356679868, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Name
       value: IngameMenuCanvas
@@ -33798,5 +33806,10 @@ RectTransform:
 --- !u!224 &8985655269761623343 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8985655270356679871, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+  m_PrefabInstance: {fileID: 8985655269761623341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &8985655269761623344 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 234357901911394124, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
   m_PrefabInstance: {fileID: 8985655269761623341}
   m_PrefabAsset: {fileID: 0}
