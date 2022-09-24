@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Hammer : Tool
 {
-    protected override void Use(InputAction.CallbackContext context)
+    protected override void L_Use(InputAction.CallbackContext context)
     {
 
     }

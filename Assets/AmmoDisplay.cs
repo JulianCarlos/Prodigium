@@ -35,6 +35,6 @@ public class AmmoDisplay : MonoBehaviour
 
     public void UpdateAmmoValue(Weapon weapon)
     {
-        ammoText.text = $"{weapon.currentMagazineCapacity} / {weapon.backupAmmo}";
+        ammoText.text = $"{weapon.CurrentMagazineCapacity} / {weapon.BackupAmmo}";
     }
 }

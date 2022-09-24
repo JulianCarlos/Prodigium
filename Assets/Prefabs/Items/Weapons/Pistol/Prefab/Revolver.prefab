@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5901584037049944009}
   - component: {fileID: 8481269527688714818}
+  - component: {fileID: 1124251783062409270}
   m_Layer: 7
   m_Name: Revolver
   m_TagString: Untagged
@@ -141,7 +142,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4580851988781530455}
   - {fileID: 6508276209751901019}
@@ -166,7 +167,30 @@ MonoBehaviour:
   fireRate: 7
   damage: 15
   automatic: 0
-  currentMagazineCapacity: 15
-  maxMagazineCapacity: 15
-  backupAmmo: 155
-  reloadTime: 3
+  CurrentMagazineCapacity: 6
+  MaxMagazineCapacity: 6
+  BackupAmmo: 36
+  reloadTime: 1
+  reloadType: 1
+  reloadInClip: {fileID: 7400000, guid: f2e85a03de6c4884e8255dc638c143cf, type: 2}
+  reloadIOutClip: {fileID: 7400000, guid: 085e74945fad1f043ba0d8f9450be3ed, type: 2}
+--- !u!95 &1124251783062409270
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534005926323166579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2aa5e6c74bf4c1c4e816b20a21c733ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

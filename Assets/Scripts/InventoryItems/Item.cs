@@ -5,5 +5,6 @@ using UnityEngine.InputSystem;
 
 public abstract class Item : MonoBehaviour
 {
-    protected abstract void Use(InputAction.CallbackContext context);
+    protected virtual void L_Use(InputAction.CallbackContext context) { }
+    protected virtual void R_Use(InputAction.CallbackContext context) { }
 }

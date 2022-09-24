@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum ReloadType
+{
+    InstantReload,
+    SingleBulletReload
+}
+
 public abstract class Weapon : Item
 {
     [Header("Gun")]
@@ -16,54 +22,87 @@ public abstract class Weapon : Item
     [SerializeField] private bool automatic;
 
     [Header("Magazine Settings")]
-    public int currentMagazineCapacity;
-    public int maxMagazineCapacity; 
-    public int backupAmmo;
+    public int CurrentMagazineCapacity;
+    public int MaxMagazineCapacity; 
+    public int BackupAmmo;
 
     [Header("Reload Settings")]
     [SerializeField] private float reloadTime;
+    [SerializeField] private ReloadType reloadType;
+
+    [Header("Clips")]
+    [SerializeField] private AnimationClip reloadInClip;
+    [SerializeField] private AnimationClip reloadIOutClip;
 
     private WaitForSeconds fireRateWait;
     private WaitForSeconds singleShotCooldownWait;
-    private WaitForSeconds reloadTimeWait;
+    private WaitForSeconds timeUntilReloadWait;
+    private WaitForSeconds timeUntilAbleToShoot;
+    private WaitForSeconds timeBetweenReloadWait;
 
     private bool canShoot = true;
     private bool isReloading = false;
 
     private RaycastHit hitInfo;
 
+    private Animator animator;
+
     private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
     {
         fireRateWait = new WaitForSeconds(1f / fireRate);
         singleShotCooldownWait = new WaitForSeconds(shotCooldown);
-        reloadTimeWait = new WaitForSeconds(reloadTime);
+
+        timeUntilReloadWait = new WaitForSeconds(reloadInClip.length);
+        timeUntilAbleToShoot = new WaitForSeconds(reloadIOutClip.length);
+        timeBetweenReloadWait = new WaitForSeconds(reloadTime);
+
+        CurrentMagazineCapacity = MaxMagazineCapacity;
     }
 
     protected void OnEnable()
     {
-        PlayerInputs.InputAction.Player.LeftClick.started += Use;
-        PlayerInputs.InputAction.Player.LeftClick.canceled += Use;
-
+        PlayerInputs.InputAction.Player.LeftClick.started += L_Use;
+        PlayerInputs.InputAction.Player.LeftClick.canceled += L_Use;
+        PlayerInputs.InputAction.Player.RightClick.started += R_Use;
+        PlayerInputs.InputAction.Player.RightClick.canceled += R_Use;
         PlayerInputs.InputAction.Player.Reload.started += Reload;
     }
 
     protected void OnDisable()
     {
-        PlayerInputs.InputAction.Player.LeftClick.started -= Use;
-        PlayerInputs.InputAction.Player.LeftClick.canceled -= Use;
+        PlayerInputs.InputAction.Player.LeftClick.started -= L_Use;
+        PlayerInputs.InputAction.Player.LeftClick.canceled -= L_Use;
+        PlayerInputs.InputAction.Player.RightClick.started -= R_Use;
+        PlayerInputs.InputAction.Player.RightClick.canceled -= R_Use;
+        PlayerInputs.InputAction.Player.Reload.started -= Reload;
+
+        StopAllCoroutines();
     }
 
-    protected override void Use(InputAction.CallbackContext context)
+    protected override void L_Use(InputAction.CallbackContext context)
     {
-        if(PlayerState.PlayerStateType == PlayerStateType.InGame)
-        {
-            Shoot(context);
-        }
+        if (isReloading || PlayerState.PlayerStateType == PlayerStateType.InGame)
+            return;
+
+        Shoot(context);
+    }
+
+    protected override void R_Use(InputAction.CallbackContext context)
+    {
+        if(isReloading || PlayerState.PlayerStateType == PlayerStateType.InGame)
+            return;
+
+        Aim(context);
     }
 
     protected virtual void Reload(InputAction.CallbackContext context)
     {
-        if (currentMagazineCapacity >= maxMagazineCapacity || backupAmmo <= 0)
+        if (CurrentMagazineCapacity >= MaxMagazineCapacity || BackupAmmo <= 0 || isReloading)
             return;
 
         if (context.started)
@@ -74,13 +113,16 @@ public abstract class Weapon : Item
 
     protected virtual void Shoot(InputAction.CallbackContext context)
     {
-        if (isReloading)
+        if (isReloading || BackupAmmo <= 0)
             return;
 
         if (context.started)
         {
-            if (currentMagazineCapacity <= 0)
+            if (CurrentMagazineCapacity <= 0 && BackupAmmo > 0)
+            {
+                StartCoroutine(nameof(C_Reload));
                 return;
+            }
 
             if (automatic)
             {
@@ -100,9 +142,23 @@ public abstract class Weapon : Item
         }
     }
 
+    protected virtual void Aim(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            StopCoroutine(nameof(AimOut));
+            StartCoroutine(nameof(AimIn));
+        }
+        else if (context.canceled)
+        {
+            StopCoroutine(nameof(AimIn));
+            StartCoroutine(nameof(AimOut));
+        }
+    }
+
     protected virtual IEnumerator C_Automatic_Shooting()
     {
-        while (true)
+        while (CurrentMagazineCapacity > 0)
         {
             Shoot();
             yield return fireRateWait;
@@ -120,26 +176,58 @@ public abstract class Weapon : Item
     protected virtual IEnumerator C_Reload()
     {
         isReloading = true;
-        yield return reloadTimeWait;
-        isReloading = false;
+        animator.Play("ReloadIn");
 
-        var difference = maxMagazineCapacity - currentMagazineCapacity;
-        var amount = (backupAmmo > difference) ? difference : backupAmmo;
-        currentMagazineCapacity += amount;
-        backupAmmo -= amount;
-        Actions.OnAmmoChanged(this);
+        var difference = MaxMagazineCapacity - CurrentMagazineCapacity;
+        var amount = (BackupAmmo > difference) ? difference : BackupAmmo;
+
+        yield return timeUntilReloadWait;
+
+        if (reloadType == ReloadType.InstantReload)
+        {
+            CurrentMagazineCapacity += amount;
+            BackupAmmo -= amount;
+            Actions.OnAmmoChanged(this);
+        }
+        else if (reloadType == ReloadType.SingleBulletReload)
+        {
+            while (amount > 0)
+            {
+                CurrentMagazineCapacity ++;
+                BackupAmmo--;
+                amount--;
+                Actions.OnAmmoChanged(this);
+
+                yield return timeBetweenReloadWait;
+            }
+        }
+
+        animator.Play("ReloadOut");
+        yield return timeUntilAbleToShoot;
+        isReloading = false;
+    }
+
+    protected virtual IEnumerator AimIn()
+    {
+        yield return null;
+    }
+
+    protected virtual IEnumerator AimOut()
+    {
+        yield return null;
     }
 
     protected virtual void Shoot()
     {
+        animator.SetTrigger("Shooting");
         DamageCheck();
 
         InstantiateMuzzleFlash();
-        currentMagazineCapacity--;
+        CurrentMagazineCapacity--;
 
         Actions.OnAmmoChanged(this);
 
-        if (currentMagazineCapacity <= 0)
+        if (CurrentMagazineCapacity <= 0)
         {
             StopCoroutine(nameof(C_Automatic_Shooting));
         }
