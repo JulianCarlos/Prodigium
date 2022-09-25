@@ -21,6 +21,9 @@ public abstract class Weapon : Item
     [SerializeField] private float damage;
     [SerializeField] private bool automatic;
 
+    [Header("Aim Settings")]
+    [SerializeField] private float aimSpeed;
+
     [Header("Magazine Settings")]
     public int CurrentMagazineCapacity;
     public int MaxMagazineCapacity; 
@@ -33,7 +36,12 @@ public abstract class Weapon : Item
     [Header("Clips")]
     [SerializeField] private AnimationClip reloadInClip;
     [SerializeField] private AnimationClip reloadIOutClip;
+    [Space]
+    [SerializeField] private AnimationClip equipClip;
 
+    private Vector3 localPos;
+
+    private WaitForSeconds timeUntilUseWait;
     private WaitForSeconds fireRateWait;
     private WaitForSeconds singleShotCooldownWait;
     private WaitForSeconds timeUntilReloadWait;
@@ -42,21 +50,27 @@ public abstract class Weapon : Item
 
     private bool canShoot = true;
     private bool isReloading = false;
+    private bool isEquipping = false;
 
     private RaycastHit hitInfo;
 
+    private ItemAimController itemAimController;
     private Animator animator;
 
     private void Awake()
     {
+        itemAimController = GetComponentInParent<ItemAimController>();
         animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
+        localPos = transform.localPosition;
+
         fireRateWait = new WaitForSeconds(1f / fireRate);
         singleShotCooldownWait = new WaitForSeconds(shotCooldown);
 
+        timeUntilUseWait = new WaitForSeconds(equipClip.length);
         timeUntilReloadWait = new WaitForSeconds(reloadInClip.length);
         timeUntilAbleToShoot = new WaitForSeconds(reloadIOutClip.length);
         timeBetweenReloadWait = new WaitForSeconds(reloadTime);
@@ -71,6 +85,8 @@ public abstract class Weapon : Item
         PlayerInputs.InputAction.Player.RightClick.started += R_Use;
         PlayerInputs.InputAction.Player.RightClick.canceled += R_Use;
         PlayerInputs.InputAction.Player.Reload.started += Reload;
+
+        StartCoroutine(nameof(C_Equip));
     }
 
     protected void OnDisable()
@@ -86,23 +102,15 @@ public abstract class Weapon : Item
 
     protected override void L_Use(InputAction.CallbackContext context)
     {
-        if (isReloading || PlayerState.PlayerStateType == PlayerStateType.InGame)
+        if (isReloading || isEquipping || PlayerState.PlayerStateType == PlayerStateType.InMenu)
             return;
 
         Shoot(context);
     }
 
-    protected override void R_Use(InputAction.CallbackContext context)
-    {
-        if(isReloading || PlayerState.PlayerStateType == PlayerStateType.InGame)
-            return;
-
-        Aim(context);
-    }
-
     protected virtual void Reload(InputAction.CallbackContext context)
     {
-        if (CurrentMagazineCapacity >= MaxMagazineCapacity || BackupAmmo <= 0 || isReloading)
+        if (CurrentMagazineCapacity >= MaxMagazineCapacity || BackupAmmo <= 0 || isReloading || isEquipping)
             return;
 
         if (context.started)
@@ -113,7 +121,7 @@ public abstract class Weapon : Item
 
     protected virtual void Shoot(InputAction.CallbackContext context)
     {
-        if (isReloading || BackupAmmo <= 0)
+        if (isReloading || isEquipping || BackupAmmo <= 0)
             return;
 
         if (context.started)
@@ -142,18 +150,12 @@ public abstract class Weapon : Item
         }
     }
 
-    protected virtual void Aim(InputAction.CallbackContext context)
+    protected virtual IEnumerator C_Equip()
     {
-        if (context.started)
-        {
-            StopCoroutine(nameof(AimOut));
-            StartCoroutine(nameof(AimIn));
-        }
-        else if (context.canceled)
-        {
-            StopCoroutine(nameof(AimIn));
-            StartCoroutine(nameof(AimOut));
-        }
+        isEquipping = true;
+        animator.Play("Equip");
+        yield return timeUntilUseWait;
+        isEquipping = false;
     }
 
     protected virtual IEnumerator C_Automatic_Shooting()
@@ -205,16 +207,6 @@ public abstract class Weapon : Item
         animator.Play("ReloadOut");
         yield return timeUntilAbleToShoot;
         isReloading = false;
-    }
-
-    protected virtual IEnumerator AimIn()
-    {
-        yield return null;
-    }
-
-    protected virtual IEnumerator AimOut()
-    {
-        yield return null;
     }
 
     protected virtual void Shoot()

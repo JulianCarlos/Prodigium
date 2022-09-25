@@ -142,7 +142,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4580851988781530455}
   - {fileID: 6508276209751901019}
@@ -167,6 +167,7 @@ MonoBehaviour:
   fireRate: 7
   damage: 15
   automatic: 0
+  aimSpeed: 1.3
   CurrentMagazineCapacity: 6
   MaxMagazineCapacity: 6
   BackupAmmo: 36
@@ -174,6 +175,7 @@ MonoBehaviour:
   reloadType: 1
   reloadInClip: {fileID: 7400000, guid: f2e85a03de6c4884e8255dc638c143cf, type: 2}
   reloadIOutClip: {fileID: 7400000, guid: 085e74945fad1f043ba0d8f9450be3ed, type: 2}
+  equipClip: {fileID: 7400000, guid: ac3c6021d2308af48a900adcfef4edaf, type: 2}
 --- !u!95 &1124251783062409270
 Animator:
   serializedVersion: 4
