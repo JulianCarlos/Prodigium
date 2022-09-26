@@ -24,16 +24,20 @@ public abstract class Tool : Item
 
     private void Start()
     {
-        useAnimationWait = new WaitForSeconds(useAnimation.length);
-        equipAnimationWait = new WaitForSeconds(equipAnimation.length);
+        if(useAnimation)
+            useAnimationWait = new WaitForSeconds(useAnimation.length);
+
+        if(equipAnimation)
+            equipAnimationWait = new WaitForSeconds(equipAnimation.length);
     }
 
     private void OnEnable()
     {
         PlayerInputs.InputAction.Player.LeftClick.started += L_Use;
         PlayerInputs.InputAction.Player.LeftClick.canceled += L_Use;
-
-        StartCoroutine(nameof(C_Equip));
+        
+        if (equipAnimation)
+            StartCoroutine(nameof(C_Equip));
     }
 
     private void OnDisable()
@@ -44,7 +48,7 @@ public abstract class Tool : Item
 
     protected override void L_Use(InputAction.CallbackContext context)
     {
-        if (isInUse || isEquipping)
+        if (isInUse || isEquipping || !useAnimation)
             return;
 
         if (context.started)
