@@ -9,24 +9,38 @@ public class ItemAimController : MonoBehaviour
 
     private Vector3 localPos;
 
+    private bool canAim;
+
     private void Start()
     {
-        PlayerInputs.InputAction.Player.RightClick.started += R_Use;
-        PlayerInputs.InputAction.Player.RightClick.canceled += R_Use;
-
         localPos = transform.localPosition;
+
+        Actions.OnItemChanged += CheckForAiming;
     }
 
-    protected virtual void R_Use(InputAction.CallbackContext context)
+    private void ResetItemPos()
     {
-        if (PlayerState.PlayerStateType == PlayerStateType.InMenu)
+        transform.localPosition = localPos;
+    }
+
+    private void CheckForAiming(ItemData item)
+    {
+        if(item.ItemCategoryType == ItemCategoryType.Weapons)
+        {
+            canAim = true;
+        }
+        else
+        {
+            canAim= false;
+        }
+        ResetItemPos();
+    }
+
+    public void Aim(InputAction.CallbackContext context)
+    {
+        if (!canAim)
             return;
 
-        Aim(context);
-    }
-
-    protected virtual void Aim(InputAction.CallbackContext context)
-    {
         if (context.started)
         {
             Debug.Log("Aim context Started");

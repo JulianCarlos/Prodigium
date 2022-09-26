@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1479096258061270176}
   - component: {fileID: 5477492515992417}
+  - component: {fileID: 8777668530828448760}
   m_Layer: 7
   m_Name: Axe
   m_TagString: Untagged
@@ -25,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479096258061270191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.020688912, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.08, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1372603140881812619}
@@ -45,6 +46,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7a7b6e4f731d342a61d18dd78aafd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAnimation: {fileID: 7400000, guid: 337742e44dbba114896ce2c685e0a7c1, type: 2}
+  equipAnimation: {fileID: 7400000, guid: 0b534baea1f98e446a2a33d83c85310a, type: 2}
+--- !u!95 &8777668530828448760
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479096258061270191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb728d13079f3ab488cfa1394800d35d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1479096257810393952
 PrefabInstance:
   m_ObjectHideFlags: 0

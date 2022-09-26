@@ -108,6 +108,14 @@ public abstract class Weapon : Item
         Shoot(context);
     }
 
+    protected override void R_Use(InputAction.CallbackContext context)
+    {
+        if (isReloading || isEquipping || PlayerState.PlayerStateType == PlayerStateType.InMenu)
+            return;
+
+        itemAimController.Aim(context);
+    }
+
     protected virtual void Reload(InputAction.CallbackContext context)
     {
         if (CurrentMagazineCapacity >= MaxMagazineCapacity || BackupAmmo <= 0 || isReloading || isEquipping)

@@ -33354,6 +33354,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9117961539483695598, guid: 4ca4dcaca6ffe9e4580a174c714f30d3, type: 3}
   m_PrefabInstance: {fileID: 2120147891}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2120259597
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 8985655269761623345}
+    m_Modifications:
+    - target: {fileID: 5477492515992417, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: equipAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 0b534baea1f98e446a2a33d83c85310a, type: 2}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270191, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_Name
+      value: Axe
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479096258061270191, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+--- !u!4 &2120259598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1479096258061270176, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
+  m_PrefabInstance: {fileID: 2120259597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2130403273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33903,6 +33975,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8985655270559052164, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 610549526}
+    - targetCorrespondingSourceObject: {fileID: 8985655270559052164, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120259598}
     - targetCorrespondingSourceObject: {fileID: 8985655270356679871, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 390473893}
