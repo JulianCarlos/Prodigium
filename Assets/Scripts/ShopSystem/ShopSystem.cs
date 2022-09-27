@@ -97,7 +97,7 @@ public class ShopSystem : MonoBehaviour
 
         transform.DOKill();
         
-        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem.gameObject, previewItemContainer);
+        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.IngameItem.gameObject, previewItemContainer);
         CurrentSelectedItemGameobject.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
         CurrentSelectedItemGameobject.transform.DOLocalMove(Vector3.zero, 0.3f);
     }

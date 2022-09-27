@@ -55,6 +55,8 @@ public class ItemWheel : MonoBehaviour
 
     private void OnDisable()
     {
+        SelectItem();
+
         PlayerInputs.InputAction.Player.LeftClick.started -= SelectItem;
         PlayerInputs.InputAction.Player.LeftClick.canceled -= SelectItem;
         PlayerInputs.InputAction.Player.Scroll.performed -= ChangeSelectedSegmentItem;
@@ -101,6 +103,11 @@ public class ItemWheel : MonoBehaviour
     }
 
     //Action
+    public void SelectItem()
+    {
+        PlayerInventory.Instance.InstantiateItem(currentSegment.CurrentSelectedItem);
+        PlayerCanvasController.Instance.CloseItemWheel();
+    }
     public void SelectItem(InputAction.CallbackContext context)
     {
         if (context.started)

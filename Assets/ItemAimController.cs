@@ -14,8 +14,16 @@ public class ItemAimController : MonoBehaviour
     private void Start()
     {
         localPos = transform.localPosition;
+    }
 
+    private void OnEnable()
+    {
         Actions.OnItemChanged += CheckForAiming;
+    }
+
+    private void OnDisable()
+    {
+        Actions.OnItemChanged -= CheckForAiming;
     }
 
     private void ResetItemPos()
@@ -25,6 +33,9 @@ public class ItemAimController : MonoBehaviour
 
     private void CheckForAiming(ItemData item)
     {
+        if (item == null)
+            return;
+
         if(item.ItemCategoryType == ItemCategoryType.Weapons)
         {
             canAim = true;

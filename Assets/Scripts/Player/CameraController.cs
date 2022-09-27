@@ -7,7 +7,8 @@ public class CameraController : MonoBehaviour
 {
     [Header("Player Settings")]
     [SerializeField] private Player player;
-    [SerializeField] private Camera cam;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform cameraPivot;
     [SerializeField] private FirstPersonController controller;
     [SerializeField] private PlayerInputs playerInputs;
 
@@ -78,18 +79,18 @@ public class CameraController : MonoBehaviour
     private void HandleHeadBob()
     {
         if (!controller.IsGrounded)
-        {
-            Debug.Log("IsGrounded = " + controller.IsGrounded);
             return;
-        }
 
-        if(Mathf.Abs(PlayerInputs.MoveInput.x) > 0.1f || Mathf.Abs(PlayerInputs.MoveInput.y) > 0.1f)
+        if (Mathf.Abs(PlayerInputs.MoveInput.x) > 0.1f || Mathf.Abs(PlayerInputs.MoveInput.y) > 0.1f)
         {
             timer += Time.deltaTime * (PlayerInputs.IsCrouching ? crouchBobSpeed : PlayerInputs.IsRunning ? sprintBobSpeed : walkBobSpeed);
-            cam.transform.localPosition = new Vector3(
-                cam.transform.localPosition.x,
-                defaultYPos + Mathf.Sin(timer) * (PlayerInputs.IsCrouching ? crouchBobAmount : PlayerInputs.IsRunning ? sprintBobAmount : walkBobAmount),
-                cam.transform.localPosition.z);
+
+            var sinValue = Mathf.Sin(timer);
+
+            cameraPivot.transform.localPosition = new Vector3(
+                cameraPivot.transform.localPosition.x,
+                defaultYPos + sinValue * (PlayerInputs.IsCrouching ? crouchBobAmount : PlayerInputs.IsRunning ? sprintBobAmount : walkBobAmount),
+                cameraPivot.transform.localPosition.z);
         }
     }
 
@@ -102,14 +103,14 @@ public class CameraController : MonoBehaviour
     void GetComponents()
     {
         pitchTransform = transform.GetChild(0).transform;
-        cam = GetComponentInChildren<Camera>();
+        playerCamera = GetComponentInChildren<Camera>();
     }
 
     void InitValues()
     {
         yaw = transform.eulerAngles.y;
         desiredYaw = yaw;
-        defaultYPos = cam.transform.localPosition.y;
+        defaultYPos = cameraPivot.transform.localPosition.y;
     }
 
     void CalculateRotation()
@@ -137,7 +138,7 @@ public class CameraController : MonoBehaviour
 
     private void ChangeFOW()
     {
-        cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, targetFOW, zoomSpeed * Time.deltaTime);
+        playerCamera.fieldOfView = Mathf.MoveTowards(playerCamera.fieldOfView, targetFOW, zoomSpeed * Time.deltaTime);
     }
 
     public void ApplyFOWValue(float target)

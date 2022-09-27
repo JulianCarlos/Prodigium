@@ -23,7 +23,7 @@ public class AmmoDisplay : MonoBehaviour
             return;
         }
 
-        if (selectedItem.PreviewItem.TryGetComponent(out Weapon weapon))
+        if (selectedItem.IngameItem.TryGetComponent(out Weapon weapon))
         {
             UpdateAmmoValue(weapon);
         }

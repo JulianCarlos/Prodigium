@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory : Singleton<PlayerInventory>
 {
-    [SerializeField] private Item currentItem;
+    [SerializeField] private ItemData currentItem;
 
     [SerializeField] private Transform itemContainer;
 
@@ -15,7 +15,7 @@ public class PlayerInventory : Singleton<PlayerInventory>
 
     public void InstantiateItem(ItemData selectedItem)
     {
-        if(currentItem == selectedItem)
+        if(currentItem?.ID == selectedItem.ID)
             return;
 
         itemContainer.DestroyChildren();
@@ -25,7 +25,7 @@ public class PlayerInventory : Singleton<PlayerInventory>
         if (selectedItem == null)
             return;
 
-        currentItem = selectedItem.PreviewItem;
-        var item = Instantiate(currentItem, itemContainer);
+        currentItem = selectedItem;
+        var item = Instantiate(currentItem.IngameItem, itemContainer);
     }
 }

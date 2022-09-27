@@ -5,29 +5,22 @@ using UnityEngine;
 public class ItemSway : MonoBehaviour
 {
     [SerializeField] private Player player;
+    [SerializeField] private Camera playerCamera;
 
-    [SerializeField] private Transform cameraHolderTransform;
+    [SerializeField] private Transform cameraPivot;
 
     [SerializeField] private float smoothRotateSpeed;
 
-    private float cameraToBodyDistance;
-
-    private void Awake()
+    void LateUpdate()
     {
-        cameraToBodyDistance = transform.position.y - player.gameObject.transform.position.y;
-    }
-
-    void Update()
-    {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraToBodyDistance, player.transform.position.z);
-
+        transform.position = cameraPivot.position;
         RotateTowardsCamera();
     }
 
     private void RotateTowardsCamera()
     {
         Quaternion currentRot = transform.rotation;
-        Quaternion desiredRot = cameraHolderTransform.rotation;
+        Quaternion desiredRot = cameraPivot.rotation;
 
         transform.rotation = Quaternion.Slerp(currentRot, desiredRot, Time.deltaTime * smoothRotateSpeed);
     }
