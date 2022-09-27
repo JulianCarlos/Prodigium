@@ -128,8 +128,9 @@ public class UIManager : Singleton<UIManager>
     }
     public void GameplayApply()
     {
-        PlayerPrefs.SetFloat("sensY", sensY);
         PlayerPrefs.SetFloat("sensX", sensX);
+        PlayerPrefs.SetFloat("sensY", sensY);
+        Actions.OnSensitivityChanged(new Vector2(sensX, sensY));
         StartCoroutine(ConfirmationWindow("Gameplaysettings saved", .5f));
     }
 
@@ -192,8 +193,7 @@ public class UIManager : Singleton<UIManager>
     //UI Button Methods
     public void OnNewGameDialogYes()
     {
-        //SceneManager.LoadScene(newGameLevel);
-        TransitionManager.Instance.TransitionToScene(4, TransitionMethod.LoadingScreen);
+        TransitionManager.Instance.TransitionToScene(1, TransitionMethod.LoadingScreen);
     }
     public void OnLoadGameDialogYes()
     {
@@ -343,5 +343,10 @@ public class UIManager : Singleton<UIManager>
         {
             ResetButton("Graphics");
         }
+    }
+
+    public void CreateAchivements(Achievement achievement)
+    {
+        
     }
 }

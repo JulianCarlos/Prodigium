@@ -440,6 +440,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipWindow: {fileID: 685433676573691383}
   tooltipText: {fileID: 685433677561775742}
-  toolTipLayer:
-    serializedVersion: 2
-    m_Bits: 256

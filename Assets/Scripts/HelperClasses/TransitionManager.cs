@@ -80,12 +80,14 @@ public class TransitionManager : Singleton<TransitionManager>
         TargetIndex = sceneIndex;
         FadeOut();
         yield return new WaitForSeconds(fadeOutTime);
+        SaveManager.Instance?.Save();
         SceneManager.LoadScene(2);
     }
     private IEnumerator ChangeToNewLevel(int sceneIndex)
     {
         FadeOut();
         yield return new WaitForSeconds(fadeOutTime);
+        SaveManager.Instance?.Save();
         SceneManager.LoadScene(sceneIndex);
     }
 
@@ -93,5 +95,19 @@ public class TransitionManager : Singleton<TransitionManager>
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
         FadeIn();
+        switch (scene.buildIndex)
+        {
+            case 0:
+                PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+                break;
+
+            case 1:
+                PlayerState.ChangePlayerState(PlayerStateType.InGame);
+                break;
+
+            case 2:
+                PlayerState.ChangePlayerState(PlayerStateType.InGame);
+                break;
+        }
     }
 }

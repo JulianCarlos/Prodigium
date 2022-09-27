@@ -11,7 +11,10 @@ public class CivilianAI : MonoBehaviour, IDamageable
     {
 
     }
+    public void TakeDamage(DamageTypes types, float damage)
+    {
 
+    }
     public void ApplyDamage()
     {
 
@@ -21,4 +24,6 @@ public class CivilianAI : MonoBehaviour, IDamageable
     {
 
     }
+
+
 }

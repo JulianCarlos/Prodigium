@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 
 public abstract class Monster : Entity, IDamageable
 {
+    public bool IsDead => isDead;
+
     //Properties Fields
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; OnMaxHealthChanged(); } }
     public float Health { get { return maxHealth; } set { maxHealth = value; OnHealthChanged(); } }
@@ -52,10 +54,14 @@ public abstract class Monster : Entity, IDamageable
     [SerializeField] protected bool individualBodyPartHealth = false;
 
     protected MonsterAI monsterAI;
+    protected Animator animator;
+
+    protected bool isDead = false;
 
     protected virtual void Awake()
     {
         monsterAI = GetComponent<MonsterAI>();
+        animator = GetComponent<Animator>();
 
         if (!individualBodyPartHealth)
             return;
@@ -95,7 +101,35 @@ public abstract class Monster : Entity, IDamageable
     //IDamageable Methods
     public virtual void TakeDamage(DamageTypes[] types, float damage)
     {
-        Actions.OnMonsterTakeDamage(this);
+        if (isDead)
+            return;
+
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            animator.SetTrigger("hit");
+        }
+    }
+    public void TakeDamage(DamageTypes types, float damage)
+    {
+        if (isDead)
+            return;
+
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            animator.SetTrigger("hit");
+        }
     }
     public virtual void ApplyDamage()
     {
@@ -103,6 +137,8 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void Die()
     {
+        isDead = true;
+        animator.SetTrigger("death");
         Actions.OnMonsterDeath(this);
     }
 
@@ -113,7 +149,7 @@ public abstract class Monster : Entity, IDamageable
     }
     protected virtual void OnHealthChanged()
     {
-        Debug.Log("Health Changed");
+
     }
     protected virtual void OnHealthRegenerationSpeedChanged()
     {
@@ -135,4 +171,6 @@ public abstract class Monster : Entity, IDamageable
     {
         Debug.Log("OnMovementSpeedChanged");
     }
+
+
 }

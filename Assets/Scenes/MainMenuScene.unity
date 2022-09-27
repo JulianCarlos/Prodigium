@@ -27,13 +27,13 @@ RenderSettings:
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 96a9f805caeadc541a38d448c8656717, type: 2}
-  m_HaloStrength: 0.471
+  m_HaloStrength: 0.399
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 64
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -8017,6 +8017,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4509350802832492702, guid: c7544ef4a15627443874f283de72830c, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1023
+      objectReference: {fileID: 0}
     - target: {fileID: 4509350802832492703, guid: c7544ef4a15627443874f283de72830c, type: 3}
       propertyPath: m_ScreenMatchMode
       value: 0
@@ -9702,7 +9706,11 @@ PrefabInstance:
     - target: {fileID: 910996916329908814, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 666659719}
+      objectReference: {fileID: 1442153734}
+    - target: {fileID: 910996916329908814, guid: 428dae85123a38f42948636f80e275e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 5818775453574625655, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_text
       value: 'Back
@@ -9720,6 +9728,10 @@ PrefabInstance:
     - target: {fileID: 6637673601006764242, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 3277538501238177547}
+    - target: {fileID: 6637673601006764242, guid: 428dae85123a38f42948636f80e275e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6637673601006764244, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_Name
@@ -9728,7 +9740,11 @@ PrefabInstance:
     - target: {fileID: 6637673601383388545, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1174110408}
+      objectReference: {fileID: 927224545}
+    - target: {fileID: 6637673601383388545, guid: 428dae85123a38f42948636f80e275e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 6637673601383388551, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_Name
       value: GameplayButton
@@ -12550,7 +12566,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
 --- !u!114 &849759632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12594,7 +12610,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &891315399
 GameObject:
@@ -17105,7 +17121,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 80
+  m_Intensity: 60
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -17713,9 +17729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomPositionOffset: 0.2
-  hasTargetPos: 0
-  minValue: 1
-  maxValue: 3
   targetPos: {x: 0, y: 5, z: 5}
 --- !u!1001 &1687922622
 PrefabInstance:
@@ -25730,10 +25743,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 910996915163886918, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 910996916329908814, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -25742,10 +25751,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 476712859}
-    - target: {fileID: 6637673601006764242, guid: 428dae85123a38f42948636f80e275e7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
     - target: {fileID: 6637673601383388545, guid: 428dae85123a38f42948636f80e275e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

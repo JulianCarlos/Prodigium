@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class ShopSystem : MonoBehaviour
 {
-    public Item CurrentSelectedItem { get; private set; }
+    public ItemData CurrentSelectedItem { get; private set; }
     public GameObject CurrentSelectedItemGameobject { get; private set; }
 
     [Header("UI Titles")]
@@ -45,12 +45,27 @@ public class ShopSystem : MonoBehaviour
         currentCategory = shopCategories[0];
         CurrentSelectedItem = currentCategory.Items[0];
 
+        Actions.OnMoneyChanged += SetCurrencyTextAmount;
+
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void Start()
     {
         ChangeItem(0);
+        SetCurrencyTextAmount(MoneySystem.Currency);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            PlayerData.Instance.ResetInventoryItems();
+        }
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            MoneySystem.AddMoney(10000f);
+        }
     }
 
     private void SetPreviewValues(int input)
@@ -73,8 +88,6 @@ public class ShopSystem : MonoBehaviour
 
         leftArrowButton.interactable = currentItemIndex != 0;
         rightArrowButton.interactable = currentItemIndex != currentCategory.Items.Count - 1 && currentCategory.Items.Count != 0;
-
-        moneyCountText.text = "Balance: " + MoneySystem.Currency.ToString("0.0") + "$";
     }
 
     private void PreviewObjectInstantiation(int input)
@@ -84,7 +97,7 @@ public class ShopSystem : MonoBehaviour
 
         transform.DOKill();
         
-        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem, previewItemContainer);
+        CurrentSelectedItemGameobject = Instantiate(CurrentSelectedItem.PreviewItem.gameObject, previewItemContainer);
         CurrentSelectedItemGameobject.transform.localPosition = Vector3.zero + (input > 0 ? 1 : -1) * (transform.right * 2);
         CurrentSelectedItemGameobject.transform.DOLocalMove(Vector3.zero, 0.3f);
     }
@@ -121,6 +134,11 @@ public class ShopSystem : MonoBehaviour
         ChangeItem(0);
     }
 
+    public void SetCurrencyTextAmount(float amount)
+    {
+        moneyCountText.text = "Balance: " + MoneySystem.Currency.ToString() + "$";
+    }
+
     public void BuyObject()
     {
         float price = CurrentSelectedItem.Price;
@@ -133,6 +151,4 @@ public class ShopSystem : MonoBehaviour
             SetPreviewValues(0);
         }
     }
-
-
 }

@@ -8,7 +8,7 @@ public class ShopCategory : MonoBehaviour
     public string ShopCategoryName;
     public TextMeshProUGUI ShopCategoryNameText;
 
-    public List<Item> Items = new();
+    public List<ItemData> Items = new();
 
     private void OnEnable()
     {

@@ -1,28 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunState : State<PlayerInputs>
+public class PlayerRunState : State<FirstPersonController>
 {
-    private float forwardRunSpeed = 5f;
-    private float sideWalkRunSpeed = 3f;
+    private float targetFOW = 65f;
 
-    public override void EnterState(PlayerInputs owner)
+    public override void EnterState(FirstPersonController owner)
     {
-        owner.ChangeMovementSpeed(forwardRunSpeed, sideWalkRunSpeed);
+        owner.CameraController.ApplyFOWValue(targetFOW);
     }
 
-    public override void ExitState(PlayerInputs owner)
-    {
-
-    }
-
-    public override void FixedUpdateState(PlayerInputs owner)
+    public override void ExitState(FirstPersonController owner)
     {
 
     }
 
-    public override void UpdateState(PlayerInputs owner)
+    public override void FixedUpdateState(FirstPersonController owner)
+    {
+
+    }
+
+    public override void UpdateState(FirstPersonController owner)
     {
 
     }
