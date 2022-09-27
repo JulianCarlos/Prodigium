@@ -15,6 +15,8 @@ public class FirstPersonController : MonoBehaviour
     public PlayerWalkState WalkState { get; private set; } = new();
     public PlayerRunState RunState { get; private set; } = new();
 
+    public bool IsGrounded { get; internal set; }
+
     [Space, Header("Speed Settings")]
     [SerializeField] private float crouchSpeed;
     [SerializeField] private float walkSpeed;
@@ -71,7 +73,6 @@ public class FirstPersonController : MonoBehaviour
     private float walkRunSpeedDifference;
 
     private bool previouslyGrounded;
-    private bool isGrounded;
     #endregion
 
     private CharacterController characterController;
@@ -114,7 +115,7 @@ public class FirstPersonController : MonoBehaviour
 
             ApplyMovement();
 
-            previouslyGrounded = isGrounded;
+            previouslyGrounded = IsGrounded;
         }
     }
 
@@ -129,7 +130,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void InitVariables()
     {
-        isGrounded = true;
+        IsGrounded = true;
         previouslyGrounded = true;
 
         walkRunSpeedDifference = runSpeed - walkSpeed;
@@ -139,7 +140,6 @@ public class FirstPersonController : MonoBehaviour
     {
         inputVector = PlayerInputs.MoveInput.normalized;
         smoothInputVector = Vector2.Lerp(smoothInputVector, inputVector, Time.deltaTime * smoothInputSpeed);
-        Debug.DrawRay(transform.position, new Vector3(smoothInputVector.x, 0, smoothInputVector.y), Color.green);
     }
 
     private void SmoothSpeed()
@@ -164,7 +164,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void CheckIfGrounded()
     {
-        isGrounded = Physics.CheckSphere(transform.position - (transform.up * rayLength), raySphereRadius, 3);
+        IsGrounded = Physics.CheckSphere(transform.position - (transform.up * rayLength), raySphereRadius, 3);
     }
 
     private bool CanRun()
@@ -191,7 +191,7 @@ public class FirstPersonController : MonoBehaviour
 
     private Vector3 FlattenVectorOnSlopes(Vector3 vectorToFlat)
     {
-        if (isGrounded)
+        if (IsGrounded)
         {
             vectorToFlat = Vector3.ProjectOnPlane(vectorToFlat, hitInfo.normal);
         }
@@ -201,7 +201,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void CalculateSpeed()
     {
-        currentSpeed = PlayerInputs.RunButtonPressed && CanRun() ? runSpeed : walkSpeed;
+        currentSpeed = PlayerInputs.IsRunning && CanRun() ? runSpeed : walkSpeed;
         currentSpeed = StateMachine.CurrentState == CrouchState ? crouchSpeed : currentSpeed;
         currentSpeed = PlayerInputs.MoveInput.magnitude == 0 ? 0f : currentSpeed;
         currentSpeed = PlayerInputs.MoveInput.y == -1 ? currentSpeed * moveBackwardsSpeedPercent : currentSpeed;
@@ -216,7 +216,7 @@ public class FirstPersonController : MonoBehaviour
         finalVelocity.x = finalVector.x;
         finalVelocity.z = finalVector.z;
 
-        if (isGrounded)
+        if (IsGrounded)
         {
             finalVelocity.y = finalVector.y;
         }
@@ -224,18 +224,18 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (isGrounded && playerInputAction.Player.Jump.IsPressed() && StateMachine.CurrentState != CrouchState)
+        if (IsGrounded && playerInputAction.Player.Jump.IsPressed() && StateMachine.CurrentState != CrouchState)
         {
             finalVelocity.y = Mathf.Sqrt(jumpSpeed * -2 * (Forces.Gravity.y * gravityMultiplier));
 
             previouslyGrounded = true;
-            isGrounded = false;
+            IsGrounded = false;
         }
     }
 
     private void HandleLanding()
     {
-        if(!previouslyGrounded && isGrounded)
+        if(!previouslyGrounded && IsGrounded)
         {
             FallDamageCheck();
             //InvokeLandingRoutine();
@@ -285,7 +285,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (isGrounded)
+        if (IsGrounded)
         {
             finalVelocity.y = -stickToGroundForce;
 

@@ -43,13 +43,11 @@ public class ItemAimController : MonoBehaviour
 
         if (context.started)
         {
-            Debug.Log("Aim context Started");
             StopCoroutine(nameof(C_AimOut));
             StartCoroutine(nameof(C_AimIn));
         }
         else if (context.canceled)
         {
-            Debug.Log("Aim context canceled");
             StopCoroutine(nameof(C_AimIn));
             StartCoroutine(nameof(C_AimOut));
         }

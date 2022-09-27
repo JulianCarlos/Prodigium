@@ -117,12 +117,10 @@ public class ItemWheel : MonoBehaviour
         if (value > 0)
         {
             currentSegment.ScrollPrevious();
-            Debug.Log("Scrolled Previous");
         }
         else if (value < 0)
         {
             currentSegment.ScrollNext();
-            Debug.Log("Scrolled Next");
         }
     }
 }

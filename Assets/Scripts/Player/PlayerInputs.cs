@@ -13,6 +13,13 @@ public class PlayerInputs : Singleton<PlayerInputs>
 
     public static PlayerInputAction InputAction;
 
+    public static bool IsRunning { get { return MoveInput.y > 0 && RunButtonPressed; } }
+    public static bool IsWalking { get { return !RunButtonPressed && (Mathf.Abs(MoveInput.y) > 0 || Mathf.Abs(MoveInput.x) > 0); } }
+
+    public static bool IsCrouching = false;
+
+    public static bool IsCrawling = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -24,14 +31,14 @@ public class PlayerInputs : Singleton<PlayerInputs>
     private void OnEnable()
     {
         InputAction.Player.Enable();
-        InputAction.Player.Run.started += ApplyRunButtonInput;
-        InputAction.Player.Run.canceled += ApplyRunButtonInput;
+        InputAction.Player.Run.started += ToggleRun;
+        InputAction.Player.Run.canceled += ToggleRun;
     }
 
     private void OnDisable()
     {
-        InputAction.Player.Run.started -= ApplyRunButtonInput;
-        InputAction.Player.Run.canceled -= ApplyRunButtonInput;
+        InputAction.Player.Run.started -= ToggleRun;
+        InputAction.Player.Run.canceled -= ToggleRun;
         InputAction.Player.Disable();
     }
 
@@ -41,7 +48,7 @@ public class PlayerInputs : Singleton<PlayerInputs>
         MouseInput = InputAction.Player.Look.ReadValue<Vector2>();
     }
 
-    public void ApplyRunButtonInput(InputAction.CallbackContext context)
+    public void ToggleRun(InputAction.CallbackContext context)
     {
         if (context.started)
         {

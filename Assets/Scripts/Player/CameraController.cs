@@ -5,12 +5,31 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Player Settings")]
     [SerializeField] private Player player;
+    [SerializeField] private Camera cam;
+    [SerializeField] private FirstPersonController controller;
     [SerializeField] private PlayerInputs playerInputs;
 
+    [Header("Sensitivity Settings")]
     [SerializeField] private Vector2 sensitivity = Vector2.zero;
     [SerializeField] private Vector2 smoothAmount = Vector2.zero;
     [SerializeField] private Vector2 lookAngleMinMax = Vector2.zero;
+
+    [Header("Camera Settings")]
+    [SerializeField] private float targetFOW;
+    [SerializeField] private float zoomSpeed;
+
+    [Header("Headbob Settings")]
+    [SerializeField] private float walkBobSpeed = 14f;
+    [SerializeField] private float walkBobAmount = 0.05f;
+    [SerializeField] private float sprintBobSpeed = 18f;
+    [SerializeField] private float sprintBobAmount = 0.1f;
+    [SerializeField] private float crouchBobSpeed = 8f;
+    [SerializeField] private float crouchBobAmount = 0.025f;
+    [SerializeField] private bool canUseHeadBob;
+    private float defaultYPos = 0;
+    private float timer;
 
     private float yaw;
     private float pitch;
@@ -19,17 +38,13 @@ public class CameraController : MonoBehaviour
     private float desiredPitch;
 
     private Transform pitchTransform;
-    private Camera cam;
 
     private float cameraToBodyDistance;
 
-    [SerializeField] private float targetFOW;
-    [SerializeField] private float zoomSpeed;
 
     private void Awake()
     {
         cameraToBodyDistance = transform.position.y - player.gameObject.transform.position.y;
-        cam = GetComponentInChildren<Camera>();
         
         sensitivity.x = PlayerPrefs.GetFloat("sensX");
         sensitivity.y = PlayerPrefs.GetFloat("sensY");
@@ -53,7 +68,29 @@ public class CameraController : MonoBehaviour
 
         CalculateRotation();
         SmoothRotation();
+
+        if (canUseHeadBob)
+            HandleHeadBob();
+
         ApplyRotation();
+    }
+
+    private void HandleHeadBob()
+    {
+        if (!controller.IsGrounded)
+        {
+            Debug.Log("IsGrounded = " + controller.IsGrounded);
+            return;
+        }
+
+        if(Mathf.Abs(PlayerInputs.MoveInput.x) > 0.1f || Mathf.Abs(PlayerInputs.MoveInput.y) > 0.1f)
+        {
+            timer += Time.deltaTime * (PlayerInputs.IsCrouching ? crouchBobSpeed : PlayerInputs.IsRunning ? sprintBobSpeed : walkBobSpeed);
+            cam.transform.localPosition = new Vector3(
+                cam.transform.localPosition.x,
+                defaultYPos + Mathf.Sin(timer) * (PlayerInputs.IsCrouching ? crouchBobAmount : PlayerInputs.IsRunning ? sprintBobAmount : walkBobAmount),
+                cam.transform.localPosition.z);
+        }
     }
 
     private void UpdateSensValues(Vector2 sensitivityValue)
@@ -72,6 +109,7 @@ public class CameraController : MonoBehaviour
     {
         yaw = transform.eulerAngles.y;
         desiredYaw = yaw;
+        defaultYPos = cam.transform.localPosition.y;
     }
 
     void CalculateRotation()
