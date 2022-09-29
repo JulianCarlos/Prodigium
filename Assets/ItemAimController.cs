@@ -31,12 +31,12 @@ public class ItemAimController : MonoBehaviour
         transform.localPosition = localPos;
     }
 
-    private void CheckForAiming(ItemData item)
+    private void CheckForAiming(Item item)
     {
         if (item == null)
             return;
 
-        if(item.ItemCategoryType == ItemCategoryType.Weapons)
+        if(item.ItemData.ItemCategoryType == ItemCategoryType.Weapons)
         {
             canAim = true;
         }

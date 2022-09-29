@@ -49,6 +49,6 @@ public class PlayerInventory : Singleton<PlayerInventory>
                 }
             }
         }
-        Actions.OnItemChanged(currentItemData);
+        Actions.OnItemChanged(currentItem);
     }
 }

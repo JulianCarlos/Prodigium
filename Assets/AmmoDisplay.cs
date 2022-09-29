@@ -24,7 +24,7 @@ public class AmmoDisplay : MonoBehaviour
         Actions.OnAmmoChanged -= UpdateAmmoValue;
     }
 
-    public void SetAmmoValues(ItemData selectedItem)
+    public void SetAmmoValues(Item selectedItem)
     {
         if (!selectedItem)
         {
@@ -32,7 +32,7 @@ public class AmmoDisplay : MonoBehaviour
             return;
         }
 
-        if (selectedItem.IngameItem.TryGetComponent(out Weapon weapon))
+        if (selectedItem.TryGetComponent(out Weapon weapon))
         {
             UpdateAmmoValue(weapon);
         }

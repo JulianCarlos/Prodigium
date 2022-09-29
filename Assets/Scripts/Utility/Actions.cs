@@ -41,7 +41,7 @@ public static class Actions
     public static Action<Achievement> OnAchievementCompleted;
 
     //ITem Actions
-    public static Action<ItemData> OnItemChanged;
+    public static Action<Item> OnItemChanged;
     public static Action<Weapon> OnAmmoChanged;
 
     //UI Change Actions
