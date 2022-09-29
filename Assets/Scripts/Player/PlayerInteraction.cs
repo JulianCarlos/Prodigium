@@ -8,14 +8,16 @@ public class PlayerInteraction : MonoBehaviour
 {
     public RaycastHit HitInfo => hitInfo;
 
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Player player;
     [SerializeField] private bool hasTarget;
 
+    private Camera playerCamera;
     private RaycastHit hitInfo;
 
     private void Awake()
     {
         hitInfo = new RaycastHit();
+        playerCamera = GetComponentInChildren<Camera>();
     }
 
     private void Start()
@@ -38,7 +40,13 @@ public class PlayerInteraction : MonoBehaviour
             var Interact = HitInfo.collider.transform.GetComponent<IInteractable>();
             if (Interact != null)
             {
-                Interact.EnterTerminal();
+                Interact.Use(player);
+            }
+
+            var DamageAble = HitInfo.collider.transform.GetComponent<IDamageable>();
+            if (DamageAble != null)
+            {
+                Debug.Log("Damaged This Motherfuckeer");
             }
         }
     }   

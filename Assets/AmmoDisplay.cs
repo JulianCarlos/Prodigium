@@ -9,10 +9,19 @@ public class AmmoDisplay : MonoBehaviour
 
     private void Start()
     {
+        ammoText.text = string.Empty;
+    }
+
+    private void OnEnable()
+    {
         Actions.OnItemChanged += SetAmmoValues;
         Actions.OnAmmoChanged += UpdateAmmoValue;
+    }
 
-        ammoText.text = string.Empty;
+    private void OnDisable()
+    {
+        Actions.OnItemChanged -= SetAmmoValues;
+        Actions.OnAmmoChanged -= UpdateAmmoValue;
     }
 
     public void SetAmmoValues(ItemData selectedItem)

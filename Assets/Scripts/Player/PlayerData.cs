@@ -13,13 +13,13 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
     public List<ItemData> SelectedItems { get; private set; } = new List<ItemData>();
     public List<ItemData> IngameItems { get; private set; } = new List<ItemData>();
 
-
     [SerializeField] private ItemDatabase itemDatabase;
+
+    private Dictionary<int, Item> inventoryItems = new();
 
     protected override void Awake()
     {
         base.Awake();
-
         GetItemsBySavedIDs();
     }
 

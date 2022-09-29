@@ -27,7 +27,7 @@ public class MissionTerminal : MonoBehaviour, IInteractable
         maps = GetComponentsInChildren<MapDisplay>();
     }
 
-    public void EnterTerminal()
+    public void Use(Player player)
     {
         missionCanvas.SetActive(true);
         PlayerState.ChangePlayerState(PlayerStateType.InMenu);

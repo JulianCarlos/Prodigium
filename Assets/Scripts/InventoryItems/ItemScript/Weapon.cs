@@ -80,6 +80,9 @@ public abstract class Weapon : Item
 
     protected void OnEnable()
     {
+        isReloading = false;
+        canShoot = true;
+
         PlayerInputs.InputAction.Player.LeftClick.started += L_Use;
         PlayerInputs.InputAction.Player.LeftClick.canceled += L_Use;
         PlayerInputs.InputAction.Player.RightClick.started += R_Use;

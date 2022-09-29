@@ -1,4 +1,4 @@
 public interface IInteractable
 {
-    public void EnterTerminal();
+    public void Use(Player player);
 }
