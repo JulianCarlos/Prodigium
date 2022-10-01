@@ -6,21 +6,23 @@ public class PumpinManScoutState : State<MonsterAI>
 {
     public override void EnterState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+        owner.StateType = StateType.Scouting;
+        owner.StartCoroutine("Scout");
     }
 
     public override void ExitState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void FixedUpdateState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void UpdateState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+        if(owner.detection.DetectedEntities.Count > 0)
+            owner.StateMachine.ChangeState(owner.ChaseState);
     }
 }

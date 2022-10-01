@@ -24,7 +24,7 @@ public class PlayerInventory : Singleton<PlayerInventory>
         }
     }
 
-    public void InstantiateItem(ItemData selectedItem)
+    public void SelectSegmentItem(ItemData selectedItem)
     {
         if((selectedItem == null)/* || (currentItem && currentItem.ItemData == selectedItem)*/)
         {

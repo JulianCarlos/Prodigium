@@ -52,13 +52,19 @@ public abstract class MonsterAI : Entity
     protected State<MonsterAI> attackState;
 
     protected Monster monster;
+    internal Detection detection;
     protected Animator animator;
-    protected NavMeshAgent agent;
+    internal NavMeshAgent agent;
+
+    private float entityNotFoundTimer;
+
+    [SerializeField] private Collider target;
 
     private void Awake()
     {
         StateMachine = new StateMachine<MonsterAI>(this);
         monster = GetComponent<Monster>();
+        detection = GetComponent<Detection>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -66,6 +72,8 @@ public abstract class MonsterAI : Entity
     private void Update()
     {
         StateMachine?.Update();
+
+        animator.SetFloat("floatY",Mathf.Clamp(agent.velocity.magnitude, 0, StateMachine.CurrentState == ChaseState ? 2 : 1));
     }
 
     private void FixedUpdate()
@@ -75,6 +83,9 @@ public abstract class MonsterAI : Entity
 
     protected abstract void SetupStates();
 
+
+
+    #region Wandering
     public virtual IEnumerator Wander()
     {
         yield return new WaitForSeconds(2f);
@@ -84,16 +95,14 @@ public abstract class MonsterAI : Entity
                 break;
 
             var waitingTime = Random.Range(minWanderWaitTime, maxWanderWaitTime);
-            animator.SetBool("walking", true);
             Wandering();
             yield return new WaitForSeconds(1f);
             yield return new WaitWhile(() => agent.hasPath);
-            animator.SetBool("walking", false);
             yield return new WaitForSeconds(waitingTime);
         }
     }
 
-    private void Wandering()
+    protected void Wandering()
     {
         Vector3 randomDirection = Random.insideUnitSphere * wanderRange;
         randomDirection += transform.position;
@@ -102,4 +111,76 @@ public abstract class MonsterAI : Entity
         Vector3 finalPosition = hit.position;
         agent.SetDestination(finalPosition);
     }
+    #endregion
+
+
+
+    #region Scouting
+    public virtual IEnumerator Scout()
+    {
+        yield return null;
+        Scouting();
+        yield return new WaitWhile(() => agent.hasPath);
+        Debug.Log("Reached Point");
+
+        yield return new WaitForSeconds(4f);
+        StateMachine.ChangeState(wanderState);
+    }
+
+    protected void Scouting()
+    {
+        Debug.Log("Monster is Scouting");
+    }
+    #endregion
+
+
+
+    #region Chase
+    public virtual IEnumerator Chase()
+    {
+        target = detection.DetectedEntities[0];
+
+        entityNotFoundTimer = 0;
+
+        yield return new WaitForSeconds(3f);
+
+        while(StateMachine.CurrentState == chaseState)
+        {
+            Chasing();
+            yield return null;
+        }
+    }
+
+    protected void Chasing()
+    {
+        if(detection.DetectedEntities.Count > 0)
+        {
+            entityNotFoundTimer = 0;
+        }
+        else
+        {
+            entityNotFoundTimer += 1 * Time.deltaTime;
+            if(entityNotFoundTimer >= 10)
+            {
+                StateMachine.ChangeState(ScoutState);
+            }
+        }
+        agent.SetDestination(target.transform.position);
+    }
+    #endregion
+
+
+
+    #region Flee
+    public virtual IEnumerator Flee()
+    {
+        Fleeing();
+        yield return null;
+    }
+
+    protected void Fleeing()
+    {
+        Debug.Log("Monster is Fleeing");
+    }
+    #endregion
 }

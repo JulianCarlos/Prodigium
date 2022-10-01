@@ -8,13 +8,13 @@ public abstract class Monster : Entity, IDamageable
     public bool IsDead => isDead;
 
     //Properties Fields
-    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; OnMaxHealthChanged(); } }
-    public float Health { get { return maxHealth; } set { maxHealth = value; OnHealthChanged(); } }
-    public float HealthRegenerationSpeed { get { return healthRegenerationSpeed; } set { healthRegenerationSpeed = value; OnHealthRegenerationSpeedChanged(); } }
-    public float AttackStrength { get { return attackStrenght; } set { attackStrenght = value; OnAttackStrenghtChanged(); } }
-    public float AttackSpeed { get { return attackSpeed; } set { attackSpeed = value; OnAttackSpeedChanged(); } }
-    public float Armor { get { return armor; } set { armor = value; OnArmorChanged(); } }
-    public float MovementSpeed { get { return movementSpeed; } set { movementSpeed = value; OnMovementSpeedChanged(); } }
+    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+    public float Health { get { return maxHealth; } set { maxHealth = value; } }
+    public float HealthRegenerationSpeed { get { return healthRegenerationSpeed; } set { healthRegenerationSpeed = value; } }
+    public float AttackStrength { get { return attackStrenght; } set { attackStrenght = value; } }
+    public float AttackSpeed { get { return attackSpeed; } set { attackSpeed = value; } }
+    public float Armor { get { return armor; } set { armor = value; } }
+    public float MovementSpeed { get { return movementSpeed; } set { movementSpeed = value; } }
 
     //ReadyOnly Fields
     public float KillReward => killReward;
@@ -141,36 +141,4 @@ public abstract class Monster : Entity, IDamageable
         animator.SetTrigger("death");
         Actions.OnMonsterDeath(this);
     }
-
-    //OnVariableChanged Methods
-    protected virtual void OnMaxHealthChanged()
-    {
-        Debug.Log("Max Health Changed");
-    }
-    protected virtual void OnHealthChanged()
-    {
-
-    }
-    protected virtual void OnHealthRegenerationSpeedChanged()
-    {
-        Debug.Log("Changed Regen Speed");
-    }
-    protected virtual void OnAttackStrenghtChanged()
-    {
-        Debug.Log("AttackStrenghtChanged");
-    }
-    protected virtual void OnAttackSpeedChanged()
-    {
-        Debug.Log("Attack Speed Changed");
-    }
-    protected virtual void OnArmorChanged()
-    {
-        Debug.Log("Armor Changed");
-    }
-    protected virtual void OnMovementSpeedChanged()
-    {
-        Debug.Log("OnMovementSpeedChanged");
-    }
-
-
 }

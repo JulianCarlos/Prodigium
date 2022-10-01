@@ -6,21 +6,26 @@ public class PumpkinManChaseState : State<MonsterAI>
 {
     public override void EnterState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+        owner.StateType = StateType.Chasing;
+        owner.agent.speed = 6;
+        owner.agent.stoppingDistance = 3;
+        owner.StartCoroutine("Chase");
     }
 
     public override void ExitState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+        owner.agent.speed = 3;
+        owner.agent.stoppingDistance = 0;
+        owner.StopCoroutine("Chase");
     }
 
     public override void FixedUpdateState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void UpdateState(MonsterAI owner)
     {
-        throw new System.NotImplementedException();
+
     }
 }
