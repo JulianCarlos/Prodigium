@@ -33451,6 +33451,34 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: minRadius
+      value: 4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: chaseAngle
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: scoutAngle
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: scoutRadius
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: wanderAngle
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: wanderRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
+      propertyPath: detectionInterval
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134060582959289544, guid: 72c06376d5ccff740a3750eb3c37ac2b, type: 3}
       propertyPath: obstructionLayer.m_Bits
       value: 1015
       objectReference: {fileID: 0}

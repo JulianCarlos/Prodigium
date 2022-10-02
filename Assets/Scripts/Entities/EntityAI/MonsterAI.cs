@@ -138,11 +138,9 @@ public abstract class MonsterAI : Entity
     #region Chase
     public virtual IEnumerator Chase()
     {
-        target = detection.DetectedEntities[0];
-
         entityNotFoundTimer = 0;
 
-        yield return new WaitForSeconds(3f);
+        target = detection.DetectedEntities[0];
 
         while(StateMachine.CurrentState == chaseState)
         {
