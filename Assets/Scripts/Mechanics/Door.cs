@@ -44,8 +44,6 @@ public class Door : MonoBehaviour, IInteractable
         Vector3 dir = (player.transform.position - transform.position);
         targetYRotation = -Mathf.Sign(Vector3.Dot(transform.right, dir)) * openAngle;
 
-        Debug.Log("Targetritatuib = " + targetYRotation);
-
         while (transform.rotation != Quaternion.Euler(0, defaultYRotation + targetYRotation, 0))
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, defaultYRotation + targetYRotation, 0f), smooth * Time.deltaTime);
@@ -58,8 +56,6 @@ public class Door : MonoBehaviour, IInteractable
     private IEnumerator CloseDoor()
     {
         targetYRotation = 0f;
-
-        Debug.Log("Targetritatuib = " + targetYRotation);
 
         while (transform.rotation != Quaternion.Euler(0, defaultYRotation + targetYRotation, 0))
         {

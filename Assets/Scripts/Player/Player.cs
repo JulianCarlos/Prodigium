@@ -87,7 +87,6 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     //TakeDamage
     public void TakeFallDamage(float damage)
     {
-        //Actions.OnPlayerTakeFallDamage(this, damage);
         Health -= damage;
 
         DeathCheck();

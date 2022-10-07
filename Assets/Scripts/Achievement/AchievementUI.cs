@@ -12,16 +12,10 @@ public class AchievementUI : MonoBehaviour
 
     [SerializeField] private Image checkmarkImage;
 
-    //[SerializeField] private AchievementType achievementType;
-    //[SerializeField] private AchievementDifficulty achievementDifficulty;
-
     public void SetValues(Achievement achievement)
     {
         achievementNameText.text = achievement.AchievementName;
         achievementDescriptionText.text = achievement.AchievementDescription;
-
-        //achievementType = achievement.AchievementType;
-        //achievementDifficulty = achievement.AchievementDifficulty;
 
         achievementAmountText.text = $"{achievement.CurrentAchievementAmount} / {achievement.MaxAchievementAmount}";
 

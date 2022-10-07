@@ -62,7 +62,6 @@ public class Detection : MonoBehaviour
                 Debug.Log("angle = " + angle);
                 if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
                 {
-                    //NEEDS RAYCAST CORRECTION
                     if (!Physics.Raycast(transform.position, directionToTarget, distanceToObject, obstructionLayer))
                     {
                         DetectedEntities.Add(entity);

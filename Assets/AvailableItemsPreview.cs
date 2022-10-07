@@ -9,7 +9,6 @@ public class AvailableItemsPreview : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Count is: " + PlayerData.Instance.SelectedItems.Count);
         UpdateItemList();
     }
 

@@ -6,6 +6,6 @@ public class ZombieAI : MonsterAI
 {
     protected override void SetupStates()
     {
-        throw new System.NotImplementedException();
+
     }
 }

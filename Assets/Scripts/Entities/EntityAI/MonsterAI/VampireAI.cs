@@ -6,6 +6,6 @@ public class VampireAI : MonsterAI
 {
     protected override void SetupStates()
     {
-        throw new System.NotImplementedException();
+
     }
 }
