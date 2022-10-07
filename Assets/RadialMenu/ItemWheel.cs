@@ -105,14 +105,14 @@ public class ItemWheel : MonoBehaviour
     //Action
     public void SelectItem()
     {
-        PlayerInventory.Instance.SelectSegmentItem(currentSegment.CurrentSelectedItem);
+        PlayerInventory.Instance?.SelectSegmentItem(currentSegment.CurrentSelectedItem);
         PlayerCanvasController.Instance.CloseItemWheel();
     }
     public void SelectItem(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            PlayerInventory.Instance.SelectSegmentItem(currentSegment.CurrentSelectedItem);
+            PlayerInventory.Instance?.SelectSegmentItem(currentSegment.CurrentSelectedItem);
             PlayerCanvasController.Instance.CloseItemWheel();
         }
     }

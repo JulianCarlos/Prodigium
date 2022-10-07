@@ -11,6 +11,8 @@ public class ItemAimController : MonoBehaviour
 
     private bool canAim;
 
+    public bool IsAiming { get; private set; } = false;
+
     private void Start()
     {
         localPos = transform.localPosition;
@@ -24,6 +26,11 @@ public class ItemAimController : MonoBehaviour
     private void OnDisable()
     {
         Actions.OnItemChanged -= CheckForAiming;
+    }
+
+    public void AimOut()
+    {
+        StartCoroutine(nameof(C_AimOut));
     }
 
     private void ResetItemPos()
@@ -66,7 +73,8 @@ public class ItemAimController : MonoBehaviour
 
     protected virtual IEnumerator C_AimIn()
     {
-        Debug.Log("Started AimIn");
+        IsAiming = true;
+
         var targetPos = new Vector3(0, localPos.y, localPos.z);
 
         while (transform.localPosition != targetPos)
@@ -78,7 +86,8 @@ public class ItemAimController : MonoBehaviour
 
     protected virtual IEnumerator C_AimOut()
     {
-        Debug.Log("Canceled AimIn");
+        IsAiming = false;
+
         while (transform.localPosition != localPos)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, localPos, aimSpeed * Time.deltaTime);

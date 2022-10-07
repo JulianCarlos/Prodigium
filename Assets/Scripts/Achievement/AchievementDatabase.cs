@@ -8,9 +8,10 @@ public static class AchievementDatabase
 {
     public static List<Type> MonsterTypes = new List<Type>()
     { 
+        typeof(PumpkinMan),
         typeof(Ghoul), 
         typeof(Zombie), 
-        typeof(Vampire) 
+        typeof(Vampire)
     };
 
     public static List<Type> ItemTypes = new List<Type>()

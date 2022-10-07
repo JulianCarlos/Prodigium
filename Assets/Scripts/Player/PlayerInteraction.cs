@@ -3,34 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public RaycastHit HitInfo => hitInfo;
+    public RaycastHit HitInfo => currentHit;
 
     [SerializeField] private Player player;
     [SerializeField] private bool hasTarget;
 
+    [SerializeField] private float interactionRaycastLength = 3;
+
+    [SerializeField] private TextMeshProUGUI interactionLookDescription;
+
     private Camera playerCamera;
-    private RaycastHit hitInfo;
+
+    private RaycastHit currentHit;
 
     private void Awake()
     {
-        hitInfo = new RaycastHit();
+        currentHit = new RaycastHit();
         playerCamera = GetComponentInChildren<Camera>();
     }
 
     private void Start()
     {
-        PlayerInputs.InputAction.Player.PickUp.started += CheckForRaycastType;
+        PlayerInputs.InputAction.Player.PickUp.started += InteractionUse;
     }
 
     private void Update()
     {
-        hasTarget = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 100);
+        hasTarget = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out currentHit, interactionRaycastLength);
     }
 
-    private void CheckForRaycastType(InputAction.CallbackContext context)
+    private void FixedUpdate()
+    {
+        SetInteractionText();
+    }
+
+    private void SetInteractionText()
+    {
+        if (hasTarget && currentHit.collider.transform.TryGetComponent(out IInteractable interactable))
+        {
+            interactionLookDescription.text = interactable.ReturnInteractableText();
+        }
+        else
+        {
+            interactionLookDescription.text = string.Empty;
+        }
+    }
+
+    private void InteractionUse(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -42,12 +65,12 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Interact.Use(player);
             }
-
-            var DamageAble = HitInfo.collider.transform.GetComponent<IDamageable>();
-            if (DamageAble != null)
-            {
-                Debug.Log("Damaged This Motherfuckeer");
-            }
         }
-    }   
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * interactionRaycastLength);
+    }
 }

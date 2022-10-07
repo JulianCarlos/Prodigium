@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Find Place: 169$ (Easy)'
+  m_text: 'Find Place: 197$ (Easy)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}
   m_sharedMaterial: {fileID: 6313684291086636108, guid: 3748847e60b133f41aafee164a04dd7f, type: 2}

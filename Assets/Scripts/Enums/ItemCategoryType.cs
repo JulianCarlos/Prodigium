@@ -4,5 +4,6 @@ public enum ItemCategoryType
     Weapons,
     Consumeables,
     Tools,
-    Vehicles
+    Vehicles,
+    Utility
 }

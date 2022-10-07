@@ -11,6 +11,21 @@ public enum ReloadType
 
 public abstract class Weapon : Item
 {
+    //Magazine Readonly
+    public int CurrentMagazineCapacity => currentMagazineCapacity;
+    public int MaxMagazineCapacity => maxMagazineCapacity;
+    public int BackupAmmo => backupAmmo;
+
+    //Recoil Readonly
+    public float RecoilX => recoilX;
+    public float RecoilY => recoilY;
+    public float RecoilZ => recoilZ;
+    public float AimRecoilX => aimRecoilX;
+    public float AimRecoilY => aimRecoilY;
+    public float AimRecoilZ => aimRecoilZ;
+    public float Snappiness => snappiness;
+    public float ReturnSpeed => returnSpeed;
+
     [Header("Gun")]
     [SerializeField] private Transform gunTip;
     [SerializeField] private GameObject muzzleFlashPrefab;
@@ -25,13 +40,25 @@ public abstract class Weapon : Item
     [SerializeField] private float aimSpeed;
 
     [Header("Magazine Settings")]
-    public int CurrentMagazineCapacity;
-    public int MaxMagazineCapacity; 
-    public int BackupAmmo;
+    [SerializeField] private int currentMagazineCapacity;
+    [SerializeField] private int maxMagazineCapacity;
+    [SerializeField] private int backupAmmo;
 
     [Header("Reload Settings")]
     [SerializeField] private float reloadTime;
     [SerializeField] private ReloadType reloadType;
+
+    [Header("Recoil Settings")]
+    [SerializeField] private float recoilX;
+    [SerializeField] private float recoilY;
+    [SerializeField] private float recoilZ;
+    [Space]
+    [SerializeField] private float aimRecoilX;
+    [SerializeField] private float aimRecoilY;
+    [SerializeField] private float aimRecoilZ;
+
+    [SerializeField] private float snappiness;
+    [SerializeField] private float returnSpeed;
 
     [Header("Clips")]
     [SerializeField] private AnimationClip reloadInClip;
@@ -54,13 +81,16 @@ public abstract class Weapon : Item
 
     private RaycastHit hitInfo;
 
-    private ItemAimController itemAimController;
+    public ItemAimController ItemAimController { get; private set; }
     private Animator animator;
+
+    private RecoilController recoilController;
 
     private void Awake()
     {
-        itemAimController = GetComponentInParent<ItemAimController>();
+        ItemAimController = GetComponentInParent<ItemAimController>();
         animator = GetComponent<Animator>();
+        recoilController = FindObjectOfType<RecoilController>();
     }
 
     private void Start()
@@ -75,7 +105,7 @@ public abstract class Weapon : Item
         timeUntilAbleToShoot = new WaitForSeconds(reloadIOutClip.length);
         timeBetweenReloadWait = new WaitForSeconds(reloadTime);
 
-        CurrentMagazineCapacity = MaxMagazineCapacity;
+        currentMagazineCapacity = maxMagazineCapacity;
     }
 
     protected void OnEnable()
@@ -116,12 +146,12 @@ public abstract class Weapon : Item
         if (isReloading || isEquipping || PlayerState.PlayerStateType == PlayerStateType.InMenu)
             return;
 
-        itemAimController.Aim(context);
+        ItemAimController.Aim(context);
     }
 
     protected virtual void Reload(InputAction.CallbackContext context)
     {
-        if (CurrentMagazineCapacity >= MaxMagazineCapacity || BackupAmmo <= 0 || isReloading || isEquipping)
+        if (currentMagazineCapacity >= maxMagazineCapacity || backupAmmo <= 0 || isReloading || isEquipping)
             return;
 
         if (context.started)
@@ -137,7 +167,7 @@ public abstract class Weapon : Item
 
         if (context.started)
         {
-            if (CurrentMagazineCapacity <= 0 && BackupAmmo > 0)
+            if (currentMagazineCapacity <= 0 && backupAmmo > 0)
             {
                 StartCoroutine(nameof(C_Reload));
                 return;
@@ -171,7 +201,7 @@ public abstract class Weapon : Item
 
     protected virtual IEnumerator C_Automatic_Shooting()
     {
-        while (CurrentMagazineCapacity > 0)
+        while (currentMagazineCapacity > 0)
         {
             Shoot();
             yield return fireRateWait;
@@ -191,30 +221,30 @@ public abstract class Weapon : Item
         isReloading = true;
         animator.Play("ReloadIn");
 
-        var difference = MaxMagazineCapacity - CurrentMagazineCapacity;
+        var difference = maxMagazineCapacity - currentMagazineCapacity;
         var amount = (BackupAmmo > difference) ? difference : BackupAmmo;
 
         yield return timeUntilReloadWait;
 
         if (reloadType == ReloadType.InstantReload)
         {
-            CurrentMagazineCapacity += amount;
-            BackupAmmo -= amount;
+            currentMagazineCapacity += amount;
+            backupAmmo -= amount;
             Actions.OnAmmoChanged(this);
         }
         else if (reloadType == ReloadType.SingleBulletReload)
         {
             while (amount > 0)
             {
-                CurrentMagazineCapacity ++;
-                BackupAmmo--;
+                currentMagazineCapacity++;
+                backupAmmo--;
                 amount--;
                 Actions.OnAmmoChanged(this);
 
                 yield return timeBetweenReloadWait;
             }
         }
-
+        ItemAimController.AimOut();
         animator.Play("ReloadOut");
         yield return timeUntilAbleToShoot;
         isReloading = false;
@@ -226,14 +256,16 @@ public abstract class Weapon : Item
         DamageCheck();
 
         InstantiateMuzzleFlash();
-        CurrentMagazineCapacity--;
+        currentMagazineCapacity--;
 
         Actions.OnAmmoChanged(this);
 
-        if (CurrentMagazineCapacity <= 0)
+        if (currentMagazineCapacity <= 0)
         {
             StopCoroutine(nameof(C_Automatic_Shooting));
         }
+
+        recoilController.RecoilFire(this);
     }
 
     protected virtual void DamageCheck()

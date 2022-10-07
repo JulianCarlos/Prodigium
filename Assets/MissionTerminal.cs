@@ -22,6 +22,8 @@ public class MissionTerminal : MonoBehaviour, IInteractable
     [Header("Map Preview Settings")]
     [SerializeField] private float expandAmount;
 
+    [SerializeField, TextArea] private string interactableDescription;
+
     private void Awake()
     {
         maps = GetComponentsInChildren<MapDisplay>();
@@ -66,5 +68,10 @@ public class MissionTerminal : MonoBehaviour, IInteractable
     {
         PlayerState.ChangePlayerState(PlayerStateType.InGame);
         TransitionManager.Instance.TransitionToScene(chosenMapSceneIndex, TransitionMethod.LoadingScreen);
+    }
+
+    public string ReturnInteractableText()
+    {
+        return interactableDescription;
     }
 }

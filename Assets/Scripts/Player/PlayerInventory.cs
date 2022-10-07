@@ -26,15 +26,19 @@ public class PlayerInventory : Singleton<PlayerInventory>
 
     public void SelectSegmentItem(ItemData selectedItem)
     {
-        if((selectedItem == null)/* || (currentItem && currentItem.ItemData == selectedItem)*/)
+        if((selectedItem == null))
         {
             currentItem?.gameObject.SetActive(false);
             currentItem = null;
             currentItemData = null;
+            Actions.OnItemChanged(currentItem);
             return;
         }
         else if (selectedItem)
         {
+            if (currentItem?.ItemData.ID == selectedItem.ID)
+                return;
+
             currentItem?.gameObject.SetActive(false);
             currentItem = null;
             currentItemData = null;
@@ -46,9 +50,9 @@ public class PlayerInventory : Singleton<PlayerInventory>
                     item.gameObject.SetActive(true);
                     currentItem = item;
                     currentItemData = item.ItemData;
+                    Actions.OnItemChanged(currentItem);
                 }
             }
         }
-        Actions.OnItemChanged(currentItem);
     }
 }

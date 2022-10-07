@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4102485064219614516}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73e91b71a77d744fb5afaaba7e60c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 0433070280981d0408999b3404730f6b, type: 2}
   gunTip: {fileID: 6508276209751901019}
   muzzleFlashPrefab: {fileID: 1540314237344874, guid: ac77c4c5efbb05a4195fe86b9911798b, type: 3}
   shotCooldown: 0.75
@@ -168,11 +169,19 @@ MonoBehaviour:
   damage: 15
   automatic: 0
   aimSpeed: 1.3
-  CurrentMagazineCapacity: 6
-  MaxMagazineCapacity: 6
-  BackupAmmo: 36
+  currentMagazineCapacity: 6
+  maxMagazineCapacity: 6
+  backupAmmo: 15525
   reloadTime: 1
   reloadType: 1
+  recoilX: -5
+  recoilY: 1
+  recoilZ: 0.3
+  aimRecoilX: -2.5
+  aimRecoilY: 1
+  aimRecoilZ: 0.25
+  snappiness: 15
+  returnSpeed: 15
   reloadInClip: {fileID: 7400000, guid: f2e85a03de6c4884e8255dc638c143cf, type: 2}
   reloadIOutClip: {fileID: 7400000, guid: 085e74945fad1f043ba0d8f9450be3ed, type: 2}
   equipClip: {fileID: 7400000, guid: ac3c6021d2308af48a900adcfef4edaf, type: 2}

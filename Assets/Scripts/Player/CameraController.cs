@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private Player player;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private Transform cameraPivot;
+    [SerializeField] private Transform yawTransform;
     [SerializeField] private FirstPersonController controller;
     [SerializeField] private PlayerInputs playerInputs;
 
@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float crouchBobSpeed = 8f;
     [SerializeField] private float crouchBobAmount = 0.025f;
     [SerializeField] private bool canUseHeadBob;
+
     private float defaultYPos = 0;
     private float timer;
 
@@ -42,6 +43,7 @@ public class CameraController : MonoBehaviour
 
     private float cameraToBodyDistance;
 
+    private bool sinusIsPositive;
 
     private void Awake()
     {
@@ -87,10 +89,19 @@ public class CameraController : MonoBehaviour
 
             var sinValue = Mathf.Sin(timer);
 
-            cameraPivot.transform.localPosition = new Vector3(
-                cameraPivot.transform.localPosition.x,
+            yawTransform.transform.localPosition = new Vector3(
+                yawTransform.transform.localPosition.x,
                 defaultYPos + sinValue * (PlayerInputs.IsCrouching ? crouchBobAmount : PlayerInputs.IsRunning ? sprintBobAmount : walkBobAmount),
-                cameraPivot.transform.localPosition.z);
+                yawTransform.transform.localPosition.z);
+
+            if (sinValue > 0 && !sinusIsPositive)
+            {
+                sinusIsPositive = true;
+            }
+            else if (sinValue < 0 && sinusIsPositive)
+            {
+                sinusIsPositive = false;
+            }
         }
     }
 
@@ -110,7 +121,7 @@ public class CameraController : MonoBehaviour
     {
         yaw = transform.eulerAngles.y;
         desiredYaw = yaw;
-        defaultYPos = cameraPivot.transform.localPosition.y;
+        defaultYPos = yawTransform.transform.localPosition.y;
     }
 
     void CalculateRotation()
