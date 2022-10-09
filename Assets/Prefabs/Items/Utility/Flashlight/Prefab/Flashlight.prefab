@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1141627681}
   - component: {fileID: 1141627683}
   - component: {fileID: 1141627682}
+  - component: {fileID: 5933163278045643235}
   m_Layer: 7
   m_Name: Light
   m_TagString: Untagged
@@ -115,6 +116,20 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &5933163278045643235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141627680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36623de105e834ec4a6ebd06d48c0018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inscattering: 1
+  intensity: 1
 --- !u!1 &2129165577704784518
 GameObject:
   m_ObjectHideFlags: 0
