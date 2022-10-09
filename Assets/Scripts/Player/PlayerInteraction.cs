@@ -16,14 +16,13 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI interactionLookDescription;
 
-    private Camera playerCamera;
+    [SerializeField] private Camera playerCamera;
 
     private RaycastHit currentHit;
 
     private void Awake()
     {
         currentHit = new RaycastHit();
-        playerCamera = GetComponentInChildren<Camera>();
     }
 
     private void Start()

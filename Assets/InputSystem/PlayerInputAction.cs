@@ -374,6 +374,34 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Vehicle"",
+            ""id"": ""fcfa06bd-4054-41d6-a79f-eefc8ce2fa87"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""98e78e7f-25b4-4f53-b456-4f18f33dad53"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4d6a7de9-89fa-4d60-9511-16b74e1773a5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -395,6 +423,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_TabClick = m_Player.FindAction("TabClick", throwIfNotFound: true);
         m_Player_EscClick = m_Player.FindAction("EscClick", throwIfNotFound: true);
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
+        // Vehicle
+        m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
+        m_Vehicle_Newaction = m_Vehicle.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -595,6 +626,39 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Vehicle
+    private readonly InputActionMap m_Vehicle;
+    private IVehicleActions m_VehicleActionsCallbackInterface;
+    private readonly InputAction m_Vehicle_Newaction;
+    public struct VehicleActions
+    {
+        private @PlayerInputAction m_Wrapper;
+        public VehicleActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Vehicle_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Vehicle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(VehicleActions set) { return set.Get(); }
+        public void SetCallbacks(IVehicleActions instance)
+        {
+            if (m_Wrapper.m_VehicleActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_VehicleActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public VehicleActions @Vehicle => new VehicleActions(this);
     public interface IPlayerActions
     {
         void OnJump(InputAction.CallbackContext context);
@@ -612,5 +676,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnTabClick(InputAction.CallbackContext context);
         void OnEscClick(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
+    }
+    public interface IVehicleActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

@@ -352,6 +352,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Vehicle",
+            "id": "fcfa06bd-4054-41d6-a79f-eefc8ce2fa87",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "98e78e7f-25b4-4f53-b456-4f18f33dad53",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4d6a7de9-89fa-4d60-9511-16b74e1773a5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

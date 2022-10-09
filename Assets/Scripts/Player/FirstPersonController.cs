@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -125,7 +126,7 @@ public class FirstPersonController : MonoBehaviour
         playerInputAction.Player.Enable();
         characterController = GetComponent<CharacterController>();
         yawTransform = CameraController.transform;
-        camTransform = CameraController.GetComponentInChildren<Camera>().transform;
+        camTransform = CameraController.GetComponentInChildren<CinemachineVirtualCamera>().transform;
     }
 
     private void InitVariables()

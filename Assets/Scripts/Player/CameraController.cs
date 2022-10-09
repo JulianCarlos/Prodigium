@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
@@ -149,7 +150,7 @@ public class CameraController : MonoBehaviour
 
     private void ChangeFOW()
     {
-        playerCamera.fieldOfView = Mathf.MoveTowards(playerCamera.fieldOfView, targetFOW, zoomSpeed * Time.deltaTime);
+        //playerCamera.fieldOfView = Mathf.MoveTowards(playerCamera.fieldOfView, targetFOW, zoomSpeed * Time.deltaTime);
     }
 
     public void ApplyFOWValue(float target)
