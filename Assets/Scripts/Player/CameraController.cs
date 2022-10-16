@@ -46,6 +46,8 @@ public class CameraController : MonoBehaviour
 
     private bool sinusIsPositive;
 
+    private AudioSource playerStepAudioSource;
+
     private void Awake()
     {
         cameraToBodyDistance = transform.position.y - player.gameObject.transform.position.y;
@@ -57,6 +59,8 @@ public class CameraController : MonoBehaviour
         InitValues();
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        playerStepAudioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -101,6 +105,7 @@ public class CameraController : MonoBehaviour
             }
             else if (sinValue < 0 && sinusIsPositive)
             {
+                playerStepAudioSource.PlayOneShot(playerStepAudioSource.clip);
                 sinusIsPositive = false;
             }
         }

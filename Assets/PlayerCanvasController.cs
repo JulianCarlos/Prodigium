@@ -8,10 +8,15 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
     [SerializeField] private GameObject itemWheel;
     [SerializeField] private GameObject achievementWindow;
     [SerializeField] private GameObject optionsWindow;
+    [SerializeField] private GameObject ingameWindow;
+
+    private bool isIngame;
 
     protected override void Awake()
     {
         base.Awake();
+
+        isIngame = PlayerState.PlayerStateType == PlayerStateType.InGame;
     }
 
     private void Start()
@@ -19,24 +24,42 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
         PlayerInputs.InputAction.Player.TabClick.started += OpenItemWheel;
         PlayerInputs.InputAction.Player.TabClick.canceled += CloseItemWheel;
 
-        PlayerInputs.InputAction.Player.EscClick.started += OpenOptionsMenu;
+        PlayerInputs.InputAction.Player.EscClick.started += ToggleMenu;
     }
 
     //UI Button Methods
-    public void OpenOptionsMenu(InputAction.CallbackContext context)
+    public void ToggleMenu(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            CloseItemWheel();
+            isIngame = !isIngame;
 
-            optionsWindow?.SetActive(true);
-            PlayerState.ChangePlayerState(PlayerStateType.InMenu);
+            if (!isIngame)
+            {
+                OpenOptionsMenu();
+            }
+            else
+            {
+                CloseOptionsMenu();
+            }
         }
+    }
+
+    private void OpenOptionsMenu()
+    {
+        CloseItemWheel();
+
+        ingameWindow?.SetActive(false);
+        optionsWindow?.SetActive(true);
+        PlayerState.ChangePlayerState(PlayerStateType.InMenu);
     }
 
     public void CloseOptionsMenu()
     {
+        isIngame = true;
+
         optionsWindow?.SetActive(false);
+        ingameWindow?.SetActive(true);
         PlayerState.ChangePlayerState(PlayerStateType.InGame);
     }
 
@@ -57,7 +80,6 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
 
         itemWheel?.SetActive(true);
 
-        Cursor.lockState = CursorLockMode.None;
         PlayerState.ChangePlayerState(PlayerStateType.InMenu);
     }
 
@@ -65,7 +87,6 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
     {
         itemWheel?.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.Locked;
         PlayerState.ChangePlayerState(PlayerStateType.InGame);
     }
 
@@ -76,7 +97,6 @@ public class PlayerCanvasController : Singleton<PlayerCanvasController>
 
         itemWheel?.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.Locked;
         PlayerState.ChangePlayerState(PlayerStateType.InGame);
     }
 }

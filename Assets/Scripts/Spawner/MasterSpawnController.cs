@@ -31,6 +31,11 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     [SerializeField] private int monsterSpawnCount = 1;
     [SerializeField] private float intervalBetweenSpawning = 1;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource spawnerAudioSource;
+
+    [SerializeField] private AudioClip spawnStartedAudioClip;
+
     protected override void Awake()
     {
         base.Awake();
@@ -40,11 +45,19 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
 
         spawnControllers = FindObjectsOfType<SpawnController>().ToList();
         spawnControllers = spawnControllers.OrderBy(x => x.SpawnProbability).ToList();
+
+        spawnerAudioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
+        Invoke(nameof(StartSpawner), 50f);
+    }
+
+    private void StartSpawner()
+    {
         StateMachine.InitializeFirstState(SpawnerSpawningState);
     }
+
     private void Update()
     {
         StateMachine?.Update();
@@ -67,7 +80,10 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     }
     private IEnumerator Spawning()
     {
-        for (int i = 0; i < monsterSpawnCount -1 ;)
+        yield return new WaitForSeconds(intervalBetweenSpawning);
+        spawnerAudioSource.PlayOneShot(spawnStartedAudioClip);
+
+        for (int i = 0; i < monsterSpawnCount ;)
         {
             float randomPercentage = Random.Range(0f, 100f);
     

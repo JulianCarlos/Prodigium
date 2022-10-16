@@ -15,10 +15,12 @@ public static class PlayerState
             if (PlayerStateType == PlayerStateType.InMenu)
             {
                 Cursor.lockState = CursorLockMode.None;
+                PlayerInputs.InputAction?.Player.Look.Disable();
             }
             else
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                PlayerInputs.InputAction?.Player.Look.Enable();
             }
         }
     }

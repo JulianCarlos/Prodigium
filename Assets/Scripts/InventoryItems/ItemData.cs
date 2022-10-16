@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject
     public string ItemTooltip => itemTooltip;
     public float Price => price;
     public Item IngameItem => ingameItem;
+    public GameObject ShopDisplayObject => shopDisplayObject;
     public ItemCategoryType ItemCategoryType => itemCategoryType;
     public Sprite ItemIcon => itemIcon;
 
@@ -19,6 +20,7 @@ public class ItemData : ScriptableObject
     [SerializeField, TextArea(10, 100)] protected string itemTooltip;
     [SerializeField] protected float price;
     [SerializeField] protected Item ingameItem;
+    [SerializeField] protected GameObject shopDisplayObject;
     [SerializeField] protected ItemCategoryType itemCategoryType;
     [SerializeField] protected Sprite itemIcon;
 }

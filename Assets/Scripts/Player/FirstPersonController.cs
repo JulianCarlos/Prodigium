@@ -83,6 +83,7 @@ public class FirstPersonController : MonoBehaviour
 
     private RaycastHit hitInfo;
     private IEnumerator landRoutine;
+    private AudioSource playerLandingAudioSource;
 
     private void Awake()
     {
@@ -115,9 +116,12 @@ public class FirstPersonController : MonoBehaviour
             ApplyGravity();
 
             ApplyMovement();
-
-            previouslyGrounded = IsGrounded;
         }
+    }
+
+    private void LateUpdate()
+    {
+        previouslyGrounded = IsGrounded;
     }
 
     private void GetComponents()
@@ -127,6 +131,7 @@ public class FirstPersonController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         yawTransform = CameraController.transform;
         camTransform = CameraController.GetComponentInChildren<CinemachineVirtualCamera>().transform;
+        playerLandingAudioSource = GetComponent<AudioSource>();
     }
 
     private void InitVariables()
@@ -216,11 +221,6 @@ public class FirstPersonController : MonoBehaviour
 
         finalVelocity.x = finalVector.x;
         finalVelocity.z = finalVector.z;
-
-        if (IsGrounded)
-        {
-            finalVelocity.y = finalVector.y;
-        }
     }
 
     private void HandleJump()
@@ -281,7 +281,14 @@ public class FirstPersonController : MonoBehaviour
 
     private void FallDamageCheck()
     {
-        
+        if(finalVelocity.y < -5f)
+        {
+            playerLandingAudioSource.PlayOneShot(playerLandingAudioSource.clip);
+        }
+        if(finalVelocity.y < -20f)
+        {
+            Debug.Log("Dealt damage");
+        }
     }
 
     private void ApplyGravity()

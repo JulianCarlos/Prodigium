@@ -5,5 +5,6 @@ public enum DamageTypes
     Water,
     Iron,
     Gold,
-    Silver
+    Silver,
+    Melee
 }

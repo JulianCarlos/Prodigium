@@ -9,11 +9,21 @@ public class Door : MonoBehaviour, IInteractable
 
     [SerializeField, TextArea] private string interactableDescription;
 
+    [SerializeField] private AudioClip openingSound;
+    [SerializeField] private AudioClip closingSound;
+
+    private AudioSource doorAudioSource;
+
     private float targetYRotation;
     private float defaultYRotation = 0f;
 
     private bool isInUse = false;
     private bool isOpen = false;
+
+    private void Awake()
+    {
+        doorAudioSource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
@@ -41,6 +51,7 @@ public class Door : MonoBehaviour, IInteractable
 
     private IEnumerator OpenDoor(Player player)
     {
+        doorAudioSource.PlayOneShot(openingSound);
         Vector3 dir = (player.transform.position - transform.position);
         targetYRotation = -Mathf.Sign(Vector3.Dot(transform.right, dir)) * openAngle;
 
@@ -55,6 +66,7 @@ public class Door : MonoBehaviour, IInteractable
 
     private IEnumerator CloseDoor()
     {
+        doorAudioSource.PlayOneShot(closingSound);
         targetYRotation = 0f;
 
         while (transform.rotation != Quaternion.Euler(0, defaultYRotation + targetYRotation, 0))

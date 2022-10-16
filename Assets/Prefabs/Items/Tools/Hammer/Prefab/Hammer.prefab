@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5659458416024583043}
   - component: {fileID: 5659458416024583044}
   - component: {fileID: 4730201496895976794}
+  - component: {fileID: 2058449824197864197}
   m_Layer: 7
   m_Name: Hammer
   m_TagString: Untagged
@@ -46,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe1c0744bb39ed4daa1c55cf3707774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData: {fileID: 0}
+  damageType: 06000000
+  damage: 0
   useAnimation: {fileID: 7400000, guid: f9a019fceb2f0504b9ee6622a41cfeab, type: 2}
   equipAnimation: {fileID: 7400000, guid: e17fea9259f4e1c4e98d51b18b09a514, type: 2}
 --- !u!95 &4730201496895976794
@@ -68,6 +72,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &2058449824197864197
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5659458416024583042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 1.35, z: 0}
 --- !u!1001 &5659458415304499079
 PrefabInstance:
   m_ObjectHideFlags: 0

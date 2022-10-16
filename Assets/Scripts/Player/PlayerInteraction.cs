@@ -4,9 +4,12 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using TMPro;
+using Cinemachine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public static CinemachineVirtualCamera PlayerVirtualCamera { get; private set; }
+
     public RaycastHit HitInfo => currentHit;
 
     [SerializeField] private Player player;
@@ -22,6 +25,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
+        PlayerVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         currentHit = new RaycastHit();
     }
 

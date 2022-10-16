@@ -9,6 +9,8 @@ public enum ReloadType
     SingleBulletReload
 }
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public abstract class Weapon : Item
 {
     //Magazine Readonly
@@ -36,6 +38,8 @@ public abstract class Weapon : Item
     [SerializeField] private float damage;
     [SerializeField] private bool automatic;
 
+    [SerializeField] private DamageTypes[] damageTypes;
+
     [Header("Aim Settings")]
     [SerializeField] private float aimSpeed;
 
@@ -60,11 +64,16 @@ public abstract class Weapon : Item
     [SerializeField] private float snappiness;
     [SerializeField] private float returnSpeed;
 
-    [Header("Clips")]
+    [Header("AnimationClips")]
     [SerializeField] private AnimationClip reloadInClip;
     [SerializeField] private AnimationClip reloadIOutClip;
     [Space]
     [SerializeField] private AnimationClip equipClip;
+
+    [Header("AudioClips")]
+    [SerializeField] private AudioClip reloadClip;
+    [SerializeField] private AudioClip shotClip;
+    [SerializeField] private AudioClip emptyShotClip;
 
     private Vector3 localPos;
 
@@ -83,13 +92,14 @@ public abstract class Weapon : Item
 
     public ItemAimController ItemAimController { get; private set; }
     private Animator animator;
-
+    private AudioSource weaponShotAudioSource;
     private RecoilController recoilController;
 
     private void Awake()
     {
         ItemAimController = GetComponentInParent<ItemAimController>();
         animator = GetComponent<Animator>();
+        weaponShotAudioSource = GetComponent<AudioSource>();
         recoilController = FindObjectOfType<RecoilController>();
     }
 
@@ -169,6 +179,7 @@ public abstract class Weapon : Item
         {
             if (currentMagazineCapacity <= 0 && backupAmmo > 0)
             {
+                weaponShotAudioSource.PlayOneShot(emptyShotClip);
                 StartCoroutine(nameof(C_Reload));
                 return;
             }
@@ -226,8 +237,10 @@ public abstract class Weapon : Item
 
         yield return timeUntilReloadWait;
 
+
         if (reloadType == ReloadType.InstantReload)
         {
+            weaponShotAudioSource.PlayOneShot(reloadClip);
             currentMagazineCapacity += amount;
             backupAmmo -= amount;
             Actions.OnAmmoChanged(this);
@@ -236,11 +249,11 @@ public abstract class Weapon : Item
         {
             while (amount > 0)
             {
+                weaponShotAudioSource.PlayOneShot(reloadClip);
                 currentMagazineCapacity++;
                 backupAmmo--;
                 amount--;
                 Actions.OnAmmoChanged(this);
-
                 yield return timeBetweenReloadWait;
             }
         }
@@ -252,6 +265,8 @@ public abstract class Weapon : Item
 
     protected virtual void Shoot()
     {
+        weaponShotAudioSource.PlayOneShot(shotClip);
+
         animator.SetTrigger("Shooting");
         DamageCheck();
 
@@ -273,11 +288,9 @@ public abstract class Weapon : Item
         var hit = RaycastManager.CheckForRaycastType(Camera.main);
         var Monster = hit?.GetComponent<Monster>();
 
-        var damageType = new DamageTypes[2] { DamageTypes.Fire, DamageTypes.Salt };
-
         if (Monster != null)
         {
-            Monster.TakeDamage(damageType, this.damage);
+            Monster.TakeDamage(damageTypes, this.damage);
         }
     }
 

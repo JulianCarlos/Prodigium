@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SphereCollider))]
 public abstract class Tool : Item
 {
+    [SerializeField] private DamageTypes[] damageType;
+    [SerializeField] private float damage;
+
     [SerializeField] private AnimationClip useAnimation;
     [SerializeField] private AnimationClip equipAnimation;
 
@@ -13,13 +18,17 @@ public abstract class Tool : Item
     private WaitForSeconds equipAnimationWait;
 
     private Animator animator;
+    private SphereCollider attackCollider;
 
     private bool isInUse;
     private bool isEquipping;
 
+    private bool isAttacking;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        attackCollider = GetComponent<SphereCollider>();
     }
 
     private void Start()
@@ -76,5 +85,28 @@ public abstract class Tool : Item
         animator.Play("Equip");
         yield return equipAnimationWait;
         isEquipping = false;
+    }
+
+    //Animation Event
+    protected void StartAttack()
+    {
+        isAttacking = true;
+        attackCollider.enabled = true;
+    }
+
+    protected void EndAttack()
+    {
+        isAttacking = false;
+        attackCollider.enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.root.TryGetComponent(out Monster monster))
+        {
+            monster.TakeDamage(damageType, damage);
+            isAttacking = false;
+            attackCollider.enabled = false;
+        }
     }
 }

@@ -380,9 +380,18 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
             ""id"": ""fcfa06bd-4054-41d6-a79f-eefc8ce2fa87"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
                     ""id"": ""98e78e7f-25b4-4f53-b456-4f18f33dad53"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""E_Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0e737b0-cd9a-4e0c-a365-b25c483f217a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -391,13 +400,68 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""4d6a7de9-89fa-4d60-9511-16b74e1773a5"",
-                    ""path"": """",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a9800120-96ca-40e9-9544-6863e13d4123"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6b78a7f4-62a2-4807-b689-e21ac385e544"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""97827bb7-55d5-4df0-98b3-2de37141f596"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6be77291-4140-4eda-8338-0aa432937622"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d4d8d57a-4090-40c8-bba5-bc5e46aa79d9"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e40aae80-4b3d-4b7c-b5f9-fc0a221dd890"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""E_Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -425,7 +489,8 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
-        m_Vehicle_Newaction = m_Vehicle.FindAction("New action", throwIfNotFound: true);
+        m_Vehicle_Movement = m_Vehicle.FindAction("Movement", throwIfNotFound: true);
+        m_Vehicle_E_Use = m_Vehicle.FindAction("E_Use", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -630,12 +695,14 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     // Vehicle
     private readonly InputActionMap m_Vehicle;
     private IVehicleActions m_VehicleActionsCallbackInterface;
-    private readonly InputAction m_Vehicle_Newaction;
+    private readonly InputAction m_Vehicle_Movement;
+    private readonly InputAction m_Vehicle_E_Use;
     public struct VehicleActions
     {
         private @PlayerInputAction m_Wrapper;
         public VehicleActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Vehicle_Newaction;
+        public InputAction @Movement => m_Wrapper.m_Vehicle_Movement;
+        public InputAction @E_Use => m_Wrapper.m_Vehicle_E_Use;
         public InputActionMap Get() { return m_Wrapper.m_Vehicle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -645,16 +712,22 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_VehicleActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnNewaction;
+                @Movement.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnMovement;
+                @E_Use.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnE_Use;
+                @E_Use.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnE_Use;
+                @E_Use.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnE_Use;
             }
             m_Wrapper.m_VehicleActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @E_Use.started += instance.OnE_Use;
+                @E_Use.performed += instance.OnE_Use;
+                @E_Use.canceled += instance.OnE_Use;
             }
         }
     }
@@ -679,6 +752,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     }
     public interface IVehicleActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnE_Use(InputAction.CallbackContext context);
     }
 }
