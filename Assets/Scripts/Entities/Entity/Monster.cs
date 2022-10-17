@@ -133,12 +133,13 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void ApplyDamage()
     {
-
+        
     }
     public virtual void Die()
     {
         isDead = true;
         animator.SetTrigger("death");
+        monsterAI.StateMachine.ChangeState(monsterAI.DeadState);
         Actions.OnMonsterDeath(this);
     }
 }

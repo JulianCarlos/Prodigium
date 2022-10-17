@@ -7467,7 +7467,7 @@ MonoBehaviour:
   scoutRange: 0
   wanderRange: 15
   minAttackRange: 0
-  maxAttackRange: 0
+  maxAttackRange: 3
   minWanderWaitTime: 2
   maxWanderWaitTime: 5
   stoppingDistance: 3

@@ -53,7 +53,7 @@ public abstract class MonsterAI : Entity
 
     protected Monster monster;
     internal Detection detection;
-    protected Animator animator;
+    internal Animator animator;
     internal NavMeshAgent agent;
 
     private float entityNotFoundTimer;
@@ -164,10 +164,34 @@ public abstract class MonsterAI : Entity
             }
         }
         agent.SetDestination(target.transform.position);
+
+        if (Vector3.Distance(transform.position, target.transform.position) <= maxAttackRange)
+        {
+            StateMachine.ChangeState(attackState);
+        }
     }
     #endregion
 
+    #region Attack
+    public virtual IEnumerator Attack()
+    {
+        while (StateMachine.CurrentState == attackState && target)
+        {
+            Attacking();
+            yield return null;
+        }
+    }
 
+    protected void Attacking()
+    {
+        agent.SetDestination(target.transform.position);
+
+        if (Vector3.Distance(target.transform.position, transform.position) > maxAttackRange)
+        {
+            StateMachine.ChangeState(chaseState);
+        }
+    }
+    #endregion
 
     #region Flee
     public virtual IEnumerator Flee()
