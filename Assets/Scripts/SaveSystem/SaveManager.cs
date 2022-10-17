@@ -20,21 +20,18 @@ public class SaveManager : Singleton<SaveManager>
         var state = LoadFile();
         CaptureState(state);
         SaveFile(state);
-        Debug.Log("Saved");
     }
 
     public void Load()
     {
         var state = LoadFile();
         RestoreState(state);
-        Debug.Log("Loaded");
     }
 
     public void Load(Scene scene, LoadSceneMode mode)
     {
         var state = LoadFile();
         RestoreState(state);
-        Debug.Log("Loaded on SceneChange");
     }
 
     private Dictionary<string, object> LoadFile()
@@ -78,10 +75,5 @@ public class SaveManager : Singleton<SaveManager>
                 saveable.RestoreState(value);
             }
         }
-    }
-
-    private void OnApplicationQuit()
-    {
-        //Save();
     }
 }

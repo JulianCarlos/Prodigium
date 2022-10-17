@@ -17,6 +17,6 @@ MonoBehaviour:
   itemTooltip: It is a old rusty axe
   price: 700
   ingameItem: {fileID: 5477492515992417, guid: 0457ccac0ffb71640b99a60eb0a926ad, type: 3}
-  shopDisplayObject: {fileID: 919132149155446097, guid: 40813dc2b378a884e9a9d0ffe1b153d7, type: 3}
+  shopDisplayObject: {fileID: 1479096258061270191, guid: d57c11d91384df54daf7d7aba89fded3, type: 3}
   itemCategoryType: 3
   itemIcon: {fileID: 21300000, guid: 03af941e1e5736b40acf731f3417f1af, type: 3}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
+using TMPro;
 
 public class PlayerData : Singleton<PlayerData>, ISaveable<object>
 {
@@ -34,6 +35,17 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         OwnedItemsID = OwnedItemsID.Where(i => !ingameIDs.Contains(i)).ToList();
 
         SaveManager.Instance.Save();
+    }
+
+    public void TransferItemsToPlayerData()
+    {
+        foreach (var item in IngameItems)
+        {
+            OwnedItemsID.Add(item.ID);
+            OwnedItems.Add(item);
+        }
+
+        //IngameItems = null;
     }
 
     public void ResetSelectedItems()
@@ -106,7 +118,7 @@ public class PlayerData : Singleton<PlayerData>, ISaveable<object>
         return new SaveData
         {
             OwnedItemsID = OwnedItemsID,
-            CurrentMoney = MoneySystem.Currency
+            CurrentMoney = MoneySystem.Currency,
         };
     }
 
