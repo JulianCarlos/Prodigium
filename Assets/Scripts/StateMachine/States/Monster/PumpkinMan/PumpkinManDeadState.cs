@@ -6,7 +6,7 @@ public class PumpkinManDeadState : State<MonsterAI>
 {
     public override void EnterState(MonsterAI owner)
     {
-        
+        owner.StartCoroutine("Die");
     }
 
     public override void ExitState(MonsterAI owner)

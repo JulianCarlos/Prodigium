@@ -208,4 +208,9 @@ public abstract class MonsterAI : Entity
         Debug.Log("Monster is Fleeing");
     }
     #endregion
+
+    public virtual IEnumerator Die()
+    {
+        yield return null;
+    }
 }
