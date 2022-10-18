@@ -20,6 +20,9 @@ public abstract class MonsterAI : Entity
     public State<MonsterAI> DeadState { get => deadState; set => deadState = value; }
     public State<MonsterAI> AttackState { get => attackState; set => attackState = value; }
 
+    //Readonly
+    public Collider Target => target;
+
     //Types
     [SerializeField] protected StateType stateType;
     [SerializeField] protected BehaviourType behaviourType;

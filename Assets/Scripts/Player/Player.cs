@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, ISaveable<object>
 {
-    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; OnMaxHealthChanged(); } }
-    public float Health { get { return health; } set { health = value; OnHealthChanged(); } }
-    public float MeleeDamage { get { return meleeDamage; } set { meleeDamage = value; OnMeleeDamageChanged(); } }
-    public float Armor { get { return armor; } set { armor = value; OnArmorChanged(); } }
+    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+    public float Health { get { return health; } set { health = value; } }
+    public float MeleeDamage { get { return meleeDamage; } set { meleeDamage = value; } }
+    public float Armor { get { return armor; } set { armor = value; } }
 
     [Header("Player Stats")]
     [SerializeField] private float maxHealth;
@@ -57,24 +57,6 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
         }
     }
 
-    //OnVariableChanged Methods
-    private void OnMaxHealthChanged()
-    {
-
-    }
-    private void OnHealthChanged()
-    {
-
-    }
-    private void OnMeleeDamageChanged()
-    {
-
-    }
-    private void OnArmorChanged()
-    {
-
-    }
-
     //Checks
     private void DeathCheck()
     {
@@ -93,10 +75,15 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     }
     public void TakeDamage(DamageTypes[] types, float damage)
     {
-        Actions.OnTakeDamage(this);
+        health -= damage;
         DeathCheck();
     }
     public void TakeDamage(DamageTypes types, float damage)
+    {
+        health -= damage;
+        DeathCheck();
+    }
+    public void ResetRegenerationTimer()
     {
 
     }
@@ -108,7 +95,6 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
     {
 
     }
-
     public void ReceiveMonsterBounty(Monster monster)
     {
         MoneySystem.AddMoney(monster.KillReward);
@@ -133,8 +119,6 @@ public class Player : MonoBehaviour, IDamageable, ISaveable<object>
         currentExperience = saveData.experience;
         experienceForNextLevel = saveData.experienceForNextLevel;
     }
-
-
 
     [Serializable]
     internal struct SaveData

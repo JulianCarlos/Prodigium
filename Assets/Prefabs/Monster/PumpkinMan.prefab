@@ -7431,7 +7431,7 @@ MonoBehaviour:
   maxHealth: 150
   healthRegenerationSpeed: 0
   attackSpeed: 0
-  attackStrenght: 0
+  attackStrenght: 15
   armor: 0
   movementSpeed: 0
   head: {fileID: 0}
@@ -7444,7 +7444,12 @@ MonoBehaviour:
   monsterLevel: 0
   killReward: 1444
   weakness: 0600000003000000
+  attackType: 06000000
   individualBodyPartHealth: 0
+  FriendlyColor: {r: 0.7830189, g: 0.73541665, b: 0.31394625, a: 1}
+  AngryColor: {r: 1, g: 0.00969137, b: 0, a: 1}
+  intensitivy: 5
+  PumpkinMaterial: {fileID: 2100000, guid: 7eabfec59248c6849aa601c668a141c8, type: 2}
 --- !u!114 &4706864969924910127
 MonoBehaviour:
   m_ObjectHideFlags: 0

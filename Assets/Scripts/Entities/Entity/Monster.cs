@@ -50,6 +50,7 @@ public abstract class Monster : Entity, IDamageable
     //Damagetypes
     [Space(15)]
     [SerializeField] protected DamageTypes[] weakness;
+    [SerializeField] protected DamageTypes[] attackType;
 
     [SerializeField] protected bool individualBodyPartHealth = false;
 
@@ -58,10 +59,13 @@ public abstract class Monster : Entity, IDamageable
 
     protected bool isDead = false;
 
+    protected SpriteRenderer mapIcon;
+
     protected virtual void Awake()
     {
         monsterAI = GetComponent<MonsterAI>();
         animator = GetComponent<Animator>();
+        mapIcon = GetComponentInChildren<SpriteRenderer>();
 
         if (!individualBodyPartHealth)
             return;
@@ -133,11 +137,20 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void ApplyDamage()
     {
-        
+        if(monsterAI.Target.TryGetComponent(out Player player))
+        {
+            Debug.Log("Got Player");
+            player.TakeDamage(attackType, attackStrenght);
+        }
+        else
+        {
+            Debug.Log("Didnt got Player");
+        }
     }
     public virtual void Die()
     {
         isDead = true;
+        mapIcon.enabled = false;
         animator.SetTrigger("death");
         monsterAI.StateMachine.ChangeState(monsterAI.DeadState);
         Actions.OnMonsterDeath(this);
