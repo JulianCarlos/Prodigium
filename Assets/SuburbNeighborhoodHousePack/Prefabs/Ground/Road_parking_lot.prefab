@@ -48,12 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placed: 0
-  category: 
-  prefab: 
+  category: Ground
+  prefab: Road_parking_lot
   additionals: []
   additionalsBtns: []
-  additionalsPos: []
-  additionalsRot: []
+  additionalsPos:
+  - {x: 0, y: 0, z: 0}
+  additionalsRot:
+  - {x: 0, y: 0, z: 0}
 --- !u!33 &8662624309928771998
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117,6 +119,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7254086512461604377, guid: eb170bea6ea08274984907dee2b74b9d, type: 3}

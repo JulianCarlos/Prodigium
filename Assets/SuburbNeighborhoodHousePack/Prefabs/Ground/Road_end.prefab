@@ -48,12 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placed: 0
-  category: 
-  prefab: 
+  category: Ground
+  prefab: Road_end
   additionals: []
   additionalsBtns: []
-  additionalsPos: []
-  additionalsRot: []
+  additionalsPos:
+  - {x: 0, y: 0, z: 0}
+  additionalsRot:
+  - {x: 0, y: 0, z: 0}
 --- !u!33 &6805611481811383833
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117,6 +119,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1013456081478225396, guid: cb8cd2a9b99bf4840bcd2892a7e9dba2, type: 3}

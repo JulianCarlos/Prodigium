@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
+    [SerializeField] private bool doorClosed;
+
     [SerializeField] private float openAngle;
     [SerializeField] private float smooth;
 
@@ -37,7 +39,8 @@ public class Door : MonoBehaviour, IInteractable
 
     private void ToggleDoor(Player player)
     {
-        if (isInUse)
+
+        if (isInUse || doorClosed)
             return;
 
         isOpen = !isOpen;
