@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e70f49e5124da0a95111a57250300, type: 3}
   m_Name: IngameFogVolume
   m_EditorClassIdentifier: 
-  raymarchQuality: 2
-  raymarchMinStep: 1.5
+  raymarchQuality: 1
+  raymarchMinStep: 8
   jittering: 0.08
   dithering: 0
   renderQueue: 3100
@@ -38,11 +38,11 @@ MonoBehaviour:
   terrainFitResolution: 128
   terrainLayerMask:
     serializedVersion: 2
-    m_Bits: 2045
+    m_Bits: 205
   terrainFogHeight: 25
   terrainFogMinAltitude: 0
   terrainFogMaxAltitude: 150
-  albedo: {r: 0.8901961, g: 0.8901961, b: 0.8901961, a: 1}
+  albedo: {r: 1, g: 1, b: 1, a: 1}
   enableDepthGradient: 0
   depthGradient:
     serializedVersion: 2

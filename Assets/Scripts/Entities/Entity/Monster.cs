@@ -149,10 +149,12 @@ public abstract class Monster : Entity, IDamageable
     }
     public virtual void Die()
     {
+        MasterSpawnController.Instance.RemoveMonster(this);
         isDead = true;
         mapIcon.enabled = false;
         animator.SetTrigger("death");
         monsterAI.StateMachine.ChangeState(monsterAI.DeadState);
         Actions.OnMonsterDeath(this);
+        Destroy(this.gameObject, 25f);
     }
 }

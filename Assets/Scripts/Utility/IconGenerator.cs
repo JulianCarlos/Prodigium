@@ -10,17 +10,22 @@ public class IconGenerator : MonoBehaviour
 
     [SerializeField] private Camera camera;
 
+    [SerializeField] private bool autoReset = false;
+
+    [SerializeField] private Vector2Int pictureSize;
+
     [ContextMenu("Take ScreenShot")]
     public void TakeScreenShot()
     {
-        camera.clearFlags = CameraClearFlags.Depth;
+        if(autoReset)
+            camera.clearFlags = CameraClearFlags.Depth;
 
-        RenderTexture rt = new RenderTexture(256, 256, 24);
+        RenderTexture rt = new RenderTexture(pictureSize.x, pictureSize.y, 24);
         camera.targetTexture = rt;
-        Texture2D screenShot = new Texture2D(256, 256, TextureFormat.RGBA32, false);
+        Texture2D screenShot = new Texture2D(pictureSize.x, pictureSize.y, TextureFormat.RGBA32, false);
         camera.Render();
         RenderTexture.active = rt;
-        screenShot.ReadPixels(new Rect(0, 0, 256, 256), 0, 0);
+        screenShot.ReadPixels(new Rect(0, 0, pictureSize.x, pictureSize.y), 0, 0);
         camera.targetTexture = null;
         RenderTexture.active = null;
 

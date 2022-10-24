@@ -31,6 +31,8 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     [SerializeField] private int monsterSpawnCount = 1;
     [SerializeField] private float intervalBetweenSpawning = 1;
 
+    [SerializeField] private float spawnWaitingTime;
+
     [Header("Audio Settings")]
     [SerializeField] private AudioSource spawnerAudioSource;
 
@@ -51,6 +53,11 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
     private void Start()
     {
         Invoke(nameof(StartSpawner), 50f);
+    }
+
+    public void RemoveMonster(Monster monster)
+    {
+        spawnedMonsters.Remove(monster);
     }
 
     private void StartSpawner()
@@ -74,11 +81,37 @@ public class MasterSpawnController : Singleton<MasterSpawnController>
         SpawnerWaitingState = new();
     }
 
+    public void SpawnCoolDown()
+    {
+        StopAllCoroutines();
+        StartCoroutine(nameof(SpawnCoolDown));
+    }
+    private IEnumerator C_SpawnCoolDown()
+    {
+        yield return new WaitForSeconds(spawnWaitingTime);
+        StateMachine.ChangeState(SpawnerSpawningState);
+    }
+
+    public void CheckForMonsters()
+    {
+        StopAllCoroutines();
+        StartCoroutine(nameof(CheckForMonsters));
+    }
+    private IEnumerator C_CheckForMonsters()
+    {
+        while (SpawnedMonsters.Count > 0)
+        {
+            yield return null;
+        }
+        StateMachine.ChangeState(SpawnerWaitingState);
+    }
+
     public void SpawnMonsters()
     {
-        StartCoroutine(nameof(Spawning));
+        StopAllCoroutines();
+        StartCoroutine(nameof(C_SpawnMonsters));
     }
-    private IEnumerator Spawning()
+    private IEnumerator C_SpawnMonsters()
     {
         yield return new WaitForSeconds(intervalBetweenSpawning);
         spawnerAudioSource.PlayOneShot(spawnStartedAudioClip);

@@ -6,12 +6,13 @@ public class SpawnerCountingState : State<MasterSpawnController>
 {
     public override void EnterState(MasterSpawnController masterSpawner)
     {
+        masterSpawner.StartCoroutine("C_CheckForMonsters");
         Debug.Log("Entered Counting State");
     }
 
     public override void ExitState(MasterSpawnController masterSpawner)
     {
-        Debug.Log("Exited Counting State");
+        
     }
 
     public override void FixedUpdateState(MasterSpawnController masterSpawner)

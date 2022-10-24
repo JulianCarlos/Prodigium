@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
   damageType: 06000000
-  damage: 15
+  damage: 35
   useAnimation: {fileID: 7400000, guid: 337742e44dbba114896ce2c685e0a7c1, type: 2}
   equipAnimation: {fileID: 7400000, guid: 0b534baea1f98e446a2a33d83c85310a, type: 2}
 --- !u!95 &8777668530828448760
