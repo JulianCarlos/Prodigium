@@ -874,8 +874,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.8234786, g: 0.8301887, b: 0.66180134, a: 1}
+  m_Intensity: 3.38
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2240,7 +2240,7 @@ AudioSource:
   m_GameObject: {fileID: 906294138}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5211116953092043356, guid: 8d1a9cdb235e28642ac2bbbac8d6973e, type: 2}
   m_audioClip: {fileID: 8300000, guid: d3a7b37f033dd9344ae16a066d9dc541, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.7
@@ -3122,6 +3122,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8985655269478418376, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 8985655269478418377, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -3346,6 +3350,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8985655270096858838, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 8985655270096858839, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -3389,6 +3397,10 @@ PrefabInstance:
     - target: {fileID: 8985655270205694658, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985655270205694685, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8985655270211994186, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
@@ -3638,6 +3650,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8985655271276626998, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: MasterMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 8d1a9cdb235e28642ac2bbbac8d6973e, type: 2}
     - target: {fileID: 8985655271286740170, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -3650,6 +3666,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8985655271340665608, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 8985655271340665609, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -3657,6 +3677,10 @@ PrefabInstance:
     - target: {fileID: 8985655271344909224, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985655271358551680, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8985655271358551681, guid: 9a1947a5b6de7a442afc97f5763e59d6, type: 3}
       propertyPath: m_Layer

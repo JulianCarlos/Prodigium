@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.Audio;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -22,6 +23,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Slider environmentVolumeSlider = null;
 
     [SerializeField] private float defaultVolume = 0.5f;
+
+    [SerializeField] private AudioMixer MasterMixer;
 
     private float masterVolumeValue = 0.5f;
     private float soundVolumeValue = 0.5f;
@@ -70,11 +73,12 @@ public class UIManager : Singleton<UIManager>
     protected override void Awake()
     {
         base.Awake();
-        LoadPreferences();
     }
 
     private void Start()
     {
+        LoadPreferences();
+
         GetAllResolutions();
     }
 
@@ -111,6 +115,12 @@ public class UIManager : Singleton<UIManager>
         PlayerPrefs.SetFloat("musikVolume", musikVolumeValue);
         PlayerPrefs.SetFloat("effectVolume", effectVolumeValue);
         PlayerPrefs.SetFloat("environmentVolume", environmentVolumeValue);
+
+        MasterMixer.SetFloat("Master", Mathf.Log10(masterVolumeValue) * 20);
+        MasterMixer.SetFloat("Sounds", Mathf.Log10(soundVolumeValue) * 20);
+        MasterMixer.SetFloat("Music", Mathf.Log10(musikVolumeValue) * 20);
+        MasterMixer.SetFloat("SFX", Mathf.Log10(effectVolumeValue) * 20);
+        MasterMixer.SetFloat("Environment", Mathf.Log10(environmentVolumeValue) * 20);
 
         StartCoroutine(ConfirmationWindow("Audiosettings saved", .5f));
     }
@@ -303,6 +313,12 @@ public class UIManager : Singleton<UIManager>
             musikVolumeSlider.value = musikVolumeValue;
             effektVolumeSlider.value = effectVolumeValue;
             environmentVolumeSlider.value = environmentVolumeValue;
+
+            MasterMixer.SetFloat("Master", Mathf.Log10(masterVolumeValue) * 20);
+            MasterMixer.SetFloat("Sounds", Mathf.Log10(soundVolumeValue) * 20);
+            MasterMixer.SetFloat("Music", Mathf.Log10(musikVolumeValue) * 20);
+            MasterMixer.SetFloat("SFX", Mathf.Log10(effectVolumeValue) * 20);
+            MasterMixer.SetFloat("Environment", Mathf.Log10(environmentVolumeValue) * 20);
         }
         else
         {
